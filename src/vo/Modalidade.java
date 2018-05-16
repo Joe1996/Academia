@@ -1,9 +1,9 @@
 package vo;
 
 public class Modalidade {
-	protected long id;
-	protected String nome;
-	protected String nomeMestre;
+	private long id;
+	private String nome;
+	private String nomeMestre;
 
 	public long getId() {
 		return id;

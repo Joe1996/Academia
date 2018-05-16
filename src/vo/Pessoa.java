@@ -3,23 +3,23 @@ package vo;
 import java.util.Date;
 
 public class Pessoa {
-	protected long id;
-	protected String nome;
-	protected String rg;
-	protected String email;
-	protected String telefone;
-	protected String cpf;
-	protected Date dataNascimento;
-	protected String rua;
-	protected String numeroCasa;
-	protected String complemento;
-	protected String bairro;
-	protected String cep;
-	protected String estado;
-	protected String cidade;
-	protected String doencas;
-	protected String planoSaude;
-	protected String tipoSanguineo;
+	private long id;
+	private String nome;
+	private String rg;
+	private String email;
+	private String telefone;
+	private String cpf;
+	private Date dataNascimento;
+	private String rua;
+	private String numeroCasa;
+	private String complemento;
+	private String bairro;
+	private String cep;
+	private String estado;
+	private String cidade;
+	private String doencas;
+	private String planoSaude;
+	private String tipoSanguineo;
 
 	public long getId() {
 		return id;

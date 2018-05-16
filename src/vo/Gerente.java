@@ -1,8 +1,8 @@
 package vo;
 
 public class Gerente extends Pessoa {
-	protected String tempoGerencia;
-	protected double salario;
+	private String tempoGerencia;
+	private double salario;
 
 	public String getTempoGerencia() {
 		return tempoGerencia;

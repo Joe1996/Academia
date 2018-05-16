@@ -1,9 +1,9 @@
 package vo;
 
 public class Plano {
-	protected long id;
-	protected String nome;
-	protected double valor;
+	private long id;
+	private String nome;
+	private double valor;
 
 	public long getId() {
 		return id;

@@ -1,8 +1,8 @@
 package vo;
 
 public class Professor extends Pessoa {
-	protected String graduacao;
-	protected double salario;
+	private String graduacao;
+	private double salario;
 
 	public String getGraduacao() {
 		return graduacao;

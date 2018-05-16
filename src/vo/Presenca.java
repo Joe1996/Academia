@@ -3,8 +3,8 @@ package vo;
 import java.util.Date;
 
 public class Presenca {
-	protected long id;
-	protected Date dataHora;
+	private long id;
+	private Date dataHora;
 
 	public long getId() {
 		return id;

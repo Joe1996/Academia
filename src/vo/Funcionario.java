@@ -1,9 +1,9 @@
 package vo;
 
 public class Funcionario extends Pessoa {
-	protected String funcao;
-	protected double salario;
-
+	private String funcao;
+	private double salario;
+	
 	public String getFuncao() {
 		return funcao;
 	}

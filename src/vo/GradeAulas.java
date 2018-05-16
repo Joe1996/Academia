@@ -1,10 +1,10 @@
 package vo;
 
 public class GradeAulas {
-	protected long id;
-	protected String nome;
-	protected String graduacao;
-	protected String proximaGraduacao;
+	private long id;
+	private String nome;
+	private String graduacao;
+	private String proximaGraduacao;
 
 	public long getId() {
 		return id;

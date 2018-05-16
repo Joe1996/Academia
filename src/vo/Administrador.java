@@ -1,8 +1,8 @@
 package vo;
 
 public class Administrador extends Pessoa {
-	protected String login;
-	protected String senha;
+	private String login;
+	private String senha;
 
 	public String getLogin() {
 		return login;
