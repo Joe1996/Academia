@@ -1,9 +1,9 @@
-package vo;
+package model;
 
-public class Modalidade {
+public class Plano {
 	private long id;
 	private String nome;
-	private String nomeMestre;
+	private double valor;
 
 	public long getId() {
 		return id;
@@ -21,11 +21,11 @@ public class Modalidade {
 		this.nome = nome;
 	}
 
-	public String getNomeMestre() {
-		return nomeMestre;
+	public double getValor() {
+		return valor;
 	}
 
-	public void setNomeMestre(String nomeMestre) {
-		this.nomeMestre = nomeMestre;
+	public void setValor(double valor) {
+		this.valor = valor;
 	}
 }

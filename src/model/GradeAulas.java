@@ -1,4 +1,4 @@
-package vo;
+package model;
 
 public class GradeAulas {
 	private long id;

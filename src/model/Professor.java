@@ -1,4 +1,4 @@
-package vo;
+package model;
 
 public class Professor extends Pessoa {
 	private String graduacao;
