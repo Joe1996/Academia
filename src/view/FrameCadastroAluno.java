@@ -1,6 +1,5 @@
 package view;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -62,7 +61,7 @@ public class FrameCadastroAluno extends JFrame {
 	public FrameCadastroAluno() {
 		setTitle("Cadastro de Aluno");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 587);
+		setBounds(100, 100, 450, 618);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -168,8 +167,8 @@ public class FrameCadastroAluno extends JFrame {
 		contentPane.add(txtCpf, "4, 10, 19, 1, fill, default");
 		txtCpf.setColumns(10);
 		
-		JLabel lblDataDeNascimento = new JLabel("Data de Nascimento:");
-		contentPane.add(lblDataDeNascimento, "2, 12, right, default");
+		JLabel lblDataNascimento = new JLabel("Data de Nascimento:");
+		contentPane.add(lblDataNascimento, "2, 12, right, default");
 		
 		txtDataNascimento = new JTextField();
 		contentPane.add(txtDataNascimento, "4, 12, 19, 1, fill, default");
@@ -253,10 +252,10 @@ public class FrameCadastroAluno extends JFrame {
 		txtDigital.setColumns(10);
 		
 		JButton btnCadastrarAluno = new JButton("Cadastrar Aluno");
-		contentPane.add(btnCadastrarAluno, "20, 36");
+		contentPane.add(btnCadastrarAluno, "20, 38");
 		
 		JButton btnFechar = new JButton("Fechar");
-		contentPane.add(btnFechar, "22, 36");
+		contentPane.add(btnFechar, "22, 38");
 	}
 
 }
