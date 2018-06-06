@@ -1,15 +1,19 @@
 package model;
 
 public class Plano {
-	private long id;
+	private int id;
 	private String nome;
 	private double valor;
 
+	public Plano(int id, String nome, double valor) {
+		
+	}
+	
 	public long getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 

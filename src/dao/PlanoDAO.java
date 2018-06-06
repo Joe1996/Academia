@@ -8,30 +8,33 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Teste {
+import model.Plano;
+
+public class PlanoDAO {
+
 	Connection conn;
 	
-	public Teste() {
+	public PlanoDAO() {
 		try {
-			conn = DriverManager.getConnection("jdbc:postgresql://host:localhost/academiaDb", "postgres", "aluno");
+			conn = DriverManager.getConnection("jdbc:postgresql://localhost/academiaDb", "postgres", "aluno");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			System.out.println("Erro: " + e.getMessage());
 		}
 	}
-	
-	public void buscaInformacoes() {
+
+	public void buscaInformacoesPlano() {
 		Statement st;
 		try {
 			st = conn.createStatement();
-			ResultSet rs = st.executeQuery("SELECT * FROM Filme");
-			List<Filme> listaDeFilmes = new ArrayList<Filme>();
+			ResultSet rs = st.executeQuery("SELECT * FROM Plano");
+			List<Plano> listaDePlanos = new ArrayList<Plano>();
 			while (rs.next()){
-				Filme objFilme = new Filme(rs.getInt("id"), rs.getString("nome"), rs.getString("categoria"));
-				listaDeFilmes.add(objFilme);
+				Plano objPlano = new Plano(rs.getInt("id"), rs.getString("nome"), rs.getDouble("valor"));
+				listaDePlanos.add(objPlano);
 			}
-			System.out.println(listaDeFilmes.size());
+			System.out.println(listaDePlanos.size());
 		} catch (SQLException e) {
 			e.printStackTrace();
 			System.out.println("Erro: " + e.getMessage());
@@ -39,4 +42,3 @@ public class Teste {
 
 	}
 }
-

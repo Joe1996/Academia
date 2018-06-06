@@ -1,12 +1,13 @@
 package main;
 
-import dao.Teste;
+import dao.PlanoDAO;
 
 public class Main {
 
 	public static void main(String[] args) {
-		Teste t = new Teste();
-		t.buscaInformacoes();
+		
+		PlanoDAO testePlano = new PlanoDAO();
+		testePlano.buscaInformacoesPlano();
 	}
 
 }
