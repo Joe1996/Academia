@@ -2,7 +2,7 @@ package model;
 
 import java.util.Date;
 
-public class Pessoa {
+public abstract class Pessoa {
 	private long id;
 	private String nome;
 	private String rg;
