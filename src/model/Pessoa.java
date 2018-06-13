@@ -20,6 +20,8 @@ public abstract class Pessoa {
 	private String doencas;
 	private String planoSaude;
 	private String tipoSanguineo;
+	
+	
 
 	public long getId() {
 		return id;

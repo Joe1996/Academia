@@ -8,13 +8,13 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import model.Plano;
+import model.Modalidade;;
 
-public class PlanoDAO {
+public class ModalidadeDAO {
 
 	Connection conn;
 	
-	public PlanoDAO() {
+	public ModalidadeDAO() {
 		try {
 			conn = DriverManager.getConnection("jdbc:postgresql://localhost/academiaDb", "postgres", "aluno");
 		} catch (SQLException e) {
@@ -24,20 +24,20 @@ public class PlanoDAO {
 		}
 	}
 
-	public void buscaInformacoesPlano() {
+	public void buscaInformacoesModalidade() {
 		Statement st;
 		try {
 			st = conn.createStatement();
-			ResultSet rs = st.executeQuery("SELECT * FROM Plano");
-			List<Plano> listaDePlanos = new ArrayList<Plano>();
+			ResultSet rs = st.executeQuery("SELECT * FROM Modalidade");
+			List<Modalidade> listaDeModalidades = new ArrayList<Modalidade>();
 			while (rs.next()){
-				Plano objPlano = new Plano();
-				objPlano.setId(rs.getLong("id"));
-				objPlano.setNome(rs.getString("nome"));
-				objPlano.setValor(rs.getDouble("valor"));
-				listaDePlanos.add(objPlano);
+				Modalidade objModalidade = new Modalidade();
+				objModalidade.setId(rs.getLong("id"));
+				objModalidade.setNome(rs.getString("nome"));
+				objModalidade.setNomeMestre(rs.getString("nomeMestre"));
+				listaDeModalidades.add(objModalidade);
 			}
-			System.out.println(listaDePlanos.size());
+			System.out.println(listaDeModalidades.size());
 		} catch (SQLException e) {
 			e.printStackTrace();
 			System.out.println("Erro: " + e.getMessage());

@@ -8,13 +8,13 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import model.Plano;
+import model.GradeAulas;
 
-public class PlanoDAO {
+public class GradeAulasDAO {
 
 	Connection conn;
 	
-	public PlanoDAO() {
+	public GradeAulasDAO() {
 		try {
 			conn = DriverManager.getConnection("jdbc:postgresql://localhost/academiaDb", "postgres", "aluno");
 		} catch (SQLException e) {
@@ -24,20 +24,21 @@ public class PlanoDAO {
 		}
 	}
 
-	public void buscaInformacoesPlano() {
+	public void buscaInformacoesGerente() {
 		Statement st;
 		try {
 			st = conn.createStatement();
-			ResultSet rs = st.executeQuery("SELECT * FROM Plano");
-			List<Plano> listaDePlanos = new ArrayList<Plano>();
+			ResultSet rs = st.executeQuery("SELECT * FROM GradeAulas");
+			List<GradeAulas> listaDeGradeAulas= new ArrayList<GradeAulas>();
 			while (rs.next()){
-				Plano objPlano = new Plano();
-				objPlano.setId(rs.getLong("id"));
-				objPlano.setNome(rs.getString("nome"));
-				objPlano.setValor(rs.getDouble("valor"));
-				listaDePlanos.add(objPlano);
+				GradeAulas objGradeAulas = new GradeAulas();
+				objGradeAulas.setId(rs.getLong("id"));
+				objGradeAulas.setNome(rs.getString("nome"));
+				objGradeAulas.setGraduacao(rs.getString("graduacao"));
+				objGradeAulas.setProximaGraduacao(rs.getString("proximaGraduacao"));
+				listaDeGradeAulas.add(objGradeAulas);
 			}
-			System.out.println(listaDePlanos.size());
+			System.out.println(listaDeGradeAulas.size());
 		} catch (SQLException e) {
 			e.printStackTrace();
 			System.out.println("Erro: " + e.getMessage());

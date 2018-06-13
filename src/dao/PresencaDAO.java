@@ -8,13 +8,13 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import model.Plano;
+import model.Presenca;;
 
-public class PlanoDAO {
+public class PresencaDAO {
 
 	Connection conn;
 	
-	public PlanoDAO() {
+	public PresencaDAO() {
 		try {
 			conn = DriverManager.getConnection("jdbc:postgresql://localhost/academiaDb", "postgres", "aluno");
 		} catch (SQLException e) {
@@ -24,20 +24,19 @@ public class PlanoDAO {
 		}
 	}
 
-	public void buscaInformacoesPlano() {
+	public void buscaInformacoesPresenca() {
 		Statement st;
 		try {
 			st = conn.createStatement();
-			ResultSet rs = st.executeQuery("SELECT * FROM Plano");
-			List<Plano> listaDePlanos = new ArrayList<Plano>();
+			ResultSet rs = st.executeQuery("SELECT * FROM Presenca");
+			List<Presenca> listaDePresencas = new ArrayList<Presenca>();
 			while (rs.next()){
-				Plano objPlano = new Plano();
-				objPlano.setId(rs.getLong("id"));
-				objPlano.setNome(rs.getString("nome"));
-				objPlano.setValor(rs.getDouble("valor"));
-				listaDePlanos.add(objPlano);
+				Presenca objPresenca = new Presenca();
+				objPresenca.setId(rs.getLong("id"));
+				objPresenca.setDataHora(rs.getDate("dataHora"));
+				listaDePresencas.add(objPresenca);
 			}
-			System.out.println(listaDePlanos.size());
+			System.out.println(listaDePresencas.size());
 		} catch (SQLException e) {
 			e.printStackTrace();
 			System.out.println("Erro: " + e.getMessage());
