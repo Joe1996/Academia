@@ -10,7 +10,7 @@ import java.util.List;
 
 import model.Aluno;
 
-public class AlunoDAO implements IDatabaseDAO<Aluno>{
+public class AlunoDAO implements IDatabaseDAO<Aluno> {
 
 	private final String SQL_CREATE_TABLE = "CREATE TABLE IF EXISTS...."; 
 	private final String SQL_SELECT_ALL = "SELECT * FROM ALUNO";

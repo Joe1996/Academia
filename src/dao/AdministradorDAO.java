@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import model.Administrador;
-import model.Aluno;
 
 public class AdministradorDAO implements IDatabaseDAO<Administrador> {
 	
