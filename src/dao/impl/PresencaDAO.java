@@ -20,8 +20,10 @@ public class PresencaDAO extends DatabaseDAO implements IDatabaseDAO<Presenca> {
 	private final String COLUMN_DATE_HOUR = "dataHora";
 	private final String COLUMN_STUDENT_ID = "_idAluno";
 	
-	private final String SQL_CREATE_TABLE = "CREATE TABLE IF NOT EXISTS presenca "
-			+ "(" 
+	private final String TABLE_NAME = "presenca";
+	
+	private final String TABLE_BODY =
+			"("
 			+ COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
 			+ COLUMN_DATE_HOUR + " VARCHAR(50) NOT NULL, "
 			+ COLUMN_STUDENT_ID  + " INTEGER NOT NULL"
@@ -30,7 +32,7 @@ public class PresencaDAO extends DatabaseDAO implements IDatabaseDAO<Presenca> {
 	private final String SQL_INSERT = "INSERT INTO presenca "
 			+ "("
 			+ COLUMN_DATE_HOUR + COMMA
-			+ COLUMN_STUDENT_ID + COMMA
+			+ COLUMN_STUDENT_ID
 			+ ")" 
 			+ " VALUES "
 			+ "(?,?)";
@@ -39,78 +41,87 @@ public class PresencaDAO extends DatabaseDAO implements IDatabaseDAO<Presenca> {
 			+ COLUMN_DATE_HOUR + UPDATE_MARK + COMMA
 			+ COLUMN_STUDENT_ID + UPDATE_MARK
 			+ " WHERE " + COLUMN_ID + UPDATE_MARK;
-
-	private final String SQL_DELETE = "DELETE FROM presenca WHERE " + COLUMN_ID + UPDATE_MARK;
-	private final String SQL_SELECT_ALL = "SELECT * FROM presenca";
-	private final String SQL_SELECT_BY_ID = "SELECT * FROM presenca WHERE " + COLUMN_ID + UPDATE_MARK;
-	
-	public PresencaDAO() {
-		super();
-	}
 	
 	@Override
 	public void createTable() {
 		try {
-			executeQuery(SQL_CREATE_TABLE);
+			createTable(TABLE_NAME, TABLE_BODY);
 		} catch (SQLException e) {
-			System.out.println("Não foi possível criar a tabela Aluno, motivo: " + e.getMessage());
+			System.out.println("Não foi possível criar a tabela Presenca, motivo: " + e.getMessage());
 		}		
 	}
 
 	@Override
-	public void insert(Presenca object) throws SQLException {
+	public long insert(Presenca object) throws SQLException {
 		PreparedStatement statement =  objectToPreparedStatement(SQL_INSERT, object);
-		executePreparedStatement(statement);		
+		executePreparedStatement(statement);
+		return selectLastId();
 	}
 
 	@Override
 	public void update(Presenca object) throws SQLException {
 		PreparedStatement statement = objectToPreparedStatement(SQL_UPDATE, object);
-		statement.setLong(17, object.getId());
+		statement.setLong(3, object.getId());
 		executePreparedStatement(statement);		
 	}
 
 	@Override
 	public void delete(Presenca object) throws SQLException {
-		PreparedStatement statement = getConnection().prepareStatement(SQL_DELETE);
+		String query = generateQueryDelete(TABLE_NAME, COLUMN_ID);
+		PreparedStatement statement = getConnection().prepareStatement(query);
 		statement.setLong(1, object.getId());
 		executePreparedStatement(statement);
 	}
 	
 	@Override
 	public List<Presenca> selectAll() throws SQLException {
-		List<Presenca> listaDeAlunos = new ArrayList<Presenca>();
-		ResultSet resultSet = executeQueryWithResult(SQL_SELECT_ALL);
+		List<Presenca> list = new ArrayList<Presenca>();
+		String query = generateQuerySelectAll(TABLE_NAME);
+		ResultSet resultSet = executeQueryWithResult(query);
 		if (resultSet != null) {
 			while (resultSet.next()){
-				listaDeAlunos.add(resultSetToObject(resultSet));
+				list.add(resultSetToObject(resultSet));
 			}
 		}
-		return listaDeAlunos;
+		return list;
 	}
 
 	@Override
 	public Presenca selectById(long id) throws SQLException {
-		Presenca aluno = null;
-		PreparedStatement statement = getConnection().prepareStatement(SQL_SELECT_BY_ID);
+		Presenca object = null;
+		String query = generateQuerySelectById(TABLE_NAME, COLUMN_ID);
+		PreparedStatement statement = getConnection().prepareStatement(query);
 		statement.setLong(1, id);
 		ResultSet resultSet = executePreparedStatementWithResult(statement);;
 		if (resultSet != null) {
 			while (resultSet.next()){
-				aluno = resultSetToObject(resultSet);
+				object = resultSetToObject(resultSet);
 			}
 		}
-		return aluno;
+		return object;
+	}
+	
+	@Override
+	public long selectLastId() throws SQLException {
+		long id = 0;
+		String query = generateQuerySelectLastId(TABLE_NAME, COLUMN_ID);
+		ResultSet resultSet = executeQueryWithResult(query);
+		if (resultSet != null) {
+			while (resultSet.next()){
+				id = resultSet.getLong(LAST_ID);
+			}
+		}
+		return id;
 	}
 
 	@Override
 	public Presenca resultSetToObject(ResultSet resultSet) throws SQLException {
-		Presenca objPresenca = new Presenca();
-		objPresenca.setId(resultSet.getLong(COLUMN_ID));
+		Presenca object = new Presenca();
+		object.setId(resultSet.getLong(COLUMN_ID));
 		try {
-			objPresenca.setDataHora(sdf.parse(COLUMN_DATE_HOUR));
+			object.setDataHora(sdf.parse(COLUMN_DATE_HOUR));
 		} catch (ParseException e) {}
-		return objPresenca;
+		return object;
 	}
 
 	@Override

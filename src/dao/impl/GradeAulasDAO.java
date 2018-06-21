@@ -25,9 +25,11 @@ public class GradeAulasDAO extends DatabaseDAO implements IDatabaseDAO<GradeAula
 	private final String COLUMN_VALUE = "valor";
 	private final String COLUMN_MODALITY_ID = "_idModality";
 	private final String COLUMN_TEACHER_ID = "_idTeacher";
-
-	private final String SQL_CREATE_TABLE = "CREATE TABLE IF NOT EXISTS gradeAula "
-			+ "(" 
+	
+	private final String TABLE_NAME = "gradeAula";
+	
+	private final String TABLE_BODY =
+			"(" 
 			+ COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " 
 			+ COLUMN_NAME + " VARCHAR(150) NOT NULL, "
 			+ COLUMN_START_TIME + " VARCHAR(50) NOT NULL, "
@@ -64,39 +66,33 @@ public class GradeAulasDAO extends DatabaseDAO implements IDatabaseDAO<GradeAula
 			+ COLUMN_TEACHER_ID + UPDATE_MARK
 			+ " WHERE " + COLUMN_ID + UPDATE_MARK;
 
-	private final String SQL_DELETE = "DELETE FROM gradeAula WHERE " + COLUMN_ID + UPDATE_MARK;
-	private final String SQL_SELECT_ALL = "SELECT * FROM gradeAula";
-	private final String SQL_SELECT_BY_ID = "SELECT * FROM gradeAula WHERE " + COLUMN_ID + UPDATE_MARK;
-
-	public GradeAulasDAO() {
-		super();
-	}
-
 	@Override
 	public void createTable() {
 		try {
-			executeQuery(SQL_CREATE_TABLE);
+			createTable(TABLE_NAME, TABLE_BODY);
 		} catch (SQLException e) {
 			System.out.println("Não foi possível criar a tabela GradeAula, motivo: " + e.getMessage());
 		}
 	}
 
 	@Override
-	public void insert(GradeAula object) throws SQLException {
+	public long insert(GradeAula object) throws SQLException {
 		PreparedStatement statement = objectToPreparedStatement(SQL_INSERT, object);
 		executePreparedStatement(statement);
+		return selectLastId();
 	}
 
 	@Override
 	public void update(GradeAula object) throws SQLException {
 		PreparedStatement statement = objectToPreparedStatement(SQL_UPDATE, object);
-		statement.setLong(19, object.getId());
+		statement.setLong(9, object.getId());
 		executePreparedStatement(statement);
 	}
 
 	@Override
 	public void delete(GradeAula object) throws SQLException {
-		PreparedStatement statement = getConnection().prepareStatement(SQL_DELETE);
+		String query = generateQueryDelete(TABLE_NAME, COLUMN_ID);
+		PreparedStatement statement = getConnection().prepareStatement(query);
 		statement.setLong(1, object.getId());
 		executePreparedStatement(statement);
 	}
@@ -104,7 +100,8 @@ public class GradeAulasDAO extends DatabaseDAO implements IDatabaseDAO<GradeAula
 	@Override
 	public List<GradeAula> selectAll() throws SQLException {
 		List<GradeAula> list = new ArrayList<GradeAula>();
-		ResultSet resultSet = executeQueryWithResult(SQL_SELECT_ALL);
+		String query = generateQuerySelectAll(TABLE_NAME);
+		ResultSet resultSet = executeQueryWithResult(query);
 		if (resultSet != null) {
 			while (resultSet.next()) {
 				list.add(resultSetToObject(resultSet));
@@ -116,7 +113,8 @@ public class GradeAulasDAO extends DatabaseDAO implements IDatabaseDAO<GradeAula
 	@Override
 	public GradeAula selectById(long id) throws SQLException {
 		GradeAula object = null;
-		PreparedStatement statement = getConnection().prepareStatement(SQL_SELECT_BY_ID);
+		String query = generateQuerySelectById(TABLE_NAME, COLUMN_ID);
+		PreparedStatement statement = getConnection().prepareStatement(query);
 		statement.setLong(1, id);
 		ResultSet resultSet = executePreparedStatementWithResult(statement);;
 		if (resultSet != null) {
@@ -125,6 +123,19 @@ public class GradeAulasDAO extends DatabaseDAO implements IDatabaseDAO<GradeAula
 			}
 		}
 		return object;
+	}
+	
+	@Override
+	public long selectLastId() throws SQLException {
+		long id = 0;
+		String query = generateQuerySelectLastId(TABLE_NAME, COLUMN_ID);
+		ResultSet resultSet = executeQueryWithResult(query);
+		if (resultSet != null) {
+			while (resultSet.next()){
+				id = resultSet.getLong(LAST_ID);
+			}
+		}
+		return id;
 	}
 
 	@Override
@@ -167,4 +178,5 @@ public class GradeAulasDAO extends DatabaseDAO implements IDatabaseDAO<GradeAula
 		statement.setLong(8, object.getProfessor() != null ? object.getProfessor().getId() : 0);
 		return statement;
 	}
+
 }

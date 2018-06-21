@@ -16,8 +16,10 @@ public class ModalidadeDAO extends DatabaseDAO implements IDatabaseDAO<Modalidad
 	private final String COLUMN_NAME = "nome";
 	private final String COLUMN_NAME_MASTER = "nomeMestre";
 	
-	private final String SQL_CREATE_TABLE = "CREATE TABLE IF NOT EXISTS modalidade "
-			+ "(" 
+	private final String TABLE_NAME = "modalidade";
+	
+	private final String TABLE_BODY =
+			"("
 			+ COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " 
 			+ COLUMN_NAME + " VARCHAR(150) NOT NULL, "
 			+ COLUMN_NAME_MASTER + " VARCHAR(150) NOT NULL"
@@ -36,40 +38,33 @@ public class ModalidadeDAO extends DatabaseDAO implements IDatabaseDAO<Modalidad
 			+ COLUMN_NAME_MASTER + UPDATE_MARK
 			+ " WHERE " + COLUMN_ID + UPDATE_MARK;
 
-	private final String SQL_DELETE = "DELETE FROM modalidade WHERE " + COLUMN_ID + UPDATE_MARK;
-	private final String SQL_SELECT_ALL = "SELECT * FROM modalidade";
-	private final String SQL_SELECT_BY_ID = "SELECT * FROM modalidade WHERE " + COLUMN_ID + UPDATE_MARK;
-
-	
-	public ModalidadeDAO() {
-		super();
-	}
-
 	@Override
 	public void createTable() {
 		try {
-			executeQuery(SQL_CREATE_TABLE);
+			createTable(TABLE_NAME, TABLE_BODY);
 		} catch (SQLException e) {
 			System.out.println("Não foi possível criar a tabela GradeAula, motivo: " + e.getMessage());
 		}
 	}
 
 	@Override
-	public void insert(Modalidade object) throws SQLException {
+	public long insert(Modalidade object) throws SQLException {
 		PreparedStatement statement = objectToPreparedStatement(SQL_INSERT, object);
 		executePreparedStatement(statement);
+		return selectLastId();
 	}
 
 	@Override
 	public void update(Modalidade object) throws SQLException {
 		PreparedStatement statement = objectToPreparedStatement(SQL_UPDATE, object);
-		statement.setLong(19, object.getId());
+		statement.setLong(3, object.getId());
 		executePreparedStatement(statement);
 	}
 
 	@Override
 	public void delete(Modalidade object) throws SQLException {
-		PreparedStatement statement = getConnection().prepareStatement(SQL_DELETE);
+		String query = generateQueryDelete(TABLE_NAME, COLUMN_ID);
+		PreparedStatement statement = getConnection().prepareStatement(query);
 		statement.setLong(1, object.getId());
 		executePreparedStatement(statement);
 	}
@@ -77,7 +72,8 @@ public class ModalidadeDAO extends DatabaseDAO implements IDatabaseDAO<Modalidad
 	@Override
 	public List<Modalidade> selectAll() throws SQLException {
 		List<Modalidade> list = new ArrayList<Modalidade>();
-		ResultSet resultSet = executeQueryWithResult(SQL_SELECT_ALL);
+		String query = generateQuerySelectAll(TABLE_NAME);
+		ResultSet resultSet = executeQueryWithResult(query);
 		if (resultSet != null) {
 			while (resultSet.next()) {
 				list.add(resultSetToObject(resultSet));
@@ -89,7 +85,8 @@ public class ModalidadeDAO extends DatabaseDAO implements IDatabaseDAO<Modalidad
 	@Override
 	public Modalidade selectById(long id) throws SQLException {
 		Modalidade object = null;
-		PreparedStatement statement = getConnection().prepareStatement(SQL_SELECT_BY_ID);
+		String query = generateQuerySelectById(TABLE_NAME, COLUMN_ID);
+		PreparedStatement statement = getConnection().prepareStatement(query);
 		statement.setLong(1, id);
 		ResultSet resultSet = executePreparedStatementWithResult(statement);;
 		if (resultSet != null) {
@@ -99,14 +96,27 @@ public class ModalidadeDAO extends DatabaseDAO implements IDatabaseDAO<Modalidad
 		}
 		return object;
 	}
+	
+	@Override
+	public long selectLastId() throws SQLException {
+		long id = 0;
+		String query = generateQuerySelectLastId(TABLE_NAME, COLUMN_ID);
+		ResultSet resultSet = executeQueryWithResult(query);
+		if (resultSet != null) {
+			while (resultSet.next()){
+				id = resultSet.getLong(LAST_ID);
+			}
+		}
+		return id;
+	}
 
 	@Override
 	public Modalidade resultSetToObject(ResultSet resultSet) throws SQLException {
-		Modalidade objModalidade = new Modalidade();
-		objModalidade.setId(resultSet.getLong(COLUMN_ID));
-		objModalidade.setNome(resultSet.getString(COLUMN_NAME));
-		objModalidade.setNomeMestre(resultSet.getString(COLUMN_NAME_MASTER));
-		return objModalidade;
+		Modalidade object = new Modalidade();
+		object.setId(resultSet.getLong(COLUMN_ID));
+		object.setNome(resultSet.getString(COLUMN_NAME));
+		object.setNomeMestre(resultSet.getString(COLUMN_NAME_MASTER));
+		return object;
 	}
 
 	@Override
@@ -116,4 +126,5 @@ public class ModalidadeDAO extends DatabaseDAO implements IDatabaseDAO<Modalidad
 		statement.setString(2, object.getNomeMestre());
 		return statement;
 	}
+
 }

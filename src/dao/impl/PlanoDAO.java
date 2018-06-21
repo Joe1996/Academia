@@ -12,15 +12,17 @@ import model.Plano;
 
 public class PlanoDAO extends DatabaseDAO implements IDatabaseDAO<Plano> {
 
-	private final String COLUMN_ID = "id";
+	private final String COLUMN_ID = "_id";
 	private final String COLUMN_NAME = "nome";
 	private final String COLUMN_VALUE = "valor";
 	
-	private final String SQL_CREATE_TABLE = "CREATE TABLE IF NOT EXISTS plano "
-			+ "(" 
+	private final String TABLE_NAME = "plano";
+	
+	private final String TABLE_BODY =
+			"("
 			+ COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " 
 			+ COLUMN_NAME + " VARCHAR(150) NOT NULL, "
-			+ COLUMN_VALUE + " VARCHAR(15) NOT NULL "
+			+ COLUMN_VALUE + " VARCHAR(15) NOT NULL"
 			+ ");";
 
 	private final String SQL_INSERT = "INSERT INTO plano "
@@ -35,28 +37,21 @@ public class PlanoDAO extends DatabaseDAO implements IDatabaseDAO<Plano> {
 			+ COLUMN_NAME + UPDATE_MARK + COMMA
 			+ COLUMN_VALUE + UPDATE_MARK
 			+ " WHERE " + COLUMN_ID + UPDATE_MARK;
-
-	private final String SQL_DELETE = "DELETE FROM plano WHERE " + COLUMN_ID + UPDATE_MARK;
-	private final String SQL_SELECT_ALL = "SELECT * FROM plano";
-	private final String SQL_SELECT_BY_ID = "SELECT * FROM plano WHERE " + COLUMN_ID + UPDATE_MARK;
-	
-	public PlanoDAO() {
-		super();
-	}
 	
 	@Override
 	public void createTable() {
 		try {
-			executeQuery(SQL_CREATE_TABLE);
+			createTable(TABLE_NAME, TABLE_BODY);
 		} catch (SQLException e) {
 			System.out.println("Não foi possível criar a tabela Plano, motivo: " + e.getMessage());
 		}		
 	}
 
 	@Override
-	public void insert(Plano object) throws SQLException {
+	public long insert(Plano object) throws SQLException {
 		PreparedStatement statement = objectToPreparedStatement(SQL_INSERT, object);
-		executePreparedStatement(statement);		
+		executePreparedStatement(statement);	
+		return selectLastId();
 	}
 
 	@Override
@@ -68,7 +63,8 @@ public class PlanoDAO extends DatabaseDAO implements IDatabaseDAO<Plano> {
 
 	@Override
 	public void delete(Plano object) throws SQLException {
-		PreparedStatement statement = getConnection().prepareStatement(SQL_DELETE);
+		String query = generateQueryDelete(TABLE_NAME, COLUMN_ID);
+		PreparedStatement statement = getConnection().prepareStatement(query);
 		statement.setLong(1, object.getId());
 		executePreparedStatement(statement);		
 	}
@@ -76,7 +72,8 @@ public class PlanoDAO extends DatabaseDAO implements IDatabaseDAO<Plano> {
 	@Override
 	public List<Plano> selectAll() throws SQLException {
 		List<Plano> list = new ArrayList<Plano>();
-		ResultSet resultSet = executeQueryWithResult(SQL_SELECT_ALL);
+		String query = generateQuerySelectAll(TABLE_NAME);
+		ResultSet resultSet = executeQueryWithResult(query);
 		if (resultSet != null) {
 			while (resultSet.next()) {
 				list.add(resultSetToObject(resultSet));
@@ -88,7 +85,8 @@ public class PlanoDAO extends DatabaseDAO implements IDatabaseDAO<Plano> {
 	@Override
 	public Plano selectById(long id) throws SQLException {
 		Plano object = null;
-		PreparedStatement statement = getConnection().prepareStatement(SQL_SELECT_BY_ID);
+		String query = generateQuerySelectById(TABLE_NAME, COLUMN_ID);
+		PreparedStatement statement = getConnection().prepareStatement(query);
 		statement.setLong(1, id);
 		ResultSet resultSet = executePreparedStatementWithResult(statement);;
 		if (resultSet != null) {
@@ -97,6 +95,19 @@ public class PlanoDAO extends DatabaseDAO implements IDatabaseDAO<Plano> {
 			}
 		}
 		return object;
+	}
+	
+	@Override
+	public long selectLastId() throws SQLException {
+		long id = 0;
+		String query = generateQuerySelectLastId(TABLE_NAME, COLUMN_ID);
+		ResultSet resultSet = executeQueryWithResult(query);
+		if (resultSet != null) {
+			while (resultSet.next()){
+				id = resultSet.getLong(LAST_ID);
+			}
+		}
+		return id;
 	}
 
 	@Override
@@ -115,4 +126,5 @@ public class PlanoDAO extends DatabaseDAO implements IDatabaseDAO<Plano> {
 		statement.setDouble(2, object.getValor());
 		return statement;
 	}
+
 }

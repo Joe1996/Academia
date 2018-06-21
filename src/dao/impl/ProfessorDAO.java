@@ -16,7 +16,7 @@ public class ProfessorDAO extends DatabaseDAO implements IDatabaseDAO<Professor>
 	
 	private SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 	
-	private final String COLUMN_ID = "id";
+	private final String COLUMN_ID = "_id";
 	private final String COLUMN_NAME = "nome";
 	private final String COLUMN_RG = "rg";
 	private final String COLUMN_EMAIL = "email";
@@ -36,8 +36,10 @@ public class ProfessorDAO extends DatabaseDAO implements IDatabaseDAO<Professor>
 	private final String COLUMN_GRADUATION = "graduacao";
 	private final String COLUMN_SALARY = "salario";
 	
-	private final String SQL_CREATE_TABLE = "CREATE TABLE IF NOT EXISTS professor "
-			+ "("
+	private final String TABLE_NAME = "professor";
+	
+	private final String TABLE_BODY =
+			"("
 			+ COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
 			+ COLUMN_NAME + " VARCHAR(150) NOT NULL, "
 			+ COLUMN_RG + " VARCHAR(20) NOT NULL, "
@@ -104,40 +106,33 @@ public class ProfessorDAO extends DatabaseDAO implements IDatabaseDAO<Professor>
 			+ COLUMN_SALARY + UPDATE_MARK
 			+ " WHERE " + COLUMN_ID + UPDATE_MARK;
 	
-	
-	private final String SQL_DELETE = "DELETE FROM professor WHERE " + COLUMN_ID + UPDATE_MARK;
-	private final String SQL_SELECT_ALL = "SELECT * FROM professor";
-	private final String SQL_SELECT_BY_ID = "SELECT * FROM professor WHERE " + COLUMN_ID + UPDATE_MARK;	
-	
-	public ProfessorDAO() {
-		super();
-	}
-	
 	@Override
 	public void createTable() {
 		try {
-			executeQuery(SQL_CREATE_TABLE);
+			createTable(TABLE_NAME, TABLE_BODY);
 		} catch (SQLException e) {
 			System.out.println("Não foi possível criar a tabela Aluno, motivo: " + e.getMessage());
 		}		
 	}
 
 	@Override
-	public void insert(Professor object) throws SQLException {
+	public long insert(Professor object) throws SQLException {
 		PreparedStatement statement =  objectToPreparedStatement(SQL_INSERT, object);
-		executePreparedStatement(statement);		
+		executePreparedStatement(statement);
+		return selectLastId();
 	}
 
 	@Override
 	public void update(Professor object) throws SQLException {
 		PreparedStatement statement = objectToPreparedStatement(SQL_UPDATE, object);
-		statement.setLong(17, object.getId());
+		statement.setLong(19, object.getId());
 		executePreparedStatement(statement);		
 	}
 
 	@Override
 	public void delete(Professor object) throws SQLException {
-		PreparedStatement statement = getConnection().prepareStatement(SQL_DELETE);
+		String query = generateQueryDelete(TABLE_NAME, COLUMN_ID);
+		PreparedStatement statement = getConnection().prepareStatement(query);
 		statement.setLong(1, object.getId());
 		executePreparedStatement(statement);		
 	}
@@ -145,7 +140,8 @@ public class ProfessorDAO extends DatabaseDAO implements IDatabaseDAO<Professor>
 	@Override
 	public List<Professor> selectAll() throws SQLException {
 		List<Professor> listaDeAlunos = new ArrayList<Professor>();
-		ResultSet resultSet = executeQueryWithResult(SQL_SELECT_ALL);
+		String query = generateQuerySelectAll(TABLE_NAME);
+		ResultSet resultSet = executeQueryWithResult(query);
 		if (resultSet != null) {
 			while (resultSet.next()){
 				listaDeAlunos.add(resultSetToObject(resultSet));
@@ -157,7 +153,8 @@ public class ProfessorDAO extends DatabaseDAO implements IDatabaseDAO<Professor>
 	@Override
 	public Professor selectById(long id) throws SQLException {
 		Professor aluno = null;
-		PreparedStatement statement = getConnection().prepareStatement(SQL_SELECT_BY_ID);
+		String query = generateQuerySelectById(TABLE_NAME, COLUMN_ID);
+		PreparedStatement statement = getConnection().prepareStatement(query);
 		statement.setLong(1, id);
 		ResultSet resultSet = executePreparedStatementWithResult(statement);;
 		if (resultSet != null) {
@@ -166,6 +163,19 @@ public class ProfessorDAO extends DatabaseDAO implements IDatabaseDAO<Professor>
 			}
 		}
 		return aluno;
+	}
+	
+	@Override
+	public long selectLastId() throws SQLException {
+		long id = 0;
+		String query = generateQuerySelectLastId(TABLE_NAME, COLUMN_ID);
+		ResultSet resultSet = executeQueryWithResult(query);
+		if (resultSet != null) {
+			while (resultSet.next()){
+				id = resultSet.getLong(LAST_ID);
+			}
+		}
+		return id;
 	}
 
 	@Override
@@ -193,9 +203,7 @@ public class ProfessorDAO extends DatabaseDAO implements IDatabaseDAO<Professor>
 		objProfessor.setPlanoSaude(resultSet.getString(COLUMN_HEALTH_INSURANCE));
 		objProfessor.setTipoSanguineo(resultSet.getString(COLUMN_BLOOD_TYPE));
 		objProfessor.setGraduacao(resultSet.getString(COLUMN_GRADUATION));
-		objProfessor.setSalario(resultSet.getDouble(COLUMN_SALARY));
-		objProfessor.setGraduacao(resultSet.getString(COLUMN_GRADUATION));
-		objProfessor.setSalario(Double.parseDouble(COLUMN_SALARY));
+		objProfessor.setSalario(resultSet.getString(COLUMN_SALARY));
 		return objProfessor;
 	}
 
@@ -218,6 +226,9 @@ public class ProfessorDAO extends DatabaseDAO implements IDatabaseDAO<Professor>
 		statement.setString(14, object.getDoencas());
 		statement.setString(15, object.getPlanoSaude());
 		statement.setString(16, object.getTipoSanguineo());
+		statement.setString(17, object.getGraduacao());
+		statement.setString(18, object.getSalario());
 		return statement;
 	}
+	
 }

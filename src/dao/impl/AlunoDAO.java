@@ -32,9 +32,11 @@ public class AlunoDAO extends DatabaseDAO implements IDatabaseDAO<Aluno>{
 	private final String COLUMN_DISEASES = "doencas";
 	private final String COLUMN_HEALTH_INSURANCE = "planoSaude";
 	private final String COLUMN_BLOOD_TYPE = "tipoSanguineo";
+	
+	private final String TABLE_NAME = "aluno";
 
-	private final String SQL_CREATE_TABLE = "CREATE TABLE IF NOT EXISTS aluno "
-			+ "("
+	private final String TABLE_BODY =
+			"("
 			+ COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
 			+ COLUMN_NAME + " VARCHAR(150) NOT NULL, "
 			+ COLUMN_RG + " VARCHAR(20) NOT NULL, "
@@ -51,7 +53,7 @@ public class AlunoDAO extends DatabaseDAO implements IDatabaseDAO<Aluno>{
 			+ COLUMN_CITY + " VARCHAR(50) NOT NULL, "
 			+ COLUMN_DISEASES + " VARCHAR(150) NOT NULL, "
 			+ COLUMN_HEALTH_INSURANCE + " VARHCAR(100) NOT NULL, "
-			+ COLUMN_BLOOD_TYPE + " VARHCAR(10) NOT NULL, "
+			+ COLUMN_BLOOD_TYPE + " VARHCAR(10) NOT NULL"
 			+ ");";
 	
 	private final String SQL_INSERT = "INSERT INTO aluno "
@@ -94,30 +96,21 @@ public class AlunoDAO extends DatabaseDAO implements IDatabaseDAO<Aluno>{
 			+ COLUMN_HEALTH_INSURANCE + UPDATE_MARK+ COMMA
 			+ COLUMN_BLOOD_TYPE + UPDATE_MARK
 			+ " WHERE " + COLUMN_ID + UPDATE_MARK;
-	
-	
-	private final String SQL_DELETE = "DELETE FROM aluno WHERE " + COLUMN_ID + UPDATE_MARK;
-	private final String SQL_SELECT_ALL = "SELECT * FROM aluno";
-	private final String SQL_SELECT_BY_ID = "SELECT * FROM aluno WHERE " + COLUMN_ID + UPDATE_MARK;	
-		
-	public AlunoDAO() {
-		super();
-		createTable();
-	}
-	
+
 	@Override
 	public void createTable() {
 		try {
-			executeQuery(SQL_CREATE_TABLE);
+			createTable(TABLE_NAME, TABLE_BODY);
 		} catch (SQLException e) {
 			System.out.println("Não foi possível criar a tabela Aluno, motivo: " + e.getMessage());
 		}
 	}
 	
 	@Override
-	public void insert(Aluno object) throws SQLException {
+	public long insert(Aluno object) throws SQLException {
 		PreparedStatement statement =  objectToPreparedStatement(SQL_INSERT, object);
 		executePreparedStatement(statement);
+		return selectLastId();
 	}
 
 	@Override
@@ -129,58 +122,74 @@ public class AlunoDAO extends DatabaseDAO implements IDatabaseDAO<Aluno>{
 
 	@Override
 	public void delete(Aluno object) throws SQLException {
-		PreparedStatement statement = getConnection().prepareStatement(SQL_DELETE);
+		String query = generateQueryDelete(TABLE_NAME, COLUMN_ID);
+		PreparedStatement statement = getConnection().prepareStatement(query);
 		statement.setLong(1, object.getId());
 		executePreparedStatement(statement);
 	}
 	
 	@Override
 	public List<Aluno> selectAll() throws SQLException {
-		List<Aluno> listaDeAlunos = new ArrayList<Aluno>();
-		ResultSet resultSet = executeQueryWithResult(SQL_SELECT_ALL);
+		List<Aluno> list = new ArrayList<Aluno>();
+		String query = generateQuerySelectAll(TABLE_NAME);
+		ResultSet resultSet = executeQueryWithResult(query);
 		if (resultSet != null) {
 			while (resultSet.next()){
-				listaDeAlunos.add(resultSetToObject(resultSet));
+				list.add(resultSetToObject(resultSet));
 			}
 		}
-		return listaDeAlunos;
+		return list;
 	}
 	
 	@Override
 	public Aluno selectById(long id) throws SQLException {
-		Aluno aluno = null;
-		PreparedStatement statement = getConnection().prepareStatement(SQL_SELECT_BY_ID);
+		Aluno object = null;
+		String query = generateQuerySelectById(TABLE_NAME, COLUMN_ID);
+		PreparedStatement statement = getConnection().prepareStatement(query);
 		statement.setLong(1, id);
 		ResultSet resultSet = executePreparedStatementWithResult(statement);;
 		if (resultSet != null) {
 			while (resultSet.next()){
-				aluno = resultSetToObject(resultSet);
+				object = resultSetToObject(resultSet);
 			}
 		}
-		return aluno;
+		return object;
+	}
+	
+	@Override
+	public long selectLastId() throws SQLException {
+		long id = 0;
+		String query = generateQuerySelectLastId(TABLE_NAME, COLUMN_ID);
+		ResultSet resultSet = executeQueryWithResult(query);
+		if (resultSet != null) {
+			while (resultSet.next()){
+				id = resultSet.getLong(LAST_ID);
+			}
+		}
+		return id;
 	}
 
 	@Override
 	public Aluno resultSetToObject(ResultSet resultSet) throws SQLException {
-		Aluno objAluno = new Aluno();
-		objAluno.setId(resultSet.getLong(COLUMN_ID));
-		objAluno.setNome(resultSet.getString(COLUMN_NAME));
-		objAluno.setRg(resultSet.getString(COLUMN_RG));
-		objAluno.setEmail(resultSet.getString(COLUMN_EMAIL));
-		objAluno.setTelefone(resultSet.getString(COLUMN_PHONE));
-		objAluno.setCpf(resultSet.getString(COLUMN_CPF));
-		objAluno.setDataNascimento(resultSet.getDate(COLUMN_BIRTH_DATE));
-		objAluno.setRua(resultSet.getString(COLUMN_STREET));
-		objAluno.setNumeroCasa(resultSet.getString(COLUMN_NUMBER_HOUSE));
-		objAluno.setComplemento(resultSet.getString(COLUMN_COMPLEMENT));
-		objAluno.setBairro(resultSet.getString(COLUMN_NEIGHBORHOOD));
-		objAluno.setCep(resultSet.getString(COLUMN_CEP));
-		objAluno.setEstado(resultSet.getString(COLUMN_STATE));
-		objAluno.setCidade(resultSet.getString(COLUMN_CITY));
-		objAluno.setDoencas(resultSet.getString(COLUMN_DISEASES));
-		objAluno.setPlanoSaude(resultSet.getString(COLUMN_HEALTH_INSURANCE));
-		objAluno.setTipoSanguineo(resultSet.getString(COLUMN_BLOOD_TYPE));		
-		return objAluno;
+		Aluno object = new Aluno();
+		object.setId(resultSet.getLong(COLUMN_ID));
+		object.setNome(resultSet.getString(COLUMN_NAME));
+		object.setRg(resultSet.getString(COLUMN_RG));
+		object.setEmail(resultSet.getString(COLUMN_EMAIL));
+		object.setTelefone(resultSet.getString(COLUMN_PHONE));
+		object.setCpf(resultSet.getString(COLUMN_CPF));
+		object.setDataNascimento(resultSet.getDate(COLUMN_BIRTH_DATE));
+		object.setRua(resultSet.getString(COLUMN_STREET));
+		object.setNumeroCasa(resultSet.getString(COLUMN_NUMBER_HOUSE));
+		object.setComplemento(resultSet.getString(COLUMN_COMPLEMENT));
+		object.setBairro(resultSet.getString(COLUMN_NEIGHBORHOOD));
+		object.setCep(resultSet.getString(COLUMN_CEP));
+		object.setEstado(resultSet.getString(COLUMN_STATE));
+		object.setCidade(resultSet.getString(COLUMN_CITY));
+		object.setDoencas(resultSet.getString(COLUMN_DISEASES));
+		object.setPlanoSaude(resultSet.getString(COLUMN_HEALTH_INSURANCE));
+		object.setTipoSanguineo(resultSet.getString(COLUMN_BLOOD_TYPE));		
+		return object;
 	}
 
 	@Override

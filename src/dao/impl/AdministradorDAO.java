@@ -35,8 +35,10 @@ public class AdministradorDAO extends DatabaseDAO implements IDatabaseDAO<Admini
 	private final String COLUMN_LOGIN = "admLogin";
 	private final String COLUMN_PASSWORD = "admPassword";
 	
-	private final String SQL_CREATE_TABLE = "CREATE TABLE IF NOT EXISTS administrador "
-			+ "("
+	private final String TABLE_NAME = "administrador";
+	
+	private final String TABLE_BODY =
+			"("
 			+ COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
 			+ COLUMN_NAME + " VARCHAR(150) NOT NULL, "
 			+ COLUMN_RG + " VARCHAR(20) NOT NULL, "
@@ -103,29 +105,20 @@ public class AdministradorDAO extends DatabaseDAO implements IDatabaseDAO<Admini
 			+ COLUMN_PASSWORD + UPDATE_MARK
 			+ " WHERE " + COLUMN_ID + UPDATE_MARK;
 	
-	
-	private final String SQL_DELETE = "DELETE FROM administrador WHERE " + COLUMN_ID + UPDATE_MARK;
-	private final String SQL_SELECT_ALL = "SELECT * FROM administrador";
-	private final String SQL_SELECT_BY_ID = "SELECT * FROM administrador WHERE " + COLUMN_ID + UPDATE_MARK;		
-	
-	public AdministradorDAO() {
-		super();
-		createTable();
-	}
-	
 	@Override
 	public void createTable() {
 		try {
-			executeQuery(SQL_CREATE_TABLE);
+			createTable(TABLE_NAME, TABLE_BODY);
 		} catch (SQLException e) {
 			System.out.println("Não foi possível criar a tabela Administrador, motivo: " + e.getMessage());
 		}
 	}
 
 	@Override
-	public void insert(Administrador object) throws SQLException {
+	public long insert(Administrador object) throws SQLException {
 		PreparedStatement statement =  objectToPreparedStatement(SQL_INSERT, object);
-		executePreparedStatement(statement);	
+		executePreparedStatement(statement);
+		return selectLastId();
 	}
 
 	@Override
@@ -137,35 +130,51 @@ public class AdministradorDAO extends DatabaseDAO implements IDatabaseDAO<Admini
 
 	@Override
 	public void delete(Administrador object) throws SQLException {
-		PreparedStatement statement = getConnection().prepareStatement(SQL_DELETE);
+		String query = generateQueryDelete(TABLE_NAME, COLUMN_ID);
+		PreparedStatement statement = getConnection().prepareStatement(query);
 		statement.setLong(1, object.getId());
 		executePreparedStatement(statement);
 	}
 	
 	@Override
 	public List<Administrador> selectAll() throws SQLException {
-		List<Administrador> listaDeAdministradores = new ArrayList<Administrador>();
-		ResultSet resultSet = executeQueryWithResult(SQL_SELECT_ALL);
+		List<Administrador> list = new ArrayList<Administrador>();
+		String query = generateQuerySelectAll(TABLE_NAME);
+		ResultSet resultSet = executeQueryWithResult(query);
 		if (resultSet != null) {
 			while (resultSet.next()){
-				listaDeAdministradores.add(resultSetToObject(resultSet));
+				list.add(resultSetToObject(resultSet));
 			}
 		}
-		return listaDeAdministradores;
+		return list;
 	}
 
 	@Override
 	public Administrador selectById(long id) throws SQLException {
-		Administrador aluno = null;
-		PreparedStatement statement = getConnection().prepareStatement(SQL_SELECT_BY_ID);
+		Administrador object = null;
+		String query = generateQuerySelectById(TABLE_NAME, COLUMN_ID);
+		PreparedStatement statement = getConnection().prepareStatement(query);
 		statement.setLong(1, id);
 		ResultSet resultSet = executePreparedStatementWithResult(statement);;
 		if (resultSet != null) {
 			while (resultSet.next()){
-				aluno = resultSetToObject(resultSet);
+				object = resultSetToObject(resultSet);
 			}
 		}
-		return aluno;
+		return object;
+	}
+	
+	@Override
+	public long selectLastId() throws SQLException {
+		long id = 0;
+		String query = generateQuerySelectLastId(TABLE_NAME, COLUMN_ID);
+		ResultSet resultSet = executeQueryWithResult(query);
+		if (resultSet != null) {
+			while (resultSet.next()){
+				id = resultSet.getLong(LAST_ID);
+			}
+		}
+		return id;
 	}
 
 	@Override
@@ -216,4 +225,5 @@ public class AdministradorDAO extends DatabaseDAO implements IDatabaseDAO<Admini
 		statement.setString(18, object.getSenha());
 		return statement;
 	}
+	
 }

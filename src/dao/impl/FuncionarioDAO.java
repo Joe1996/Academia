@@ -15,7 +15,7 @@ public class FuncionarioDAO extends DatabaseDAO implements IDatabaseDAO<Funciona
 	
 	private SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 	
-	private final String COLUMN_ID = "id";
+	private final String COLUMN_ID = "_id";
 	private final String COLUMN_NAME = "nome";
 	private final String COLUMN_RG = "rg";
 	private final String COLUMN_EMAIL = "email";
@@ -35,8 +35,10 @@ public class FuncionarioDAO extends DatabaseDAO implements IDatabaseDAO<Funciona
 	private final String COLUMN_FUNCTION = "funcao";
 	private final String COLUMN_SALARY = "salario";
 	
-	private final String SQL_CREATE_TABLE = "CREATE TABLE IF NOT EXISTS funcionario "
-			+ "("
+	private final String TABLE_NAME = "funcionario";
+	
+	private final String TABLE_BODY =
+			"("
 			+ COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
 			+ COLUMN_NAME + " VARCHAR(150) NOT NULL, "
 			+ COLUMN_RG + " VARCHAR(20) NOT NULL, "
@@ -101,31 +103,22 @@ public class FuncionarioDAO extends DatabaseDAO implements IDatabaseDAO<Funciona
 			+ COLUMN_BLOOD_TYPE + UPDATE_MARK + COMMA
 			+ COLUMN_FUNCTION + UPDATE_MARK + COMMA
 			+ COLUMN_SALARY + UPDATE_MARK
-			+ " WHERE " + COLUMN_ID + UPDATE_MARK;
-	
-	
-	private final String SQL_DELETE = "DELETE FROM fucionario WHERE " + COLUMN_ID + UPDATE_MARK;
-	private final String SQL_SELECT_ALL = "SELECT * FROM funcionario";
-	private final String SQL_SELECT_BY_ID = "SELECT * FROM funcionario WHERE " + COLUMN_ID + UPDATE_MARK;	
-	
-	public FuncionarioDAO() {
-		super();
-		createTable();
-	}
+			+ " WHERE " + COLUMN_ID + UPDATE_MARK;	
 	
 	@Override
 	public void createTable() {
 		try {
-			executeQuery(SQL_CREATE_TABLE);
+			createTable(TABLE_NAME, TABLE_BODY);
 		} catch (SQLException e) {
 			System.out.println("Não foi possível criar a tabela Funcionario, motivo: " + e.getMessage());
 		}
 	}
 
 	@Override
-	public void insert(Funcionario object) throws SQLException {
+	public long insert(Funcionario object) throws SQLException {
 		PreparedStatement statement = objectToPreparedStatement(SQL_INSERT, object);
 		executePreparedStatement(statement);
+		return selectLastId();
 	}
 
 
@@ -138,7 +131,8 @@ public class FuncionarioDAO extends DatabaseDAO implements IDatabaseDAO<Funciona
 
 	@Override
 	public void delete(Funcionario object) throws SQLException {
-		PreparedStatement statement = getConnection().prepareStatement(SQL_DELETE);
+		String query = generateQueryDelete(TABLE_NAME, COLUMN_ID);
+		PreparedStatement statement = getConnection().prepareStatement(query);
 		statement.setLong(1, object.getId());
 		executePreparedStatement(statement);
 	}
@@ -146,7 +140,8 @@ public class FuncionarioDAO extends DatabaseDAO implements IDatabaseDAO<Funciona
 	@Override
 	public List<Funcionario> selectAll() throws SQLException {
 		List<Funcionario> list = new ArrayList<Funcionario>();
-		ResultSet resultSet = executeQueryWithResult(SQL_SELECT_ALL);
+		String query = generateQuerySelectAll(TABLE_NAME);
+		ResultSet resultSet = executeQueryWithResult(query);
 		if (resultSet != null) {
 			while (resultSet.next()){
 				list.add(resultSetToObject(resultSet));
@@ -158,7 +153,8 @@ public class FuncionarioDAO extends DatabaseDAO implements IDatabaseDAO<Funciona
 	@Override
 	public Funcionario selectById(long id) throws SQLException {
 		Funcionario object = null;
-		PreparedStatement statement = getConnection().prepareStatement(SQL_SELECT_BY_ID);
+		String query = generateQuerySelectById(TABLE_NAME, COLUMN_ID);
+		PreparedStatement statement = getConnection().prepareStatement(query);
 		statement.setLong(1, id);
 		ResultSet resultSet = executePreparedStatementWithResult(statement);;
 		if (resultSet != null) {
@@ -168,30 +164,43 @@ public class FuncionarioDAO extends DatabaseDAO implements IDatabaseDAO<Funciona
 		}
 		return object;
 	}
+	
+	@Override
+	public long selectLastId() throws SQLException {
+		long id = 0;
+		String query = generateQuerySelectLastId(TABLE_NAME, COLUMN_ID);
+		ResultSet resultSet = executeQueryWithResult(query);
+		if (resultSet != null) {
+			while (resultSet.next()){
+				id = resultSet.getLong(LAST_ID);
+			}
+		}
+		return id;
+	}
 
 	@Override
 	public Funcionario resultSetToObject(ResultSet resultSet) throws SQLException {
-		Funcionario objFuncionario = new Funcionario();
-		objFuncionario.setId(resultSet.getLong(COLUMN_ID));
-		objFuncionario.setNome(resultSet.getString(COLUMN_NAME));
-		objFuncionario.setRg(resultSet.getString(COLUMN_RG));
-		objFuncionario.setEmail(resultSet.getString(COLUMN_EMAIL));
-		objFuncionario.setTelefone(resultSet.getString(COLUMN_PHONE));
-		objFuncionario.setCpf(resultSet.getString(COLUMN_CPF));
-		objFuncionario.setDataNascimento(resultSet.getDate(COLUMN_BIRTH_DATE));
-		objFuncionario.setRua(resultSet.getString(COLUMN_STREET));
-		objFuncionario.setNumeroCasa(resultSet.getString(COLUMN_NUMBER_HOUSE));
-		objFuncionario.setComplemento(resultSet.getString(COLUMN_COMPLEMENT));
-		objFuncionario.setBairro(resultSet.getString(COLUMN_NEIGHBORHOOD));
-		objFuncionario.setCep(resultSet.getString(COLUMN_CEP));
-		objFuncionario.setEstado(resultSet.getString(COLUMN_STATE));
-		objFuncionario.setCidade(resultSet.getString(COLUMN_CITY));
-		objFuncionario.setDoencas(resultSet.getString(COLUMN_DISEASES));
-		objFuncionario.setPlanoSaude(resultSet.getString(COLUMN_HEALTH_INSURANCE));
-		objFuncionario.setTipoSanguineo(resultSet.getString(COLUMN_BLOOD_TYPE));
-		objFuncionario.setFuncao(resultSet.getString(COLUMN_FUNCTION));
-		objFuncionario.setSalario(resultSet.getDouble(COLUMN_SALARY));
-		return objFuncionario;
+		Funcionario object = new Funcionario();
+		object.setId(resultSet.getLong(COLUMN_ID));
+		object.setNome(resultSet.getString(COLUMN_NAME));
+		object.setRg(resultSet.getString(COLUMN_RG));
+		object.setEmail(resultSet.getString(COLUMN_EMAIL));
+		object.setTelefone(resultSet.getString(COLUMN_PHONE));
+		object.setCpf(resultSet.getString(COLUMN_CPF));
+		object.setDataNascimento(resultSet.getDate(COLUMN_BIRTH_DATE));
+		object.setRua(resultSet.getString(COLUMN_STREET));
+		object.setNumeroCasa(resultSet.getString(COLUMN_NUMBER_HOUSE));
+		object.setComplemento(resultSet.getString(COLUMN_COMPLEMENT));
+		object.setBairro(resultSet.getString(COLUMN_NEIGHBORHOOD));
+		object.setCep(resultSet.getString(COLUMN_CEP));
+		object.setEstado(resultSet.getString(COLUMN_STATE));
+		object.setCidade(resultSet.getString(COLUMN_CITY));
+		object.setDoencas(resultSet.getString(COLUMN_DISEASES));
+		object.setPlanoSaude(resultSet.getString(COLUMN_HEALTH_INSURANCE));
+		object.setTipoSanguineo(resultSet.getString(COLUMN_BLOOD_TYPE));
+		object.setFuncao(resultSet.getString(COLUMN_FUNCTION));
+		object.setSalario(resultSet.getDouble(COLUMN_SALARY));
+		return object;
 	}
 
 	@Override
