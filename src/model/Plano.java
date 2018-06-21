@@ -1,6 +1,7 @@
 package model;
 
 public class Plano {
+	
 	private long id;
 	private String nome;
 	private double valor;
@@ -28,4 +29,5 @@ public class Plano {
 	public void setValor(double valor) {
 		this.valor = valor;
 	}
+	
 }

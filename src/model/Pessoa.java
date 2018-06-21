@@ -3,6 +3,7 @@ package model;
 import java.util.Date;
 
 public abstract class Pessoa {
+
 	private long id;
 	private String nome;
 	private String rg;
@@ -20,8 +21,6 @@ public abstract class Pessoa {
 	private String doencas;
 	private String planoSaude;
 	private String tipoSanguineo;
-	
-	
 
 	public long getId() {
 		return id;
@@ -158,4 +157,5 @@ public abstract class Pessoa {
 	public void setTipoSanguineo(String tipoSanguineo) {
 		this.tipoSanguineo = tipoSanguineo;
 	}
+	
 }

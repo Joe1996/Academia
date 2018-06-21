@@ -1,8 +1,9 @@
 package model;
 
 public class Professor extends Pessoa {
+	
 	private String graduacao;
-	private double salario;
+	private String salario;
 
 	public String getGraduacao() {
 		return graduacao;
@@ -12,11 +13,12 @@ public class Professor extends Pessoa {
 		this.graduacao = graduacao;
 	}
 
-	public double getSalario() {
+	public String getSalario() {
 		return salario;
 	}
 
-	public void setSalario(double salario) {
+	public void setSalario(String salario) {
 		this.salario = salario;
 	}
+
 }
