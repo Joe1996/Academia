@@ -1,9 +1,10 @@
 package model;
 
 public class Funcionario extends Pessoa {
+
 	private String funcao;
 	private double salario;
-	
+
 	public String getFuncao() {
 		return funcao;
 	}

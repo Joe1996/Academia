@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" path="src"/>
@@ -9,3 +10,14 @@
 	<classpathentry kind="lib" path="C:/Users/EduardoCordova/git/Academia/jasperreports-6.6.0.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
+=======
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="jgoodies-common-1.8.0.jar" sourcepath="jgoodies-common-1.8.0-sources.jar"/>
+	<classpathentry kind="lib" path="jgoodies-forms-1.8.0.jar" sourcepath="jgoodies-forms-1.8.0-sources.jar"/>
+	<classpathentry kind="lib" path="/Users/tiagoalmeida/Documents/GitHub/Academia/jar/postgresql-42.2.2.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
+>>>>>>> 2fe9f55956d1a48c029b57a8560df65d5cf6aba7

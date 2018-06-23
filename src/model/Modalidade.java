@@ -1,6 +1,7 @@
 package model;
 
 public class Modalidade {
+	
 	private long id;
 	private String nome;
 	private String nomeMestre;
@@ -28,4 +29,5 @@ public class Modalidade {
 	public void setNomeMestre(String nomeMestre) {
 		this.nomeMestre = nomeMestre;
 	}
+	
 }

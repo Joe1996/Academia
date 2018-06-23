@@ -3,28 +3,33 @@ package model;
 import java.util.Date;
 
 public class Mensalidade {
+
 	private long id;
-	private String nomeAluno;
+	private Aluno aluno;
 	private Date dataVencimento;
-	
+
 	public long getId() {
 		return id;
 	}
+
 	public void setId(long id) {
 		this.id = id;
 	}
-	public String getNomeAluno() {
-		return nomeAluno;
+
+	public Aluno getAluno() {
+		return aluno;
 	}
-	public void setNomeAluno(String nomeAluno) {
-		this.nomeAluno = nomeAluno;
+
+	public void setAluno(Aluno aluno) {
+		this.aluno = aluno;
 	}
+
 	public Date getDataVencimento() {
 		return dataVencimento;
 	}
+
 	public void setDataVencimento(Date dataVencimento) {
 		this.dataVencimento = dataVencimento;
 	}
-	
-	
+
 }

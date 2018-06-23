@@ -1,6 +1,7 @@
 package model;
 
 public class Gerente extends Pessoa {
+	
 	private String tempoGerencia;
 	private double salario;
 
