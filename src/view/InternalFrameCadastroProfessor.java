@@ -73,8 +73,8 @@ public class InternalFrameCadastroProfessor extends JInternalFrame {
 		JPanel panelContato = new JPanel();
 		panelContato.setBorder(new TitledBorder(null, "Contato", TitledBorder.CENTER, TitledBorder.TOP, null, null));
 		
-		JPanel panelEndereço = new JPanel();
-		panelEndereço.setBorder(new TitledBorder(null, "Endere\u00E7o", TitledBorder.CENTER, TitledBorder.TOP, null, null));
+		JPanel panelEndereco = new JPanel();
+		panelEndereco.setBorder(new TitledBorder(null, "Endere\u00E7o", TitledBorder.CENTER, TitledBorder.TOP, null, null));
 		
 		JButton btnCadastrarDigital = new JButton("Cadastrar Digital");
 		btnCadastrarDigital.setFont(new Font("Tahoma", Font.PLAIN, 14));
@@ -149,7 +149,7 @@ public class InternalFrameCadastroProfessor extends JInternalFrame {
 					.addContainerGap()
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
 						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(panelEndereço, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+							.addComponent(panelEndereco, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 							.addPreferredGap(ComponentPlacement.RELATED)
 							.addComponent(panel, GroupLayout.PREFERRED_SIZE, 239, GroupLayout.PREFERRED_SIZE)
 							.addPreferredGap(ComponentPlacement.RELATED)
@@ -185,7 +185,7 @@ public class InternalFrameCadastroProfessor extends JInternalFrame {
 								.addComponent(btnLimparcampos)
 								.addPreferredGap(ComponentPlacement.RELATED)
 								.addComponent(btnSair))
-							.addComponent(panelEndereço, GroupLayout.PREFERRED_SIZE, 192, GroupLayout.PREFERRED_SIZE)))
+							.addComponent(panelEndereco, GroupLayout.PREFERRED_SIZE, 192, GroupLayout.PREFERRED_SIZE)))
 					.addContainerGap(16, Short.MAX_VALUE))
 		);
 		
@@ -223,12 +223,12 @@ public class InternalFrameCadastroProfessor extends JInternalFrame {
 		
 		textFieldEstado = new JTextField();
 		textFieldEstado.setColumns(10);
-		GroupLayout gl_panelEndereço = new GroupLayout(panelEndereço);
-		gl_panelEndereço.setHorizontalGroup(
-			gl_panelEndereço.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panelEndereço.createSequentialGroup()
+		GroupLayout gl_panelEndereco = new GroupLayout(panelEndereco);
+		gl_panelEndereco.setHorizontalGroup(
+			gl_panelEndereco.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panelEndereco.createSequentialGroup()
 					.addContainerGap()
-					.addGroup(gl_panelEndereço.createParallelGroup(Alignment.TRAILING)
+					.addGroup(gl_panelEndereco.createParallelGroup(Alignment.TRAILING)
 						.addComponent(lblEstado)
 						.addComponent(lblCidade)
 						.addComponent(lblCep)
@@ -236,8 +236,8 @@ public class InternalFrameCadastroProfessor extends JInternalFrame {
 						.addComponent(lblLogradouro)
 						.addComponent(lblNmeroDaCasa))
 					.addPreferredGap(ComponentPlacement.RELATED)
-					.addGroup(gl_panelEndereço.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_panelEndereço.createSequentialGroup()
+					.addGroup(gl_panelEndereco.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_panelEndereco.createSequentialGroup()
 							.addComponent(textFieldNumeroDaCasa, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 							.addPreferredGap(ComponentPlacement.UNRELATED)
 							.addComponent(lblComplement)
@@ -250,38 +250,38 @@ public class InternalFrameCadastroProfessor extends JInternalFrame {
 						.addComponent(textFieldLogradouro, GroupLayout.DEFAULT_SIZE, 233, Short.MAX_VALUE))
 					.addContainerGap())
 		);
-		gl_panelEndereço.setVerticalGroup(
-			gl_panelEndereço.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panelEndereço.createSequentialGroup()
+		gl_panelEndereco.setVerticalGroup(
+			gl_panelEndereco.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panelEndereco.createSequentialGroup()
 					.addContainerGap()
-					.addGroup(gl_panelEndereço.createParallelGroup(Alignment.BASELINE)
+					.addGroup(gl_panelEndereco.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblLogradouro)
 						.addComponent(textFieldLogradouro, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addPreferredGap(ComponentPlacement.RELATED)
-					.addGroup(gl_panelEndereço.createParallelGroup(Alignment.BASELINE)
+					.addGroup(gl_panelEndereco.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblNmeroDaCasa)
 						.addComponent(textFieldNumeroDaCasa, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addComponent(lblComplement)
 						.addComponent(textFieldComplemento, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addPreferredGap(ComponentPlacement.RELATED)
-					.addGroup(gl_panelEndereço.createParallelGroup(Alignment.BASELINE)
+					.addGroup(gl_panelEndereco.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblBairro)
 						.addComponent(textFieldBairro, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addPreferredGap(ComponentPlacement.RELATED)
-					.addGroup(gl_panelEndereço.createParallelGroup(Alignment.BASELINE)
+					.addGroup(gl_panelEndereco.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblCep)
 						.addComponent(textFieldCEP, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addPreferredGap(ComponentPlacement.RELATED)
-					.addGroup(gl_panelEndereço.createParallelGroup(Alignment.BASELINE)
+					.addGroup(gl_panelEndereco.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblCidade)
 						.addComponent(textFieldCidade, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addPreferredGap(ComponentPlacement.RELATED)
-					.addGroup(gl_panelEndereço.createParallelGroup(Alignment.BASELINE)
+					.addGroup(gl_panelEndereco.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblEstado)
 						.addComponent(textFieldEstado, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addContainerGap(26, Short.MAX_VALUE))
 		);
-		panelEndereço.setLayout(gl_panelEndereço);
+		panelEndereco.setLayout(gl_panelEndereco);
 		
 		JLabel lblTelefone = new JLabel("Telefone");
 		

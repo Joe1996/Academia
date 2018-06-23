@@ -20,6 +20,9 @@ import dao.impl.PresencaDAO;
 import dao.impl.ProfessorDAO;
 
 public class DatabaseDAO {
+	
+	private final String USER = "postgres";
+	private final String PASSWORD = "postgres";
 
 	protected final String COMMA = ", ";
 	protected final String UPDATE_MARK = " = ?";
@@ -49,7 +52,7 @@ public class DatabaseDAO {
 
 	private void connectJDBC() {
 		try {
-			connection = DriverManager.getConnection("jdbc:postgresql://localhost/academiaDb", "postgres", "aluno");
+			connection = DriverManager.getConnection("jdbc:postgresql://localhost/academiaDb", USER, PASSWORD);
 		} catch (SQLException e) {
 			System.out.println("Erro ao connectar com banco: " + e.getMessage());
 		}
