@@ -8,8 +8,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import model.Presenca;
-import model.Professor;;
+import model.Presenca;;
 
 public class PresencaDAO implements IDatabaseDAO<Presenca> {
 	

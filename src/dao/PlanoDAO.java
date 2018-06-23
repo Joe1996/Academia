@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import model.Plano;
-import model.Presenca;
 
 public class PlanoDAO implements IDatabaseDAO<Plano> {
 	

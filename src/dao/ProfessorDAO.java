@@ -8,7 +8,6 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import model.Gerente;
 import model.Professor;
 
 public class ProfessorDAO implements IDatabaseDAO<Professor> {

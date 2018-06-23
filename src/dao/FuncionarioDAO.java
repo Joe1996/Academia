@@ -8,7 +8,6 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import model.Administrador;
 import model.Funcionario;
 
 public class FuncionarioDAO implements IDatabaseDAO<Funcionario> {

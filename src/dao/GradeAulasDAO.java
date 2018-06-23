@@ -8,7 +8,6 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import model.Gerente;
 import model.GradeAulas;
 
 public class GradeAulasDAO implements IDatabaseDAO<GradeAulas> {

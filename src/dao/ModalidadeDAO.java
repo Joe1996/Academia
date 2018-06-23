@@ -8,8 +8,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import model.Modalidade;
-import model.Plano;;
+import model.Modalidade;;
 
 public class ModalidadeDAO implements IDatabaseDAO<Modalidade> {
 	
