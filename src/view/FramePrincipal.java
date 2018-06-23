@@ -142,6 +142,13 @@ public class FramePrincipal extends JFrame {
 		menuBar.add(mnGradeDeAulas);
 		
 		JMenuItem mntmMostrar = new JMenuItem("Mostrar/Editar");
+		mntmMostrar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				InternalFrameCadastroGradeAula aula = new InternalFrameCadastroGradeAula();
+				desktopPane.add(aula);
+				aula.setVisible(true);
+			}
+		});
 		mntmMostrar.setIcon(new ImageIcon("C:\\Users\\EduardoCordova\\git\\Academia\\src\\img\\writing.png"));
 		mntmMostrar.setFont(new Font("Segoe UI", Font.PLAIN, 15));
 		mnGradeDeAulas.add(mntmMostrar);

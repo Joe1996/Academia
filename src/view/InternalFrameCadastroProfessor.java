@@ -1,6 +1,5 @@
 package view;
 
-import java.awt.Dimension;
 import java.awt.EventQueue;
 
 import javax.swing.JInternalFrame;
@@ -13,13 +12,8 @@ import javax.swing.JFormattedTextField;
 import javax.swing.JPanel;
 import javax.swing.border.TitledBorder;
 import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import javax.swing.JList;
 import javax.swing.ImageIcon;
 import java.awt.Font;
-import javax.swing.SwingConstants;
-import javax.swing.AbstractListModel;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.UIManager;
