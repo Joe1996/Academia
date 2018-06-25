@@ -14,12 +14,6 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import javax.swing.plaf.DesktopPaneUI;
-
-import com.sun.xml.internal.ws.api.Component;
-
-import jdk.nashorn.internal.runtime.regexp.joni.Warnings;
-
 import javax.swing.ImageIcon;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -56,7 +50,7 @@ public class FramePrincipal extends JFrame {
 	 */
 	public FramePrincipal() {
 		setTitle("Inicio");
-		setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\EduardoCordova\\git\\Academia\\src\\img\\IconeTelas.png"));
+		setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\EduardoCordova\\git\\Academia\\resources\\IconeTelas.png"));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 808, 463);
 		
@@ -64,7 +58,7 @@ public class FramePrincipal extends JFrame {
 		setJMenuBar(menuBar);
 		
 		JMenu mnCadastrar = new JMenu("Cadastrar");
-		mnCadastrar.setIcon(new ImageIcon("C:\\Users\\EduardoCordova\\git\\Academia\\src\\img\\IconeCadastrar.png"));
+		mnCadastrar.setIcon(new ImageIcon("C:\\Users\\EduardoCordova\\git\\Academia\\resources\\IconeCadastrar.png"));
 		mnCadastrar.setFont(new Font("Segoe UI", Font.PLAIN, 15));
 		menuBar.add(mnCadastrar);
 		
@@ -77,7 +71,7 @@ public class FramePrincipal extends JFrame {
 			}
 		});
 		mntmCadastrarAluno.setFont(new Font("Segoe UI", Font.PLAIN, 15));
-		mntmCadastrarAluno.setIcon(new ImageIcon("C:\\Users\\EduardoCordova\\git\\Academia\\src\\img\\IconeWhiteBelt1.png"));
+		mntmCadastrarAluno.setIcon(new ImageIcon("C:\\Users\\EduardoCordova\\git\\Academia\\resources\\IconeWhiteBelt1.png"));
 		mnCadastrar.add(mntmCadastrarAluno);
 		
 		JMenuItem mntmProfessor = new JMenuItem("Professor");
@@ -89,7 +83,7 @@ public class FramePrincipal extends JFrame {
 			}
 		});
 		mntmProfessor.setFont(new Font("Segoe UI", Font.PLAIN, 15));
-		mntmProfessor.setIcon(new ImageIcon("C:\\Users\\EduardoCordova\\git\\Academia\\src\\img\\IconeBlackBelt1.png"));
+		mntmProfessor.setIcon(new ImageIcon("C:\\Users\\EduardoCordova\\git\\Academia\\resources\\IconeBlackBelt1.png"));
 		mnCadastrar.add(mntmProfessor);
 		
 		JMenuItem mntmModalidade = new JMenuItem("Modalidade");
@@ -100,7 +94,7 @@ public class FramePrincipal extends JFrame {
 				cadastroModalidade.setVisible(true);
 			}
 		});
-		mntmModalidade.setIcon(new ImageIcon("C:\\Users\\EduardoCordova\\git\\Academia\\src\\img\\IconeModalidade.png"));
+		mntmModalidade.setIcon(new ImageIcon("C:\\Users\\EduardoCordova\\git\\Academia\\resources\\IconeModalidade.png"));
 		mntmModalidade.setFont(new Font("Segoe UI", Font.PLAIN, 15));
 		mnCadastrar.add(mntmModalidade);
 		
@@ -110,7 +104,7 @@ public class FramePrincipal extends JFrame {
 				JOptionPane.showInternalMessageDialog(desktopPane, "Função Indisponível no Momento", "Atenção", JOptionPane.WARNING_MESSAGE);
 			}
 		});
-		mntmNewMenuItem.setIcon(new ImageIcon("C:\\Users\\EduardoCordova\\git\\Academia\\src\\img\\IconeFornecedor.png"));
+		mntmNewMenuItem.setIcon(new ImageIcon("C:\\Users\\EduardoCordova\\git\\Academia\\resources\\IconeFornecedor.png"));
 		mntmNewMenuItem.setFont(new Font("Segoe UI", Font.PLAIN, 15));
 		mnCadastrar.add(mntmNewMenuItem);
 		
@@ -120,7 +114,7 @@ public class FramePrincipal extends JFrame {
 				JOptionPane.showInternalMessageDialog(desktopPane, "Função Indisponível no Momento", "Atenção", JOptionPane.WARNING_MESSAGE);
 			}
 		});
-		mntmProdutos.setIcon(new ImageIcon("C:\\Users\\EduardoCordova\\git\\Academia\\src\\img\\IconeProdutos.png"));
+		mntmProdutos.setIcon(new ImageIcon("C:\\Users\\EduardoCordova\\git\\Academia\\resources\\IconeProdutos.png"));
 		mntmProdutos.setFont(new Font("Segoe UI", Font.PLAIN, 15));
 		mnCadastrar.add(mntmProdutos);
 		
@@ -132,12 +126,12 @@ public class FramePrincipal extends JFrame {
 				academia.setVisible(true);
 			}
 		});
-		mntmAcadmia.setIcon(new ImageIcon("C:\\Users\\EduardoCordova\\git\\Academia\\src\\img\\IconeAcademia.png"));
+		mntmAcadmia.setIcon(new ImageIcon("C:\\Users\\EduardoCordova\\git\\Academia\\resources\\IconeAcademia.png"));
 		mntmAcadmia.setFont(new Font("Segoe UI", Font.PLAIN, 15));
 		mnCadastrar.add(mntmAcadmia);
 		
 		JMenu mnGradeDeAulas = new JMenu("Grade de Aulas");
-		mnGradeDeAulas.setIcon(new ImageIcon("C:\\Users\\EduardoCordova\\git\\Academia\\src\\img\\IconeGradeDeAulas.png"));
+		mnGradeDeAulas.setIcon(new ImageIcon("C:\\Users\\EduardoCordova\\git\\Academia\\resources\\IconeGradeDeAulas.png"));
 		mnGradeDeAulas.setFont(new Font("Segoe UI", Font.PLAIN, 15));
 		menuBar.add(mnGradeDeAulas);
 		
@@ -149,42 +143,42 @@ public class FramePrincipal extends JFrame {
 				aula.setVisible(true);
 			}
 		});
-		mntmMostrar.setIcon(new ImageIcon("C:\\Users\\EduardoCordova\\git\\Academia\\src\\img\\writing.png"));
+		mntmMostrar.setIcon(new ImageIcon("C:\\Users\\EduardoCordova\\git\\Academia\\resources\\writing.png"));
 		mntmMostrar.setFont(new Font("Segoe UI", Font.PLAIN, 15));
 		mnGradeDeAulas.add(mntmMostrar);
 		
 		JMenu mnPlanoDeAula = new JMenu("Plano de Aula");
-		mnPlanoDeAula.setIcon(new ImageIcon("C:\\Users\\EduardoCordova\\git\\Academia\\src\\img\\blackboard.png"));
+		mnPlanoDeAula.setIcon(new ImageIcon("C:\\Users\\EduardoCordova\\git\\Academia\\resources\\blackboard.png"));
 		mnPlanoDeAula.setFont(new Font("Segoe UI", Font.PLAIN, 15));
 		menuBar.add(mnPlanoDeAula);
 		
 		JMenuItem mntmPreencher = new JMenuItem("Preencher");
-		mntmPreencher.setIcon(new ImageIcon("C:\\Users\\EduardoCordova\\git\\Academia\\src\\img\\pencil-case.png"));
+		mntmPreencher.setIcon(new ImageIcon("C:\\Users\\EduardoCordova\\git\\Academia\\resources\\pencil-case.png"));
 		mntmPreencher.setFont(new Font("Segoe UI", Font.PLAIN, 15));
 		mnPlanoDeAula.add(mntmPreencher);
 		
 		JMenu mnMensalidades = new JMenu("Mensalidades");
-		mnMensalidades.setIcon(new ImageIcon("C:\\Users\\EduardoCordova\\git\\Academia\\src\\img\\change.png"));
+		mnMensalidades.setIcon(new ImageIcon("C:\\Users\\EduardoCordova\\git\\Academia\\resources\\change.png"));
 		mnMensalidades.setFont(new Font("Segoe UI", Font.PLAIN, 15));
 		menuBar.add(mnMensalidades);
 		
 		JMenuItem mntmValoresMensalidade = new JMenuItem("Valores");
-		mntmValoresMensalidade.setIcon(new ImageIcon("C:\\Users\\EduardoCordova\\git\\Academia\\src\\img\\payment.png"));
+		mntmValoresMensalidade.setIcon(new ImageIcon("C:\\Users\\EduardoCordova\\git\\Academia\\resources\\payment.png"));
 		mntmValoresMensalidade.setFont(new Font("Segoe UI", Font.PLAIN, 15));
 		mnMensalidades.add(mntmValoresMensalidade);
 		
 		JMenuItem mntmNewMenuItem_1 = new JMenuItem("Plano de Pagamentos");
-		mntmNewMenuItem_1.setIcon(new ImageIcon("C:\\Users\\EduardoCordova\\git\\Academia\\src\\img\\planning1.png"));
+		mntmNewMenuItem_1.setIcon(new ImageIcon("C:\\Users\\EduardoCordova\\git\\Academia\\resources\\planning1.png"));
 		mntmNewMenuItem_1.setFont(new Font("Segoe UI", Font.PLAIN, 15));
 		mnMensalidades.add(mntmNewMenuItem_1);
 		
 		JMenu mnRelatrios = new JMenu("Relat\u00F3rios");
-		mnRelatrios.setIcon(new ImageIcon("C:\\Users\\EduardoCordova\\git\\Academia\\src\\img\\planning.png"));
+		mnRelatrios.setIcon(new ImageIcon("C:\\Users\\EduardoCordova\\git\\Academia\\resources\\planning.png"));
 		mnRelatrios.setFont(new Font("Segoe UI", Font.PLAIN, 15));
 		menuBar.add(mnRelatrios);
 		
 		JMenuItem mntmMostrar_1 = new JMenuItem("Mostrar");
-		mntmMostrar_1.setIcon(new ImageIcon("C:\\Users\\EduardoCordova\\git\\Academia\\src\\img\\writing.png"));
+		mntmMostrar_1.setIcon(new ImageIcon("C:\\Users\\EduardoCordova\\git\\Academia\\resources\\writing.png"));
 		mnRelatrios.add(mntmMostrar_1);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));

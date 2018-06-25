@@ -16,6 +16,10 @@ import com.jgoodies.forms.layout.RowSpec;
 
 public class FrameCadastroPlano extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField textField;
 	private JTextField textField_1;

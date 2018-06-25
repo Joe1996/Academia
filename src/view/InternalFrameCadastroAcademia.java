@@ -70,13 +70,13 @@ public class InternalFrameCadastroAcademia extends JInternalFrame {
 		panelContato.setBorder(new TitledBorder(null, "Contato", TitledBorder.CENTER, TitledBorder.TOP, null, null));
 		
 		JButton btnSalvar = new JButton("Salvar");
-		btnSalvar.setIcon(new ImageIcon("C:\\Users\\EduardoCordova\\git\\Academia\\src\\img\\checked.png"));
+		btnSalvar.setIcon(new ImageIcon("C:\\Users\\EduardoCordova\\git\\Academia\\resources\\checked.png"));
 		
 		JButton btnLimparCampos = new JButton("Limpar Campos");
-		btnLimparCampos.setIcon(new ImageIcon("C:\\Users\\EduardoCordova\\git\\Academia\\src\\img\\eraser.png"));
+		btnLimparCampos.setIcon(new ImageIcon("C:\\Users\\EduardoCordova\\git\\Academia\\resources\\eraser.png"));
 		
 		JButton btnSair = new JButton("Sair");
-		btnSair.setIcon(new ImageIcon("C:\\Users\\EduardoCordova\\git\\Academia\\src\\img\\exit.png"));
+		btnSair.setIcon(new ImageIcon("C:\\Users\\EduardoCordova\\git\\Academia\\resources\\exit.png"));
 		GroupLayout groupLayout = new GroupLayout(getContentPane());
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)

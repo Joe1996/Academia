@@ -67,10 +67,10 @@ public class InternalFrameCadastroModalidade extends JInternalFrame {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btnSalvar.setIcon(new ImageIcon("C:\\Users\\EduardoCordova\\git\\Academia\\src\\img\\checked.png"));
+		btnSalvar.setIcon(new ImageIcon("C:\\Users\\EduardoCordova\\git\\Academia\\resources\\checked.png"));
 		
 		JButton btnLimparCampos = new JButton("Limpar Campos");
-		btnLimparCampos.setIcon(new ImageIcon("C:\\Users\\EduardoCordova\\git\\Academia\\src\\img\\eraser.png"));
+		btnLimparCampos.setIcon(new ImageIcon("C:\\Users\\EduardoCordova\\git\\Academia\\resources\\eraser.png"));
 		
 		JLabel lblProfessor = new JLabel("Professor");
 		

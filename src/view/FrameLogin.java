@@ -16,11 +16,6 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.EmptyBorder;
-import net.miginfocom.swing.MigLayout;
-import com.jgoodies.forms.layout.FormLayout;
-import com.jgoodies.forms.layout.ColumnSpec;
-import com.jgoodies.forms.layout.FormSpecs;
-import com.jgoodies.forms.layout.RowSpec;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -89,11 +84,11 @@ public class FrameLogin extends JFrame {
 				dispose();
 			}
 		});
-		btnEntrar.setIcon(new ImageIcon("C:\\Users\\EduardoCordova\\git\\Academia\\src\\img\\checked.png"));
+		btnEntrar.setIcon(new ImageIcon("C:\\Users\\EduardoCordova\\git\\Academia\\resources\\checked.png"));
 		btnEntrar.setFont(new Font("Tahoma", Font.BOLD, 12));
 		
 		lblImagemfundo = new JLabel("");
-		lblImagemfundo.setIcon(new ImageIcon("C:\\Users\\EduardoCordova\\git\\Academia\\src\\img\\FundoTelaLogin2.png"));
+		lblImagemfundo.setIcon(new ImageIcon("C:\\Users\\EduardoCordova\\git\\Academia\\resources\\FundoTelaLogin2.png"));
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
 			gl_contentPane.createParallelGroup(Alignment.TRAILING)

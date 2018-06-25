@@ -1,10 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="lib" path="/Users/tiagoalmeida/Documents/GitHub/Academia/jar/postgresql-42.2.2.jar"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="lib" path="/Users/tiagoalmeida/Documents/GitHub/Academia/jar/jgoodies-common-1.8.0.jar"/>
-	<classpathentry kind="lib" path="/Users/tiagoalmeida/Documents/GitHub/Academia/jar/jgoodies-forms-1.8.0.jar"/>
-	<classpathentry kind="lib" path="/Users/tiagoalmeida/Documents/GitHub/Academia/jar/miglayout15-swing.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/EduardoCordova/git/Academia/jar/jasperreports-6.6.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/EduardoCordova/git/Academia/jar/jgoodies-common-1.8.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/EduardoCordova/git/Academia/jar/jgoodies-forms-1.8.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/EduardoCordova/git/Academia/jar/miglayout15-swing.jar"/>
+	<classpathentry kind="lib" path="C:/Users/EduardoCordova/git/Academia/jar/postgresql-42.2.2.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

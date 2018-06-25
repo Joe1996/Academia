@@ -1,6 +1,5 @@
 package view;
 
-import java.awt.Dimension;
 import java.awt.EventQueue;
 
 import javax.swing.JInternalFrame;
@@ -13,13 +12,8 @@ import javax.swing.JFormattedTextField;
 import javax.swing.JPanel;
 import javax.swing.border.TitledBorder;
 import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import javax.swing.JList;
 import javax.swing.ImageIcon;
 import java.awt.Font;
-import javax.swing.SwingConstants;
-import javax.swing.AbstractListModel;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 
@@ -81,19 +75,19 @@ public class InternalFrameCadastroAluno extends JInternalFrame {
 		
 		JButton btnCadastrarDigital = new JButton("Cadastrar Digital");
 		btnCadastrarDigital.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		btnCadastrarDigital.setIcon(new ImageIcon("C:\\Users\\EduardoCordova\\git\\Academia\\src\\img\\IconeDigital.png"));
+		btnCadastrarDigital.setIcon(new ImageIcon("C:\\Users\\EduardoCordova\\git\\Academia\\resources\\IconeDigital.png"));
 		
 		JButton btnSalvar = new JButton("Salvar");
-		btnSalvar.setIcon(new ImageIcon("C:\\Users\\EduardoCordova\\git\\Academia\\src\\img\\checked.png"));
+		btnSalvar.setIcon(new ImageIcon("C:\\Users\\EduardoCordova\\git\\Academia\\resources\\checked.png"));
 		
 		JButton btnLimparcampos = new JButton("LimparCampos");
-		btnLimparcampos.setIcon(new ImageIcon("C:\\Users\\EduardoCordova\\git\\Academia\\src\\img\\eraser.png"));
+		btnLimparcampos.setIcon(new ImageIcon("C:\\Users\\EduardoCordova\\git\\Academia\\resources\\eraser.png"));
 		
 		JButton btnAjuda = new JButton("Ajuda");
-		btnAjuda.setIcon(new ImageIcon("C:\\Users\\EduardoCordova\\git\\Academia\\src\\img\\question.png"));
+		btnAjuda.setIcon(new ImageIcon("C:\\Users\\EduardoCordova\\git\\Academia\\resources\\question.png"));
 		
 		JButton btnSair = new JButton("Sair");
-		btnSair.setIcon(new ImageIcon("C:\\Users\\EduardoCordova\\git\\Academia\\src\\img\\exit.png"));
+		btnSair.setIcon(new ImageIcon("C:\\Users\\EduardoCordova\\git\\Academia\\resources\\exit.png"));
 		GroupLayout groupLayout = new GroupLayout(getContentPane());
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)

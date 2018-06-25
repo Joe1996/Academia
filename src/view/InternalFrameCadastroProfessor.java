@@ -78,19 +78,19 @@ public class InternalFrameCadastroProfessor extends JInternalFrame {
 		
 		JButton btnCadastrarDigital = new JButton("Cadastrar Digital");
 		btnCadastrarDigital.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		btnCadastrarDigital.setIcon(new ImageIcon("C:\\Users\\EduardoCordova\\git\\Academia\\src\\img\\IconeDigital1.png"));
+		btnCadastrarDigital.setIcon(new ImageIcon("C:\\Users\\EduardoCordova\\git\\Academia\\resources\\IconeDigital1.png"));
 		
 		JButton btnSalvar = new JButton("Salvar");
-		btnSalvar.setIcon(new ImageIcon("C:\\Users\\EduardoCordova\\git\\Academia\\src\\img\\checked.png"));
+		btnSalvar.setIcon(new ImageIcon("C:\\Users\\EduardoCordova\\git\\Academia\\resources\\checked.png"));
 		
 		JButton btnLimparcampos = new JButton("LimparCampos");
-		btnLimparcampos.setIcon(new ImageIcon("C:\\Users\\EduardoCordova\\git\\Academia\\src\\img\\eraser.png"));
+		btnLimparcampos.setIcon(new ImageIcon("C:\\Users\\EduardoCordova\\git\\Academia\\resources\\eraser.png"));
 		
 		JButton btnSair = new JButton("Sair");
-		btnSair.setIcon(new ImageIcon("C:\\Users\\EduardoCordova\\git\\Academia\\src\\img\\exit.png"));
+		btnSair.setIcon(new ImageIcon("C:\\Users\\EduardoCordova\\git\\Academia\\resources\\exit.png"));
 		
-		JPanel panel = new JPanel();
-		panel.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Emprego", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(0, 0, 0)));
+		JPanel panelEmprego = new JPanel();
+		panelEmprego.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Emprego", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(0, 0, 0)));
 		
 		JLabel label = new JLabel("Modalidade");
 		
@@ -104,44 +104,44 @@ public class InternalFrameCadastroProfessor extends JInternalFrame {
 		JComboBox list = new JComboBox();
 		
 		JComboBox list_1 = new JComboBox();
-		GroupLayout gl_panel = new GroupLayout(panel);
-		gl_panel.setHorizontalGroup(
-			gl_panel.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel.createSequentialGroup()
-					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_panel.createSequentialGroup()
+		GroupLayout gl_panelEmprego = new GroupLayout(panelEmprego);
+		gl_panelEmprego.setHorizontalGroup(
+			gl_panelEmprego.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panelEmprego.createSequentialGroup()
+					.addGroup(gl_panelEmprego.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_panelEmprego.createSequentialGroup()
 							.addGap(29)
-							.addGroup(gl_panel.createParallelGroup(Alignment.TRAILING)
+							.addGroup(gl_panelEmprego.createParallelGroup(Alignment.TRAILING)
 								.addComponent(label_1)
 								.addComponent(label_2)))
-						.addGroup(gl_panel.createSequentialGroup()
+						.addGroup(gl_panelEmprego.createSequentialGroup()
 							.addContainerGap()
 							.addComponent(label)))
 					.addPreferredGap(ComponentPlacement.RELATED)
-					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
+					.addGroup(gl_panelEmprego.createParallelGroup(Alignment.LEADING)
 						.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addComponent(list, 0, 149, Short.MAX_VALUE)
 						.addComponent(list_1, 0, 149, Short.MAX_VALUE))
 					.addContainerGap())
 		);
-		gl_panel.setVerticalGroup(
-			gl_panel.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel.createSequentialGroup()
+		gl_panelEmprego.setVerticalGroup(
+			gl_panelEmprego.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panelEmprego.createSequentialGroup()
 					.addContainerGap()
-					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
+					.addGroup(gl_panelEmprego.createParallelGroup(Alignment.BASELINE)
 						.addComponent(label_1)
 						.addComponent(list, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE))
 					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
+					.addGroup(gl_panelEmprego.createParallelGroup(Alignment.BASELINE)
 						.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addComponent(label_2))
 					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
+					.addGroup(gl_panelEmprego.createParallelGroup(Alignment.BASELINE)
 						.addComponent(label)
 						.addComponent(list_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 		);
-		panel.setLayout(gl_panel);
+		panelEmprego.setLayout(gl_panelEmprego);
 		GroupLayout groupLayout = new GroupLayout(getContentPane());
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -151,7 +151,7 @@ public class InternalFrameCadastroProfessor extends JInternalFrame {
 						.addGroup(groupLayout.createSequentialGroup()
 							.addComponent(panelEndereco, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(panel, GroupLayout.PREFERRED_SIZE, 239, GroupLayout.PREFERRED_SIZE)
+							.addComponent(panelEmprego, GroupLayout.PREFERRED_SIZE, 239, GroupLayout.PREFERRED_SIZE)
 							.addPreferredGap(ComponentPlacement.RELATED)
 							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
 								.addComponent(btnSalvar, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -175,7 +175,7 @@ public class InternalFrameCadastroProfessor extends JInternalFrame {
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addGroup(groupLayout.createSequentialGroup()
 							.addGap(40)
-							.addComponent(panel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+							.addComponent(panelEmprego, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 						.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
 							.addGroup(groupLayout.createSequentialGroup()
 								.addComponent(btnCadastrarDigital, GroupLayout.DEFAULT_SIZE, 75, Short.MAX_VALUE)
