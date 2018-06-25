@@ -15,6 +15,8 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JComboBox;
 import javax.swing.SwingConstants;
+import javax.swing.JButton;
+import javax.swing.ImageIcon;
 
 public class InternalFrameCadastroGradeAula extends JInternalFrame {
 
@@ -22,7 +24,6 @@ public class InternalFrameCadastroGradeAula extends JInternalFrame {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private JTable tableHorarioAtual;
 
 	/**
 	 * Launch the application.
@@ -46,181 +47,180 @@ public class InternalFrameCadastroGradeAula extends JInternalFrame {
 	public InternalFrameCadastroGradeAula() {
 		setClosable(true);
 		setTitle("Grade de Aula");
-		setBounds(100, 100, 1101, 535);
-		
-		JPanel panelHorarioAtual = new JPanel();
-		panelHorarioAtual.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Hor\u00E1rio Atual", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(0, 0, 0)));
+		setBounds(100, 100, 904, 422);
 		
 		JPanel panelEditarHorario = new JPanel();
 		panelEditarHorario.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Editar Hor\u00E1rio", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(0, 0, 0)));
+		
+		JButton btnSalvar = new JButton("Salvar");
+		btnSalvar.setIcon(new ImageIcon("C:\\Users\\EduardoCordova\\git\\Academia\\resources\\checked.png"));
 		GroupLayout groupLayout = new GroupLayout(getContentPane());
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addGroup(groupLayout.createSequentialGroup()
-							.addContainerGap()
-							.addComponent(panelHorarioAtual, GroupLayout.PREFERRED_SIZE, 712, GroupLayout.PREFERRED_SIZE))
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(7)
-							.addComponent(panelEditarHorario, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
-					.addContainerGap(90, Short.MAX_VALUE))
+					.addContainerGap()
+					.addComponent(panelEditarHorario, GroupLayout.PREFERRED_SIZE, 872, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+				.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
+					.addContainerGap(787, Short.MAX_VALUE)
+					.addComponent(btnSalvar)
+					.addContainerGap())
 		);
 		groupLayout.setVerticalGroup(
-			groupLayout.createParallelGroup(Alignment.TRAILING)
+			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
-					.addGap(13)
-					.addComponent(panelEditarHorario, GroupLayout.PREFERRED_SIZE, 288, Short.MAX_VALUE)
-					.addGap(85)
-					.addComponent(panelHorarioAtual, GroupLayout.PREFERRED_SIZE, 158, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap())
+					.addGap(22)
+					.addComponent(panelEditarHorario, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(btnSalvar)
+					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 		);
 		
 		JLabel lblHorario = new JLabel("Hor\u00E1rio");
 		
-		JLabel label_1 = new JLabel("10:00");
+		JLabel label10h = new JLabel("10:00");
 		
-		JLabel label_2 = new JLabel("12:00");
+		JLabel label12h = new JLabel("12:00");
 		
-		JLabel label_3 = new JLabel("16:00");
+		JLabel label16h = new JLabel("16:00");
 		
-		JLabel label_4 = new JLabel("16:30");
+		JLabel label1630h = new JLabel("16:30");
 		
-		JLabel label_5 = new JLabel("18:00");
+		JLabel label18h = new JLabel("18:00");
 		
-		JLabel label_6 = new JLabel("19:30");
+		JLabel label1930h = new JLabel("19:30");
 		
-		JLabel label_7 = new JLabel("20:30");
+		JLabel label2030h = new JLabel("20:30");
 		
-		JLabel label_8 = new JLabel("22:30");
+		JLabel label2230h = new JLabel("22:30");
 		
 		JLabel lblTerafeira = new JLabel("Quarta-Feira");
 		lblTerafeira.setHorizontalAlignment(SwingConstants.CENTER);
 		
-		JComboBox comboBox_9 = new JComboBox();
+		JComboBox comboBoxTerca9h = new JComboBox();
 		
-		JComboBox comboBox_10 = new JComboBox();
+		JComboBox comboBoxTerca10h = new JComboBox();
 		
-		JComboBox comboBox_11 = new JComboBox();
+		JComboBox comboBoxTerca12h = new JComboBox();
 		
-		JComboBox comboBox_12 = new JComboBox();
+		JComboBox comboBoxTerca16h = new JComboBox();
 		
-		JComboBox comboBox_13 = new JComboBox();
+		JComboBox comboBoxTerca1630h = new JComboBox();
 		
-		JComboBox comboBox_14 = new JComboBox();
+		JComboBox comboBoxTerca18 = new JComboBox();
 		
-		JComboBox comboBox_15 = new JComboBox();
+		JComboBox comboBoxTerca1930h = new JComboBox();
 		
-		JComboBox comboBox_16 = new JComboBox();
+		JComboBox comboBoxTerca2030h = new JComboBox();
 		
-		JComboBox comboBox_17 = new JComboBox();
+		JComboBox comboBoxTerca2230h = new JComboBox();
 		
-		JLabel label = new JLabel("09:00");
+		JLabel label9h = new JLabel("09:00");
 		
 		JLabel lblQuartafeira = new JLabel("Quinta-Feira");
 		lblQuartafeira.setHorizontalAlignment(SwingConstants.CENTER);
 		
-		JComboBox comboBox_18 = new JComboBox();
+		JComboBox comboBoxQuarta9h = new JComboBox();
 		
-		JComboBox comboBox_19 = new JComboBox();
+		JComboBox comboBoxQuarta10h = new JComboBox();
 		
-		JComboBox comboBox_20 = new JComboBox();
+		JComboBox comboBoxQuarta12h = new JComboBox();
 		
-		JComboBox comboBox_21 = new JComboBox();
+		JComboBox comboBoxQuarta16h = new JComboBox();
 		
-		JComboBox comboBox_22 = new JComboBox();
+		JComboBox comboBoxQuarta1630h = new JComboBox();
 		
-		JComboBox comboBox_23 = new JComboBox();
+		JComboBox comboBoxQuarta18 = new JComboBox();
 		
-		JComboBox comboBox_24 = new JComboBox();
+		JComboBox comboBoxQuarta1930h = new JComboBox();
 		
-		JComboBox comboBox_25 = new JComboBox();
+		JComboBox comboBoxQuarta2030h = new JComboBox();
 		
-		JComboBox comboBox_26 = new JComboBox();
+		JComboBox comboBoxQuarta2230h = new JComboBox();
 		
 		JLabel lblQuintafeira = new JLabel("Sexta-Feira");
 		lblQuintafeira.setHorizontalAlignment(SwingConstants.CENTER);
 		
-		JComboBox comboBox_27 = new JComboBox();
+		JComboBox comboBoxQuinta9h = new JComboBox();
 		
-		JComboBox comboBox_28 = new JComboBox();
+		JComboBox comboBoxQuinta10h = new JComboBox();
 		
-		JComboBox comboBox_29 = new JComboBox();
+		JComboBox comboBoxQuinta12h = new JComboBox();
 		
-		JComboBox comboBox_30 = new JComboBox();
+		JComboBox comboBoxQuinta16h = new JComboBox();
 		
-		JComboBox comboBox_31 = new JComboBox();
+		JComboBox comboBoxQuinta1630h = new JComboBox();
 		
-		JComboBox comboBox_32 = new JComboBox();
+		JComboBox comboBoxQuinta18h = new JComboBox();
 		
-		JComboBox comboBox_33 = new JComboBox();
+		JComboBox comboBoxQuinta1930h = new JComboBox();
 		
-		JComboBox comboBox_34 = new JComboBox();
+		JComboBox comboBoxQuinta2030h = new JComboBox();
 		
-		JComboBox comboBox_35 = new JComboBox();
+		JComboBox comboBoxQuinta2230h = new JComboBox();
 		
 		JLabel lblSegundafeira = new JLabel("Ter\u00E7a-Feira");
 		lblSegundafeira.setHorizontalAlignment(SwingConstants.CENTER);
 		
-		JComboBox comboBox = new JComboBox();
+		JComboBox comboBoxSegunda9h = new JComboBox();
 		
-		JComboBox comboBox_1 = new JComboBox();
+		JComboBox comboBoxSegunda10h = new JComboBox();
 		
-		JComboBox comboBox_2 = new JComboBox();
+		JComboBox comboBoxSegunda12h = new JComboBox();
 		
-		JComboBox comboBox_3 = new JComboBox();
+		JComboBox comboBoxSegunda16h = new JComboBox();
 		
-		JComboBox comboBox_4 = new JComboBox();
+		JComboBox comboBoxSegunda1630h = new JComboBox();
 		
-		JComboBox comboBox_5 = new JComboBox();
+		JComboBox comboBoxSegunda18h = new JComboBox();
 		
-		JComboBox comboBox_6 = new JComboBox();
+		JComboBox comboBoxSegunda1930h = new JComboBox();
 		
-		JComboBox comboBox_7 = new JComboBox();
-		
-		JComboBox comboBox_8 = new JComboBox();
+		JComboBox comboBoxSegunda2030h = new JComboBox();
 		
 		JLabel lblSextafeira = new JLabel("S\u00E1bado");
 		lblSextafeira.setHorizontalAlignment(SwingConstants.CENTER);
 		
-		JComboBox comboBox_36 = new JComboBox();
+		JComboBox comboBoxSexta9h = new JComboBox();
 		
-		JComboBox comboBox_37 = new JComboBox();
+		JComboBox comboBoxSexta1630h = new JComboBox();
 		
-		JComboBox comboBox_38 = new JComboBox();
+		JComboBox comboBoxSexta18h = new JComboBox();
 		
-		JComboBox comboBox_39 = new JComboBox();
+		JComboBox comboBoxSexta1930h = new JComboBox();
 		
-		JComboBox comboBox_40 = new JComboBox();
+		JComboBox comboBoxSexta2030h = new JComboBox();
 		
-		JComboBox comboBox_41 = new JComboBox();
+		JComboBox comboBoxSexta2230h = new JComboBox();
 		
-		JComboBox comboBox_42 = new JComboBox();
+		JComboBox comboBoxSabado9h = new JComboBox();
 		
-		JComboBox comboBox_43 = new JComboBox();
-		
-		JComboBox comboBox_44 = new JComboBox();
+		JComboBox comboBoxSabado10h = new JComboBox();
 		
 		JLabel label_9 = new JLabel("Segunda-Feira");
 		label_9.setHorizontalAlignment(SwingConstants.CENTER);
 		
-		JComboBox comboBox_45 = new JComboBox();
+		JComboBox comboBoxSexta10h = new JComboBox();
 		
-		JComboBox comboBox_46 = new JComboBox();
+		JComboBox comboBoxSexta12h = new JComboBox();
 		
-		JComboBox comboBox_47 = new JComboBox();
+		JComboBox comboBoxSexta16h = new JComboBox();
 		
-		JComboBox comboBox_48 = new JComboBox();
+		JComboBox comboBoxSabado12h = new JComboBox();
 		
-		JComboBox comboBox_49 = new JComboBox();
+		JComboBox comboBoxSabado16h = new JComboBox();
 		
-		JComboBox comboBox_50 = new JComboBox();
+		JComboBox comboBoxSabado1630h = new JComboBox();
 		
-		JComboBox comboBox_51 = new JComboBox();
+		JComboBox comboBoxSabado18h = new JComboBox();
 		
-		JComboBox comboBox_52 = new JComboBox();
+		JComboBox comboBoxSabado1930h = new JComboBox();
 		
-		JComboBox comboBox_53 = new JComboBox();
+		JComboBox comboBoxSegunda2230h = new JComboBox();
+		
+		JComboBox comboBoxSabado2230h = new JComboBox();
+		
+		JComboBox comboBoxSabado2030h = new JComboBox();
 		GroupLayout gl_panelEditarHorario = new GroupLayout(panelEditarHorario);
 		gl_panelEditarHorario.setHorizontalGroup(
 			gl_panelEditarHorario.createParallelGroup(Alignment.LEADING)
@@ -228,311 +228,237 @@ public class InternalFrameCadastroGradeAula extends JInternalFrame {
 					.addGap(10)
 					.addGroup(gl_panelEditarHorario.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_panelEditarHorario.createSequentialGroup()
-							.addComponent(lblHorario, GroupLayout.PREFERRED_SIZE, 168, GroupLayout.PREFERRED_SIZE)
-							.addGap(7)
-							.addComponent(label_9, GroupLayout.PREFERRED_SIZE, 127, GroupLayout.PREFERRED_SIZE)
-							.addGap(5)
+							.addGroup(gl_panelEditarHorario.createParallelGroup(Alignment.LEADING, false)
+								.addComponent(label2230h, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+								.addComponent(label2030h, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+								.addComponent(label1930h, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+								.addComponent(label18h, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+								.addComponent(label1630h, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+								.addComponent(label16h, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+								.addComponent(label12h, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+								.addComponent(label10h, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+								.addComponent(label9h, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+							.addGap(18)
+							.addGroup(gl_panelEditarHorario.createParallelGroup(Alignment.TRAILING, false)
+								.addComponent(comboBoxSegunda2230h, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+								.addComponent(comboBoxSegunda2030h, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+								.addComponent(comboBoxSegunda1930h, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+								.addComponent(comboBoxSegunda18h, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+								.addComponent(comboBoxSegunda1630h, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+								.addComponent(comboBoxSegunda16h, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+								.addComponent(comboBoxSegunda12h, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+								.addComponent(comboBoxSegunda10h, Alignment.LEADING, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+								.addComponent(comboBoxSegunda9h, Alignment.LEADING, 0, 127, Short.MAX_VALUE)
+								.addComponent(label_9, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+						.addComponent(lblHorario))
+					.addGap(6)
+					.addGroup(gl_panelEditarHorario.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_panelEditarHorario.createSequentialGroup()
+							.addComponent(comboBoxTerca1930h, GroupLayout.PREFERRED_SIZE, 127, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(comboBoxQuarta1930h, GroupLayout.PREFERRED_SIZE, 127, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(comboBoxQuinta1930h, GroupLayout.PREFERRED_SIZE, 127, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(comboBoxSexta1930h, GroupLayout.PREFERRED_SIZE, 127, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(comboBoxSabado1930h, GroupLayout.PREFERRED_SIZE, 127, GroupLayout.PREFERRED_SIZE))
+						.addGroup(gl_panelEditarHorario.createSequentialGroup()
+							.addComponent(comboBoxTerca18, GroupLayout.PREFERRED_SIZE, 127, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(comboBoxQuarta18, GroupLayout.PREFERRED_SIZE, 127, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(comboBoxQuinta18h, GroupLayout.PREFERRED_SIZE, 127, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(comboBoxSexta18h, GroupLayout.PREFERRED_SIZE, 127, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(comboBoxSabado18h, GroupLayout.PREFERRED_SIZE, 127, GroupLayout.PREFERRED_SIZE))
+						.addGroup(gl_panelEditarHorario.createSequentialGroup()
+							.addComponent(comboBoxTerca1630h, GroupLayout.PREFERRED_SIZE, 127, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(comboBoxQuarta1630h, GroupLayout.PREFERRED_SIZE, 127, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(comboBoxQuinta1630h, GroupLayout.PREFERRED_SIZE, 127, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(comboBoxSexta1630h, GroupLayout.PREFERRED_SIZE, 127, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(comboBoxSabado1630h, GroupLayout.PREFERRED_SIZE, 127, GroupLayout.PREFERRED_SIZE))
+						.addGroup(gl_panelEditarHorario.createSequentialGroup()
+							.addComponent(comboBoxTerca16h, GroupLayout.PREFERRED_SIZE, 127, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(comboBoxQuarta16h, GroupLayout.PREFERRED_SIZE, 127, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(comboBoxQuinta16h, GroupLayout.PREFERRED_SIZE, 127, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(comboBoxSexta16h, GroupLayout.PREFERRED_SIZE, 127, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(comboBoxSabado16h, GroupLayout.PREFERRED_SIZE, 127, GroupLayout.PREFERRED_SIZE))
+						.addGroup(gl_panelEditarHorario.createSequentialGroup()
+							.addComponent(comboBoxTerca12h, GroupLayout.PREFERRED_SIZE, 127, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(comboBoxQuarta12h, GroupLayout.PREFERRED_SIZE, 127, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(comboBoxQuinta12h, GroupLayout.PREFERRED_SIZE, 127, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(comboBoxSexta12h, GroupLayout.PREFERRED_SIZE, 127, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(comboBoxSabado12h, GroupLayout.PREFERRED_SIZE, 127, GroupLayout.PREFERRED_SIZE))
+						.addGroup(gl_panelEditarHorario.createSequentialGroup()
+							.addGroup(gl_panelEditarHorario.createParallelGroup(Alignment.LEADING)
+								.addComponent(comboBoxTerca9h, GroupLayout.PREFERRED_SIZE, 127, GroupLayout.PREFERRED_SIZE)
+								.addComponent(comboBoxTerca10h, GroupLayout.PREFERRED_SIZE, 127, GroupLayout.PREFERRED_SIZE))
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addGroup(gl_panelEditarHorario.createParallelGroup(Alignment.LEADING)
+								.addComponent(comboBoxQuarta9h, GroupLayout.PREFERRED_SIZE, 127, GroupLayout.PREFERRED_SIZE)
+								.addComponent(comboBoxQuarta10h, GroupLayout.PREFERRED_SIZE, 127, GroupLayout.PREFERRED_SIZE))
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addGroup(gl_panelEditarHorario.createParallelGroup(Alignment.LEADING)
+								.addComponent(comboBoxQuinta9h, GroupLayout.PREFERRED_SIZE, 127, GroupLayout.PREFERRED_SIZE)
+								.addComponent(comboBoxQuinta10h, GroupLayout.PREFERRED_SIZE, 127, GroupLayout.PREFERRED_SIZE))
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addGroup(gl_panelEditarHorario.createParallelGroup(Alignment.LEADING)
+								.addGroup(gl_panelEditarHorario.createSequentialGroup()
+									.addComponent(comboBoxSexta10h, GroupLayout.PREFERRED_SIZE, 127, GroupLayout.PREFERRED_SIZE)
+									.addPreferredGap(ComponentPlacement.RELATED)
+									.addComponent(comboBoxSabado10h, GroupLayout.PREFERRED_SIZE, 127, GroupLayout.PREFERRED_SIZE))
+								.addGroup(gl_panelEditarHorario.createSequentialGroup()
+									.addComponent(comboBoxSexta9h, GroupLayout.PREFERRED_SIZE, 127, GroupLayout.PREFERRED_SIZE)
+									.addPreferredGap(ComponentPlacement.RELATED)
+									.addComponent(comboBoxSabado9h, GroupLayout.PREFERRED_SIZE, 127, GroupLayout.PREFERRED_SIZE))))
+						.addGroup(gl_panelEditarHorario.createSequentialGroup()
 							.addComponent(lblSegundafeira, GroupLayout.PREFERRED_SIZE, 127, GroupLayout.PREFERRED_SIZE)
-							.addGap(6)
+							.addPreferredGap(ComponentPlacement.RELATED)
 							.addComponent(lblTerafeira, GroupLayout.PREFERRED_SIZE, 127, GroupLayout.PREFERRED_SIZE)
-							.addGap(6)
+							.addPreferredGap(ComponentPlacement.RELATED)
 							.addComponent(lblQuartafeira, GroupLayout.PREFERRED_SIZE, 127, GroupLayout.PREFERRED_SIZE)
-							.addGap(6)
+							.addPreferredGap(ComponentPlacement.RELATED)
 							.addComponent(lblQuintafeira, GroupLayout.PREFERRED_SIZE, 127, GroupLayout.PREFERRED_SIZE)
-							.addGap(6)
+							.addPreferredGap(ComponentPlacement.RELATED)
 							.addComponent(lblSextafeira, GroupLayout.PREFERRED_SIZE, 127, GroupLayout.PREFERRED_SIZE))
 						.addGroup(gl_panelEditarHorario.createSequentialGroup()
 							.addGroup(gl_panelEditarHorario.createParallelGroup(Alignment.LEADING)
 								.addGroup(gl_panelEditarHorario.createSequentialGroup()
-									.addComponent(label)
-									.addGap(146)
-									.addComponent(comboBox, GroupLayout.PREFERRED_SIZE, 127, GroupLayout.PREFERRED_SIZE)
-									.addGap(6)
-									.addComponent(comboBox_9, GroupLayout.PREFERRED_SIZE, 127, GroupLayout.PREFERRED_SIZE)
-									.addGap(6)
-									.addComponent(comboBox_18, GroupLayout.PREFERRED_SIZE, 127, GroupLayout.PREFERRED_SIZE)
-									.addGap(6)
-									.addComponent(comboBox_27, GroupLayout.PREFERRED_SIZE, 127, GroupLayout.PREFERRED_SIZE)
-									.addGap(6)
-									.addComponent(comboBox_36, GroupLayout.PREFERRED_SIZE, 127, GroupLayout.PREFERRED_SIZE))
+									.addComponent(comboBoxTerca2230h, GroupLayout.PREFERRED_SIZE, 127, GroupLayout.PREFERRED_SIZE)
+									.addPreferredGap(ComponentPlacement.RELATED)
+									.addComponent(comboBoxQuarta2230h, GroupLayout.PREFERRED_SIZE, 127, GroupLayout.PREFERRED_SIZE)
+									.addPreferredGap(ComponentPlacement.RELATED)
+									.addComponent(comboBoxQuinta2230h, GroupLayout.PREFERRED_SIZE, 127, GroupLayout.PREFERRED_SIZE)
+									.addPreferredGap(ComponentPlacement.RELATED)
+									.addComponent(comboBoxSexta2230h, GroupLayout.PREFERRED_SIZE, 127, GroupLayout.PREFERRED_SIZE))
 								.addGroup(gl_panelEditarHorario.createSequentialGroup()
-									.addComponent(label_1, GroupLayout.PREFERRED_SIZE, 168, GroupLayout.PREFERRED_SIZE)
-									.addGap(6)
-									.addComponent(comboBox_1, GroupLayout.PREFERRED_SIZE, 127, GroupLayout.PREFERRED_SIZE)
-									.addGap(6)
-									.addComponent(comboBox_10, GroupLayout.PREFERRED_SIZE, 127, GroupLayout.PREFERRED_SIZE)
-									.addGap(6)
-									.addComponent(comboBox_19, GroupLayout.PREFERRED_SIZE, 127, GroupLayout.PREFERRED_SIZE)
-									.addGap(6)
-									.addComponent(comboBox_28, GroupLayout.PREFERRED_SIZE, 127, GroupLayout.PREFERRED_SIZE)
-									.addGap(6)
-									.addComponent(comboBox_37, GroupLayout.PREFERRED_SIZE, 127, GroupLayout.PREFERRED_SIZE))
-								.addGroup(gl_panelEditarHorario.createSequentialGroup()
-									.addComponent(label_2, GroupLayout.PREFERRED_SIZE, 168, GroupLayout.PREFERRED_SIZE)
-									.addGap(6)
-									.addComponent(comboBox_2, GroupLayout.PREFERRED_SIZE, 127, GroupLayout.PREFERRED_SIZE)
-									.addGap(6)
-									.addComponent(comboBox_11, GroupLayout.PREFERRED_SIZE, 127, GroupLayout.PREFERRED_SIZE)
-									.addGap(6)
-									.addComponent(comboBox_20, GroupLayout.PREFERRED_SIZE, 127, GroupLayout.PREFERRED_SIZE)
-									.addGap(6)
-									.addComponent(comboBox_29, GroupLayout.PREFERRED_SIZE, 127, GroupLayout.PREFERRED_SIZE)
-									.addGap(6)
-									.addComponent(comboBox_38, GroupLayout.PREFERRED_SIZE, 127, GroupLayout.PREFERRED_SIZE))
-								.addGroup(gl_panelEditarHorario.createSequentialGroup()
-									.addComponent(label_3, GroupLayout.PREFERRED_SIZE, 168, GroupLayout.PREFERRED_SIZE)
-									.addGap(6)
-									.addComponent(comboBox_3, GroupLayout.PREFERRED_SIZE, 127, GroupLayout.PREFERRED_SIZE)
-									.addGap(6)
-									.addComponent(comboBox_12, GroupLayout.PREFERRED_SIZE, 127, GroupLayout.PREFERRED_SIZE)
-									.addGap(6)
-									.addComponent(comboBox_21, GroupLayout.PREFERRED_SIZE, 127, GroupLayout.PREFERRED_SIZE)
-									.addGap(6)
-									.addComponent(comboBox_30, GroupLayout.PREFERRED_SIZE, 127, GroupLayout.PREFERRED_SIZE)
-									.addGap(6)
-									.addComponent(comboBox_39, GroupLayout.PREFERRED_SIZE, 127, GroupLayout.PREFERRED_SIZE))
-								.addGroup(gl_panelEditarHorario.createSequentialGroup()
-									.addComponent(label_4, GroupLayout.PREFERRED_SIZE, 168, GroupLayout.PREFERRED_SIZE)
-									.addGap(6)
-									.addComponent(comboBox_4, GroupLayout.PREFERRED_SIZE, 127, GroupLayout.PREFERRED_SIZE)
-									.addGap(6)
-									.addComponent(comboBox_13, GroupLayout.PREFERRED_SIZE, 127, GroupLayout.PREFERRED_SIZE)
-									.addGap(6)
-									.addComponent(comboBox_22, GroupLayout.PREFERRED_SIZE, 127, GroupLayout.PREFERRED_SIZE)
-									.addGap(6)
-									.addComponent(comboBox_31, GroupLayout.PREFERRED_SIZE, 127, GroupLayout.PREFERRED_SIZE)
-									.addGap(6)
-									.addComponent(comboBox_40, GroupLayout.PREFERRED_SIZE, 127, GroupLayout.PREFERRED_SIZE))
-								.addGroup(gl_panelEditarHorario.createSequentialGroup()
-									.addComponent(label_5, GroupLayout.PREFERRED_SIZE, 168, GroupLayout.PREFERRED_SIZE)
-									.addGap(6)
-									.addComponent(comboBox_5, GroupLayout.PREFERRED_SIZE, 127, GroupLayout.PREFERRED_SIZE)
-									.addGap(6)
-									.addComponent(comboBox_14, GroupLayout.PREFERRED_SIZE, 127, GroupLayout.PREFERRED_SIZE)
-									.addGap(6)
-									.addComponent(comboBox_23, GroupLayout.PREFERRED_SIZE, 127, GroupLayout.PREFERRED_SIZE)
-									.addGap(6)
-									.addComponent(comboBox_32, GroupLayout.PREFERRED_SIZE, 127, GroupLayout.PREFERRED_SIZE)
-									.addGap(6)
-									.addComponent(comboBox_41, GroupLayout.PREFERRED_SIZE, 127, GroupLayout.PREFERRED_SIZE))
-								.addGroup(gl_panelEditarHorario.createSequentialGroup()
-									.addComponent(label_6, GroupLayout.PREFERRED_SIZE, 168, GroupLayout.PREFERRED_SIZE)
-									.addGap(6)
-									.addComponent(comboBox_6, GroupLayout.PREFERRED_SIZE, 127, GroupLayout.PREFERRED_SIZE)
-									.addGap(6)
-									.addComponent(comboBox_15, GroupLayout.PREFERRED_SIZE, 127, GroupLayout.PREFERRED_SIZE)
-									.addGap(6)
-									.addComponent(comboBox_24, GroupLayout.PREFERRED_SIZE, 127, GroupLayout.PREFERRED_SIZE)
-									.addGap(6)
-									.addComponent(comboBox_33, GroupLayout.PREFERRED_SIZE, 127, GroupLayout.PREFERRED_SIZE)
-									.addGap(6)
-									.addComponent(comboBox_42, GroupLayout.PREFERRED_SIZE, 127, GroupLayout.PREFERRED_SIZE))
-								.addGroup(gl_panelEditarHorario.createSequentialGroup()
-									.addComponent(label_7, GroupLayout.PREFERRED_SIZE, 168, GroupLayout.PREFERRED_SIZE)
-									.addGap(6)
-									.addComponent(comboBox_7, GroupLayout.PREFERRED_SIZE, 127, GroupLayout.PREFERRED_SIZE)
-									.addGap(6)
-									.addComponent(comboBox_16, GroupLayout.PREFERRED_SIZE, 127, GroupLayout.PREFERRED_SIZE)
-									.addGap(6)
-									.addComponent(comboBox_25, GroupLayout.PREFERRED_SIZE, 127, GroupLayout.PREFERRED_SIZE)
-									.addGap(6)
-									.addComponent(comboBox_34, GroupLayout.PREFERRED_SIZE, 127, GroupLayout.PREFERRED_SIZE)
-									.addGap(6)
-									.addComponent(comboBox_43, GroupLayout.PREFERRED_SIZE, 127, GroupLayout.PREFERRED_SIZE))
-								.addGroup(gl_panelEditarHorario.createSequentialGroup()
-									.addComponent(label_8, GroupLayout.PREFERRED_SIZE, 168, GroupLayout.PREFERRED_SIZE)
-									.addGap(6)
-									.addComponent(comboBox_8, GroupLayout.PREFERRED_SIZE, 127, GroupLayout.PREFERRED_SIZE)
-									.addGap(6)
-									.addComponent(comboBox_17, GroupLayout.PREFERRED_SIZE, 127, GroupLayout.PREFERRED_SIZE)
-									.addGap(6)
-									.addComponent(comboBox_26, GroupLayout.PREFERRED_SIZE, 127, GroupLayout.PREFERRED_SIZE)
-									.addGap(6)
-									.addComponent(comboBox_35, GroupLayout.PREFERRED_SIZE, 127, GroupLayout.PREFERRED_SIZE)
-									.addGap(6)
-									.addComponent(comboBox_44, GroupLayout.PREFERRED_SIZE, 127, GroupLayout.PREFERRED_SIZE)))
+									.addComponent(comboBoxTerca2030h, GroupLayout.PREFERRED_SIZE, 127, GroupLayout.PREFERRED_SIZE)
+									.addPreferredGap(ComponentPlacement.RELATED)
+									.addComponent(comboBoxQuarta2030h, GroupLayout.PREFERRED_SIZE, 127, GroupLayout.PREFERRED_SIZE)
+									.addPreferredGap(ComponentPlacement.RELATED)
+									.addComponent(comboBoxQuinta2030h, GroupLayout.PREFERRED_SIZE, 127, GroupLayout.PREFERRED_SIZE)
+									.addPreferredGap(ComponentPlacement.RELATED)
+									.addComponent(comboBoxSexta2030h, GroupLayout.PREFERRED_SIZE, 127, GroupLayout.PREFERRED_SIZE)))
 							.addPreferredGap(ComponentPlacement.RELATED)
 							.addGroup(gl_panelEditarHorario.createParallelGroup(Alignment.LEADING)
-								.addComponent(comboBox_45, GroupLayout.PREFERRED_SIZE, 127, GroupLayout.PREFERRED_SIZE)
-								.addComponent(comboBox_46, GroupLayout.PREFERRED_SIZE, 127, GroupLayout.PREFERRED_SIZE)
-								.addComponent(comboBox_47, GroupLayout.PREFERRED_SIZE, 127, GroupLayout.PREFERRED_SIZE)
-								.addComponent(comboBox_48, GroupLayout.PREFERRED_SIZE, 127, GroupLayout.PREFERRED_SIZE)
-								.addComponent(comboBox_49, GroupLayout.PREFERRED_SIZE, 127, GroupLayout.PREFERRED_SIZE)
-								.addComponent(comboBox_50, GroupLayout.PREFERRED_SIZE, 127, GroupLayout.PREFERRED_SIZE)
-								.addComponent(comboBox_51, GroupLayout.PREFERRED_SIZE, 127, GroupLayout.PREFERRED_SIZE)
-								.addComponent(comboBox_52, GroupLayout.PREFERRED_SIZE, 127, GroupLayout.PREFERRED_SIZE)
-								.addComponent(comboBox_53, GroupLayout.PREFERRED_SIZE, 127, GroupLayout.PREFERRED_SIZE)))))
+								.addComponent(comboBoxSabado2030h, GroupLayout.PREFERRED_SIZE, 127, GroupLayout.PREFERRED_SIZE)
+								.addComponent(comboBoxSabado2230h, GroupLayout.PREFERRED_SIZE, 127, GroupLayout.PREFERRED_SIZE))))
+					.addGap(133))
 		);
 		gl_panelEditarHorario.setVerticalGroup(
 			gl_panelEditarHorario.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panelEditarHorario.createSequentialGroup()
-					.addGroup(gl_panelEditarHorario.createParallelGroup(Alignment.LEADING, false)
-						.addGroup(gl_panelEditarHorario.createSequentialGroup()
-							.addGap(11)
-							.addGroup(gl_panelEditarHorario.createParallelGroup(Alignment.LEADING)
-								.addComponent(lblHorario)
-								.addComponent(lblSegundafeira)
-								.addComponent(lblTerafeira)
-								.addComponent(lblQuartafeira)
-								.addComponent(lblQuintafeira)
-								.addComponent(lblSextafeira))
-							.addGap(6))
-						.addGroup(Alignment.TRAILING, gl_panelEditarHorario.createSequentialGroup()
-							.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-							.addComponent(label_9)
-							.addGap(6)))
+					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+					.addGroup(gl_panelEditarHorario.createParallelGroup(Alignment.BASELINE)
+						.addComponent(lblHorario)
+						.addComponent(label_9)
+						.addComponent(lblSegundafeira)
+						.addComponent(lblTerafeira)
+						.addComponent(lblQuartafeira)
+						.addComponent(lblQuintafeira)
+						.addComponent(lblSextafeira))
+					.addGap(9)
+					.addGroup(gl_panelEditarHorario.createParallelGroup(Alignment.BASELINE)
+						.addComponent(label9h)
+						.addComponent(comboBoxSegunda9h, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(comboBoxTerca9h, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(comboBoxQuarta9h, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(comboBoxQuinta9h, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(comboBoxSexta9h, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(comboBoxSabado9h, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addGap(9)
+					.addGroup(gl_panelEditarHorario.createParallelGroup(Alignment.BASELINE)
+						.addComponent(label10h)
+						.addComponent(comboBoxSegunda10h, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(comboBoxTerca10h, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(comboBoxQuarta10h, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(comboBoxQuinta10h, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(comboBoxSexta10h, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(comboBoxSabado10h, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addGap(9)
+					.addGroup(gl_panelEditarHorario.createParallelGroup(Alignment.BASELINE)
+						.addComponent(label12h)
+						.addComponent(comboBoxSegunda12h, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(comboBoxTerca12h, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(comboBoxQuarta12h, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(comboBoxQuinta12h, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(comboBoxSexta12h, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(comboBoxSabado12h, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addGap(9)
+					.addGroup(gl_panelEditarHorario.createParallelGroup(Alignment.BASELINE)
+						.addComponent(label16h)
+						.addComponent(comboBoxSegunda16h, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(comboBoxTerca16h, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(comboBoxQuarta16h, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(comboBoxQuinta16h, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(comboBoxSexta16h, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(comboBoxSabado16h, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addGap(9)
+					.addGroup(gl_panelEditarHorario.createParallelGroup(Alignment.BASELINE)
+						.addComponent(label1630h)
+						.addComponent(comboBoxSegunda1630h, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(comboBoxTerca1630h, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(comboBoxQuarta1630h, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(comboBoxQuinta1630h, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(comboBoxSexta1630h, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(comboBoxSabado1630h, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addGap(9)
+					.addGroup(gl_panelEditarHorario.createParallelGroup(Alignment.BASELINE)
+						.addComponent(label18h)
+						.addComponent(comboBoxSegunda18h, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(comboBoxTerca18, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(comboBoxQuarta18, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(comboBoxQuinta18h, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(comboBoxSexta18h, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(comboBoxSabado18h, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addGap(9)
+					.addGroup(gl_panelEditarHorario.createParallelGroup(Alignment.BASELINE)
+						.addComponent(label1930h)
+						.addComponent(comboBoxSegunda1930h, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(comboBoxTerca1930h, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(comboBoxQuarta1930h, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(comboBoxQuinta1930h, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(comboBoxSexta1930h, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(comboBoxSabado1930h, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addGap(9)
 					.addGroup(gl_panelEditarHorario.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_panelEditarHorario.createSequentialGroup()
-							.addGroup(gl_panelEditarHorario.createParallelGroup(Alignment.LEADING)
-								.addGroup(gl_panelEditarHorario.createSequentialGroup()
-									.addGap(3)
-									.addComponent(label))
-								.addComponent(comboBox, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-								.addComponent(comboBox_9, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-								.addComponent(comboBox_18, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-								.addComponent(comboBox_27, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-								.addComponent(comboBox_36, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-							.addGap(6)
-							.addGroup(gl_panelEditarHorario.createParallelGroup(Alignment.LEADING)
-								.addGroup(gl_panelEditarHorario.createSequentialGroup()
-									.addGap(3)
-									.addComponent(label_1))
-								.addComponent(comboBox_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-								.addComponent(comboBox_10, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-								.addComponent(comboBox_19, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-								.addComponent(comboBox_28, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-								.addComponent(comboBox_37, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-							.addGap(6)
-							.addGroup(gl_panelEditarHorario.createParallelGroup(Alignment.LEADING)
-								.addGroup(gl_panelEditarHorario.createSequentialGroup()
-									.addGap(3)
-									.addComponent(label_2))
-								.addComponent(comboBox_2, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-								.addComponent(comboBox_11, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-								.addComponent(comboBox_20, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-								.addComponent(comboBox_29, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-								.addComponent(comboBox_38, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-							.addGap(6)
-							.addGroup(gl_panelEditarHorario.createParallelGroup(Alignment.LEADING)
-								.addGroup(gl_panelEditarHorario.createSequentialGroup()
-									.addGap(3)
-									.addComponent(label_3))
-								.addComponent(comboBox_3, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-								.addComponent(comboBox_12, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-								.addComponent(comboBox_21, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-								.addComponent(comboBox_30, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-								.addComponent(comboBox_39, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-							.addGap(6)
-							.addGroup(gl_panelEditarHorario.createParallelGroup(Alignment.LEADING)
-								.addGroup(gl_panelEditarHorario.createSequentialGroup()
-									.addGap(3)
-									.addComponent(label_4))
-								.addComponent(comboBox_4, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-								.addComponent(comboBox_13, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-								.addComponent(comboBox_22, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-								.addComponent(comboBox_31, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-								.addComponent(comboBox_40, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-							.addGap(6)
-							.addGroup(gl_panelEditarHorario.createParallelGroup(Alignment.LEADING)
-								.addGroup(gl_panelEditarHorario.createSequentialGroup()
-									.addGap(3)
-									.addComponent(label_5))
-								.addComponent(comboBox_5, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-								.addComponent(comboBox_14, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-								.addComponent(comboBox_23, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-								.addComponent(comboBox_32, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-								.addComponent(comboBox_41, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-							.addGap(6)
-							.addGroup(gl_panelEditarHorario.createParallelGroup(Alignment.LEADING)
-								.addGroup(gl_panelEditarHorario.createSequentialGroup()
-									.addGap(3)
-									.addComponent(label_6))
-								.addComponent(comboBox_6, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-								.addComponent(comboBox_15, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-								.addComponent(comboBox_24, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-								.addComponent(comboBox_33, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-								.addComponent(comboBox_42, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-							.addGap(6)
-							.addGroup(gl_panelEditarHorario.createParallelGroup(Alignment.LEADING)
-								.addGroup(gl_panelEditarHorario.createSequentialGroup()
-									.addGap(3)
-									.addComponent(label_7))
-								.addComponent(comboBox_7, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-								.addComponent(comboBox_16, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-								.addComponent(comboBox_25, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-								.addComponent(comboBox_34, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-								.addComponent(comboBox_43, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-							.addGap(6)
-							.addGroup(gl_panelEditarHorario.createParallelGroup(Alignment.LEADING)
-								.addGroup(gl_panelEditarHorario.createSequentialGroup()
-									.addGap(3)
-									.addComponent(label_8))
-								.addComponent(comboBox_8, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-								.addComponent(comboBox_17, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-								.addComponent(comboBox_26, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-								.addComponent(comboBox_35, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-								.addComponent(comboBox_44, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+							.addGroup(gl_panelEditarHorario.createParallelGroup(Alignment.BASELINE)
+								.addComponent(label2030h)
+								.addComponent(comboBoxSegunda2030h, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+								.addComponent(comboBoxTerca2030h, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+								.addComponent(comboBoxQuarta2030h, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+								.addComponent(comboBoxQuinta2030h, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+								.addComponent(comboBoxSexta2030h, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+							.addGap(9)
+							.addGroup(gl_panelEditarHorario.createParallelGroup(Alignment.BASELINE)
+								.addComponent(label2230h)
+								.addComponent(comboBoxSegunda2230h, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+								.addComponent(comboBoxTerca2230h, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+								.addComponent(comboBoxQuarta2230h, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+								.addComponent(comboBoxQuinta2230h, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+								.addComponent(comboBoxSexta2230h, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
 						.addGroup(gl_panelEditarHorario.createSequentialGroup()
-							.addComponent(comboBox_45, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-							.addGap(6)
-							.addComponent(comboBox_46, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-							.addGap(6)
-							.addComponent(comboBox_47, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-							.addGap(6)
-							.addComponent(comboBox_48, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-							.addGap(6)
-							.addComponent(comboBox_49, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-							.addGap(6)
-							.addComponent(comboBox_50, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-							.addGap(6)
-							.addComponent(comboBox_51, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-							.addGap(6)
-							.addComponent(comboBox_52, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-							.addGap(6)
-							.addComponent(comboBox_53, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+							.addComponent(comboBoxSabado2030h, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+							.addGap(9)
+							.addComponent(comboBoxSabado2230h, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
 					.addContainerGap())
 		);
 		panelEditarHorario.setLayout(gl_panelEditarHorario);
-		
-		tableHorarioAtual = new JTable();
-		tableHorarioAtual.setEnabled(false);
-		tableHorarioAtual.setModel(new DefaultTableModel(
-			new Object[][] {
-				{"", null, null, null, null, null, null},
-				{"", null, null, null, null, null, null},
-				{"", null, null, null, null, null, null},
-				{"", null, null, null, null, null, null},
-				{"", null, null, null, null, null, null},
-				{"", null, null, null, null, null, null},
-				{"", null, null, null, null, null, null},
-			},
-			new String[] {
-				"Hor\u00E1rio", "Segunda-Feira", "Ter\u00E7a-Feira", "Quarta-Feira", "Quinta-Feira", "Sexta-Feira", "S\u00E1bado"
-			}
-		) {
-			Class[] columnTypes = new Class[] {
-				String.class, Object.class, Object.class, Object.class, Object.class, Object.class, Object.class
-			};
-			public Class getColumnClass(int columnIndex) {
-				return columnTypes[columnIndex];
-			}
-		});
-		GroupLayout gl_panelHorarioAtual = new GroupLayout(panelHorarioAtual);
-		gl_panelHorarioAtual.setHorizontalGroup(
-			gl_panelHorarioAtual.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panelHorarioAtual.createSequentialGroup()
-					.addContainerGap()
-					.addComponent(tableHorarioAtual, GroupLayout.PREFERRED_SIZE, 681, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-		);
-		gl_panelHorarioAtual.setVerticalGroup(
-			gl_panelHorarioAtual.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panelHorarioAtual.createSequentialGroup()
-					.addContainerGap()
-					.addComponent(tableHorarioAtual, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(27, Short.MAX_VALUE))
-		);
-		panelHorarioAtual.setLayout(gl_panelHorarioAtual);
 		getContentPane().setLayout(groupLayout);
 
 	}
