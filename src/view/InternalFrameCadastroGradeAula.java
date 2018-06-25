@@ -47,7 +47,7 @@ public class InternalFrameCadastroGradeAula extends JInternalFrame {
 	public InternalFrameCadastroGradeAula() {
 		setClosable(true);
 		setTitle("Grade de Aula");
-		setBounds(100, 100, 904, 422);
+		setBounds(100, 100, 904, 481);
 		
 		JPanel panelEditarHorario = new JPanel();
 		panelEditarHorario.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Editar Hor\u00E1rio", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(0, 0, 0)));
