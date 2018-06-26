@@ -1,12 +1,12 @@
 package controller;
 
-import view.FrameGerarIndicador;
+import view.InternalFrameIndicadores;
 
 public class GerarIndicadorController {
 	
-	private FrameGerarIndicador frame;
+	private InternalFrameIndicadores frame;
 	
-	public GerarIndicadorController(FrameGerarIndicador frame) {
+	public GerarIndicadorController(InternalFrameIndicadores frame) {
 		this.frame = frame;
 	}
 

@@ -1,12 +1,12 @@
 package controller;
 
-import view.FrameGerarRelatorioAula;
+import view.InternalFrameGeraRelatorioAula;
 
 public class GerarRelatorioAulaController {
 	
-	private FrameGerarRelatorioAula frame;
+	private InternalFrameGeraRelatorioAula frame;
 	
-	public GerarRelatorioAulaController(FrameGerarRelatorioAula frame) {
+	public GerarRelatorioAulaController(InternalFrameGeraRelatorioAula frame) {
 		this.frame = frame;
 	}
 

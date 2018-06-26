@@ -5,14 +5,14 @@ import java.sql.SQLException;
 import dao.impl.PlanoDAO;
 import model.Plano;
 import util.BusinessException;
-import view.FrameCadastroPlano;
+import view.InternalFrameCadastroPlano;
 
 public class PlanoController {
 	
 	private PlanoDAO dao = new PlanoDAO();
-	private FrameCadastroPlano frame;
+	private InternalFrameCadastroPlano frame;
 	
-	public PlanoController(FrameCadastroPlano frame) {
+	public PlanoController(InternalFrameCadastroPlano frame) {
 		this.frame = frame;
 	}
 	
