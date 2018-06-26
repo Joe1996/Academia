@@ -6,10 +6,10 @@
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/EduardoCordova/git/Academia/jar/jasperreports-6.6.0.jar"/>
-	<classpathentry kind="lib" path="C:/Users/EduardoCordova/git/Academia/jar/jgoodies-common-1.8.0.jar"/>
-	<classpathentry kind="lib" path="C:/Users/EduardoCordova/git/Academia/jar/jgoodies-forms-1.8.0.jar"/>
-	<classpathentry kind="lib" path="C:/Users/EduardoCordova/git/Academia/jar/miglayout15-swing.jar"/>
-	<classpathentry kind="lib" path="C:/Users/EduardoCordova/git/Academia/jar/postgresql-42.2.2.jar"/>
+	<classpathentry kind="lib" path="jar/jasperreports-6.6.0.jar"/>
+	<classpathentry kind="lib" path="jar/jgoodies-common-1.8.0.jar"/>
+	<classpathentry kind="lib" path="jar/jgoodies-forms-1.8.0.jar"/>
+	<classpathentry kind="lib" path="jar/miglayout15-swing.jar"/>
+	<classpathentry kind="lib" path="jar/postgresql-42.2.2.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
