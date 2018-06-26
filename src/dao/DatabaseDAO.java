@@ -129,9 +129,9 @@ public class DatabaseDAO {
 		return String.format(SQL_SELECT_ALL, tableName);
 	}
 	
-	private final String SQL_SELECT_BY_ID = "SELECT * FROM %s WHERE %s = ?";
-	protected String generateQuerySelectById(String tableName, String columnIdName) {
-		return String.format(SQL_SELECT_BY_ID, tableName, columnIdName);
+	private final String SQL_SELECT_BY = "SELECT * FROM %s WHERE %s = ?";
+	protected String generateQuerySelectBy(String tableName, String columnName) {
+		return String.format(SQL_SELECT_BY, tableName, columnName);
 	}
 	
 	private final String SQL_SELECT_LAST_ID = "SELECT MAX(%s) AS %s FROM %s";

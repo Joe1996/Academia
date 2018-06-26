@@ -153,7 +153,7 @@ public class ProfessorDAO extends DatabaseDAO implements IDatabaseDAO<Professor>
 	@Override
 	public Professor selectById(long id) throws SQLException {
 		Professor aluno = null;
-		String query = generateQuerySelectById(TABLE_NAME, COLUMN_ID);
+		String query = generateQuerySelectBy(TABLE_NAME, COLUMN_ID);
 		PreparedStatement statement = getConnection().prepareStatement(query);
 		statement.setLong(1, id);
 		ResultSet resultSet = executePreparedStatementWithResult(statement);;

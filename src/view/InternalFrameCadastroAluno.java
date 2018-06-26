@@ -38,6 +38,7 @@ public class InternalFrameCadastroAluno extends JInternalFrame {
 	private JFormattedTextField textFieldCEP;
 	private JTextField textFieldCidade;
 	private JTextField textFieldEstado;
+	private JFormattedTextField formattedTextFieldCPF;
 
 	/**
 	 * Launch the application.
@@ -292,7 +293,7 @@ public class InternalFrameCadastroAluno extends JInternalFrame {
 		
 		JLabel lblCpf = new JLabel("CPF");
 		
-		JFormattedTextField formattedTextFieldCPF = new JFormattedTextField();
+		formattedTextFieldCPF = new JFormattedTextField();
 		
 		JLabel lblDataDeNascimento = new JLabel("Data de Nascimento");
 		
@@ -397,4 +398,73 @@ public class InternalFrameCadastroAluno extends JInternalFrame {
 		getContentPane().setLayout(groupLayout);
 
 	}
+
+	public JTextField getTextFieldNome() {
+		return textFieldNome;
+	}
+
+	public JFormattedTextField getTextFieldEnfermidade() {
+		return textFieldEnfermidade;
+	}
+
+	public JFormattedTextField getTextFieldDataDeNascimento() {
+		return textFieldDataDeNascimento;
+	}
+
+	public JTextField getTextFieldPlanoDeSaude() {
+		return textFieldPlanoDeSaude;
+	}
+
+	public JFormattedTextField getTextFieldRG() {
+		return textFieldRG;
+	}
+
+	public JTextField getTextFieldEmail() {
+		return textFieldEmail;
+	}
+
+	public JFormattedTextField getTextFieldTelefone() {
+		return textFieldTelefone;
+	}
+
+	public JTextField getTextFieldNomeEmergencia() {
+		return textFieldNomeEmergencia;
+	}
+
+	public JFormattedTextField getTextFieldTelefoneEmergencia() {
+		return textFieldTelefoneEmergencia;
+	}
+
+	public JTextField getTextFieldLogradouro() {
+		return textFieldLogradouro;
+	}
+
+	public JTextField getTextFieldNumeroDaCasa() {
+		return textFieldNumeroDaCasa;
+	}
+
+	public JTextField getTextFieldComplemento() {
+		return textFieldComplemento;
+	}
+
+	public JTextField getTextFieldBairro() {
+		return textFieldBairro;
+	}
+
+	public JFormattedTextField getTextFieldCEP() {
+		return textFieldCEP;
+	}
+
+	public JTextField getTextFieldCidade() {
+		return textFieldCidade;
+	}
+
+	public JTextField getTextFieldEstado() {
+		return textFieldEstado;
+	}
+
+	public JFormattedTextField getFormattedTextFieldCPF() {
+		return formattedTextFieldCPF;
+	}
+	
 }

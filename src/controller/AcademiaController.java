@@ -1,93 +1,101 @@
-//package controller;
-//
-//import dao.impl.AcademiaDAO;
-//import model.Academia;
-//import view.FrameCadastroAcademia;
-//
-//public class AcademiaController {
-//
-//	private AcademiaDAO dao = new AcademiaDAO();
-//	
-//	private FrameCadastroAcademia frame;
-//	
-//	public AcademiaController(FrameCadastroAcademia frame) {
-//		this.frame = frame;
-//	}
-//	
-//	public void insertUser() throws Exception {
-//		Academia object = generateObject();
-//		dao.insert(object);
-//	}
-//	
-//	private Academia generateObject() throws Exception {
-//		Academia object = new Academia();
-//		
-//		if (frame.getTxtNomeFantasia().getText().isEmpty()) 
-//			throw new Exception("O nome fantasia deve ser informado!");
-//		
-//		object.setNomeFantasia(frame.getTxtNomeFantasia().getText());
-//		
-//		if (frame.getTxtRazaoSocial().getText().isEmpty())
-//			throw new Exception("A razão social deve ser informada!");
-//		
-//		object.setRazaoSocial(frame.getTxtRazaoSocial().getText());
-//		
-//		if (frame.getTxtCnpj().getText().isEmpty())
-//			throw new Exception("O CNPJ deve ser informado!");
-//		
-//		object.setCnpj(frame.getTxtCnpj().getText());
-//		
-//		if (frame.getTxtInscricaoMunicipal().getText().isEmpty())
-//			throw new Exception("A inscrição municipal deve ser informada!");
-//		
-//		object.setInscricaoMunicipal(frame.getTxtInscricaoMunicipal().getText());
-//		
-//		if (frame.getTxtEndereco().getText().isEmpty())
-//			throw new Exception("O endereço deve ser informado!");
-//		
-//		object.setEndereco(frame.getTxtEndereco().getText());
-//		
-//		if (frame.getTxtNumero().getText().isEmpty())
-//			throw new Exception("O número deve ser informado!");
-//		
-//		object.setNumero(frame.getTxtNumero().getText());
-//		
-//		if (frame.getTxtComplemento().getText().isEmpty())
-//			throw new Exception("O complemento deve ser informado!");
-//		
-//		object.setComplemento(frame.getTxtComplemento().getText());
-//		
-//		if (frame.getTxtBairro().getText().isEmpty())
-//			throw new Exception("O bairro deve ser informado!");
-//		
-//		object.setBairro(frame.getTxtBairro().getText());
-//		
-//		if (frame.getTxtCep().getText().isEmpty())
-//			throw new Exception("O cep deve ser informado!");
-//		
-//		object.setCep(frame.getTxtCep().getText());
-//		
-//		if (frame.getTxtEstado().getText().isEmpty())
-//			throw new Exception("O estado deve ser informado!");
-//		
-//		object.setEstado(frame.getTxtEstado().getText());
-//		
-//		if (frame.getTxtCidade().getText().isEmpty())
-//			throw new Exception("A cidade deve ser informada!");
-//		
-//		object.setCidade(frame.getTxtCidade().getText());
-//		
-//		if (frame.getTxtEmail().getText().isEmpty())
-//			throw new Exception("O email deve ser informado!");
-//		
-//		object.setEmail(frame.getTxtEmail().getText());
-//		
-//		if (frame.getTxtTelefone().getText().isEmpty())
-//			throw new Exception("O telefone deve ser informado!");
-//		
-//		object.setTelefone(frame.getTxtTelefone().getText());
-//			
-//		return object;
-//	}
-//	
-//}
+package controller;
+
+import java.sql.SQLException;
+
+import dao.impl.AcademiaDAO;
+import model.Academia;
+import util.BusinessException;
+import util.StringUtil;
+import view.InternalFrameCadastroAcademia;
+
+public class AcademiaController {
+
+	private AcademiaDAO dao = new AcademiaDAO();
+	private InternalFrameCadastroAcademia frame;
+	
+	public AcademiaController(InternalFrameCadastroAcademia frame) {
+		this.frame = frame;
+	}
+	
+	public void insert() throws BusinessException {
+		Academia object = generateObject();
+		try {
+			dao.insert(object);
+		} catch (SQLException ex) {
+			System.out.println("Não foi possível inserir os dados da academia no banco, motivo: " + ex.getMessage());
+			throw new BusinessException("Não foi possível inserir a academia.");
+		}
+	}
+	
+	private Academia generateObject() throws BusinessException {
+		Academia object = new Academia();
+		
+		if (StringUtil.isEmpty(frame.getTextFieldNomeFantasia().getText())) 
+			throw new BusinessException("O nome fantasia deve ser informado!");
+		
+		object.setNomeFantasia(frame.getTextFieldNomeFantasia().getText());
+		
+		if (StringUtil.isEmpty(frame.getTextFieldRazaoSocial().getText()))
+			throw new BusinessException("A razão social deve ser informada!");
+		
+		object.setRazaoSocial(frame.getTextFieldRazaoSocial().getText());
+		
+		if (StringUtil.isEmpty(frame.getTextFieldCnpj().getText()))
+			throw new BusinessException("O CNPJ deve ser informado!");
+		
+		object.setCnpj(frame.getTextFieldCnpj().getText());
+		
+		if (StringUtil.isEmpty(frame.getTextFieldInscricaoMunicipal().getText()))
+			throw new BusinessException("A inscrição municipal deve ser informada!");
+		
+		object.setInscricaoMunicipal(frame.getTextFieldInscricaoMunicipal().getText());
+		
+		if (StringUtil.isEmpty(frame.getTextFieldLogradouro().getText()))
+			throw new BusinessException("O logradouro deve ser informado!");
+		
+		object.setEndereco(frame.getTextFieldLogradouro().getText());
+		
+		if (StringUtil.isEmpty(frame.getTextFieldNumero().getText()))
+			throw new BusinessException("O número deve ser informado!");
+		
+		object.setNumero(frame.getTextFieldNumero().getText());
+		
+		if (StringUtil.isEmpty(frame.getTextFieldComplemento().getText()))
+			throw new BusinessException("O complemento deve ser informado!");
+		
+		object.setComplemento(frame.getTextFieldComplemento().getText());
+		
+		if (StringUtil.isEmpty(frame.getTextFieldBairro().getText()))
+			throw new BusinessException("O bairro deve ser informado!");
+		
+		object.setBairro(frame.getTextFieldBairro().getText());
+		
+		if (StringUtil.isEmpty(frame.getTextFieldCEP().getText()))
+			throw new BusinessException("O cep deve ser informado!");
+		
+		object.setCep(frame.getTextFieldCEP().getText());
+		
+		if (StringUtil.isEmpty(frame.getTextFieldEstado().getText()))
+			throw new BusinessException("O estado deve ser informado!");
+		
+		object.setEstado(frame.getTextFieldEstado().getText());
+		
+		if (StringUtil.isEmpty(frame.getTextFieldCidade().getText()))
+			throw new BusinessException("A cidade deve ser informada!");
+		
+		object.setCidade(frame.getTextFieldCidade().getText());
+		
+		if (StringUtil.isEmpty(frame.getTextFieldEmail().getText()))
+			throw new BusinessException("O email deve ser informado!");
+		
+		object.setEmail(frame.getTextFieldEmail().getText());
+		
+		if (StringUtil.isEmpty(frame.getTextFieldTelefone().getText()))
+			throw new BusinessException("O telefone deve ser informado!");
+		
+		object.setTelefone(frame.getTextFieldTelefone().getText());
+			
+		return object;
+	}
+	
+}

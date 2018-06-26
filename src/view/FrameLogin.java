@@ -29,6 +29,7 @@ public class FrameLogin extends JFrame {
 	private JTextField textFieldLogin;
 	private JPasswordField passwordFieldSenha;
 	private JLabel lblImagemfundo;
+	private JButton btnEntrar;
 
 	/**
 	 * Launch the application.
@@ -75,7 +76,7 @@ public class FrameLogin extends JFrame {
 		
 		passwordFieldSenha = new JPasswordField();
 		
-		JButton btnEntrar = new JButton("Entrar");
+		btnEntrar = new JButton("Entrar");
 		btnEntrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				FramePrincipal framePrincipal = new FramePrincipal();
@@ -125,4 +126,17 @@ public class FrameLogin extends JFrame {
 		);
 		contentPane.setLayout(gl_contentPane);
 	}
+
+	public JTextField getTextFieldLogin() {
+		return textFieldLogin;
+	}
+
+	public JPasswordField getPasswordFieldSenha() {
+		return passwordFieldSenha;
+	}
+
+	public JButton getBtnEntrar() {
+		return btnEntrar;
+	}
+	
 }

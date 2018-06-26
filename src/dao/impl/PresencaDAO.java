@@ -89,7 +89,7 @@ public class PresencaDAO extends DatabaseDAO implements IDatabaseDAO<Presenca> {
 	@Override
 	public Presenca selectById(long id) throws SQLException {
 		Presenca object = null;
-		String query = generateQuerySelectById(TABLE_NAME, COLUMN_ID);
+		String query = generateQuerySelectBy(TABLE_NAME, COLUMN_ID);
 		PreparedStatement statement = getConnection().prepareStatement(query);
 		statement.setLong(1, id);
 		ResultSet resultSet = executePreparedStatementWithResult(statement);;

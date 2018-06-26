@@ -85,7 +85,7 @@ public class ModalidadeDAO extends DatabaseDAO implements IDatabaseDAO<Modalidad
 	@Override
 	public Modalidade selectById(long id) throws SQLException {
 		Modalidade object = null;
-		String query = generateQuerySelectById(TABLE_NAME, COLUMN_ID);
+		String query = generateQuerySelectBy(TABLE_NAME, COLUMN_ID);
 		PreparedStatement statement = getConnection().prepareStatement(query);
 		statement.setLong(1, id);
 		ResultSet resultSet = executePreparedStatementWithResult(statement);;

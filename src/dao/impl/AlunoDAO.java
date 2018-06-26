@@ -144,7 +144,7 @@ public class AlunoDAO extends DatabaseDAO implements IDatabaseDAO<Aluno>{
 	@Override
 	public Aluno selectById(long id) throws SQLException {
 		Aluno object = null;
-		String query = generateQuerySelectById(TABLE_NAME, COLUMN_ID);
+		String query = generateQuerySelectBy(TABLE_NAME, COLUMN_ID);
 		PreparedStatement statement = getConnection().prepareStatement(query);
 		statement.setLong(1, id);
 		ResultSet resultSet = executePreparedStatementWithResult(statement);;
@@ -214,4 +214,18 @@ public class AlunoDAO extends DatabaseDAO implements IDatabaseDAO<Aluno>{
 		return statement;
 	}
 
+	public Aluno selectByName(String name) throws SQLException {
+		Aluno object = null;
+		String query = generateQuerySelectBy(TABLE_NAME, COLUMN_NAME);
+		PreparedStatement statement = getConnection().prepareStatement(query);
+		statement.setString(1, name);
+		ResultSet resultSet = executePreparedStatementWithResult(statement);;
+		if (resultSet != null) {
+			while (resultSet.next()){
+				object = resultSetToObject(resultSet);
+			}
+		}
+		return object;
+	}
+	
 }

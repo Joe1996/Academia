@@ -311,4 +311,57 @@ public class InternalFrameCadastroAcademia extends JInternalFrame {
 		getContentPane().setLayout(groupLayout);
 
 	}
+
+	public JTextField getTextFieldNomeFantasia() {
+		return textFieldNomeFantasia;
+	}
+
+	public JTextField getTextFieldRazaoSocial() {
+		return textFieldRazaoSocial;
+	}
+
+	public JFormattedTextField getTextFieldCnpj() {
+		return textFieldCnpj;
+	}
+
+	public JTextField getTextFieldInscricaoMunicipal() {
+		return textFieldInscricaoMunicipal;
+	}
+
+	public JTextField getTextFieldLogradouro() {
+		return textFieldLogradouro;
+	}
+
+	public JTextField getTextFieldNumero() {
+		return textFieldNumero;
+	}
+
+	public JTextField getTextFieldComplemento() {
+		return textFieldComplemento;
+	}
+
+	public JTextField getTextFieldBairro() {
+		return textFieldBairro;
+	}
+
+	public JFormattedTextField getTextFieldCEP() {
+		return textFieldCEP;
+	}
+
+	public JTextField getTextFieldCidade() {
+		return textFieldCidade;
+	}
+
+	public JTextField getTextFieldEstado() {
+		return textFieldEstado;
+	}
+
+	public JTextField getTextFieldEmail() {
+		return textFieldEmail;
+	}
+
+	public JFormattedTextField getTextFieldTelefone() {
+		return textFieldTelefone;
+	}
+	
 }

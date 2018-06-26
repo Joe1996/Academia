@@ -152,7 +152,7 @@ public class AdministradorDAO extends DatabaseDAO implements IDatabaseDAO<Admini
 	@Override
 	public Administrador selectById(long id) throws SQLException {
 		Administrador object = null;
-		String query = generateQuerySelectById(TABLE_NAME, COLUMN_ID);
+		String query = generateQuerySelectBy(TABLE_NAME, COLUMN_ID);
 		PreparedStatement statement = getConnection().prepareStatement(query);
 		statement.setLong(1, id);
 		ResultSet resultSet = executePreparedStatementWithResult(statement);;
@@ -224,6 +224,20 @@ public class AdministradorDAO extends DatabaseDAO implements IDatabaseDAO<Admini
 		statement.setString(17, object.getLogin());
 		statement.setString(18, object.getSenha());
 		return statement;
+	}
+	
+	public Administrador selectByLogin(String login) throws SQLException {
+		Administrador object = null;
+		String query = generateQuerySelectLastId(TABLE_NAME, COLUMN_LOGIN);
+		PreparedStatement statement = getConnection().prepareStatement(query);
+		statement.setString(1, login);
+		ResultSet resultSet = executePreparedStatementWithResult(statement);;
+		if (resultSet != null) {
+			while (resultSet.next()){
+				object = resultSetToObject(resultSet);
+			}
+		}
+		return object;
 	}
 	
 }
