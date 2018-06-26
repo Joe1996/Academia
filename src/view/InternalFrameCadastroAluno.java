@@ -62,7 +62,7 @@ public class InternalFrameCadastroAluno extends JInternalFrame {
 		
 		setTitle("Cadastrar Aluno");
 		setClosable(true);
-		setBounds(100, 100, 901, 441);
+		setBounds(100, 100, 901, 468);
 		
 		JPanel panelDadosPessoais = new JPanel();
 		panelDadosPessoais.setBorder(new TitledBorder(null, "Dados Pessoais", TitledBorder.CENTER, TitledBorder.TOP, null, null));
@@ -94,18 +94,18 @@ public class InternalFrameCadastroAluno extends JInternalFrame {
 				.addGroup(groupLayout.createSequentialGroup()
 					.addContainerGap()
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addComponent(panelEndereco, 0, 0, Short.MAX_VALUE)
-						.addComponent(panelDadosPessoais, GroupLayout.PREFERRED_SIZE, 422, GroupLayout.PREFERRED_SIZE))
+						.addComponent(panelDadosPessoais, GroupLayout.PREFERRED_SIZE, 422, GroupLayout.PREFERRED_SIZE)
+						.addComponent(panelEndereco, 0, 0, Short.MAX_VALUE))
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addGroup(groupLayout.createSequentialGroup()
 							.addComponent(btnCadastrarDigital)
 							.addPreferredGap(ComponentPlacement.RELATED)
 							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-								.addComponent(btnAjuda, GroupLayout.DEFAULT_SIZE, 195, Short.MAX_VALUE)
 								.addComponent(btnSair, GroupLayout.DEFAULT_SIZE, 195, Short.MAX_VALUE)
 								.addComponent(btnLimparcampos, GroupLayout.DEFAULT_SIZE, 195, Short.MAX_VALUE)
-								.addComponent(btnSalvar, GroupLayout.DEFAULT_SIZE, 195, Short.MAX_VALUE)))
+								.addComponent(btnSalvar, GroupLayout.DEFAULT_SIZE, 195, Short.MAX_VALUE)
+								.addComponent(btnAjuda, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, 195, Short.MAX_VALUE)))
 						.addComponent(panelContato, GroupLayout.DEFAULT_SIZE, 436, Short.MAX_VALUE))
 					.addContainerGap())
 		);
@@ -114,21 +114,21 @@ public class InternalFrameCadastroAluno extends JInternalFrame {
 				.addGroup(groupLayout.createSequentialGroup()
 					.addContainerGap()
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(panelDadosPessoais, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(panelDadosPessoais, GroupLayout.PREFERRED_SIZE, 195, GroupLayout.PREFERRED_SIZE)
 						.addComponent(panelContato, GroupLayout.PREFERRED_SIZE, 176, GroupLayout.PREFERRED_SIZE))
-					.addGap(12)
+					.addGap(4)
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addComponent(btnCadastrarDigital, GroupLayout.DEFAULT_SIZE, 196, Short.MAX_VALUE)
 						.addGroup(groupLayout.createSequentialGroup()
 							.addComponent(btnSalvar)
 							.addPreferredGap(ComponentPlacement.RELATED)
 							.addComponent(btnLimparcampos)
 							.addPreferredGap(ComponentPlacement.RELATED)
 							.addComponent(btnSair)
-							.addPreferredGap(ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
+							.addPreferredGap(ComponentPlacement.RELATED, 59, Short.MAX_VALUE)
 							.addComponent(btnAjuda))
-						.addComponent(panelEndereco, GroupLayout.DEFAULT_SIZE, 196, Short.MAX_VALUE))
-					.addGap(16))
+						.addComponent(panelEndereco, 0, 0, Short.MAX_VALUE)
+						.addComponent(btnCadastrarDigital, GroupLayout.DEFAULT_SIZE, 203, Short.MAX_VALUE))
+					.addContainerGap(25, Short.MAX_VALUE))
 		);
 		
 		JLabel lblLogradouro = new JLabel("Logradouro");
@@ -318,6 +318,11 @@ public class InternalFrameCadastroAluno extends JInternalFrame {
 		
 		JComboBox listTipoSanguineo = new JComboBox();
 		listTipoSanguineo.setModel(new DefaultComboBoxModel(new String[] {"A-", "A+", "AB-", "AB+", "B-", "B+", "O+", "O-"}));
+		
+		JLabel lblSexo = new JLabel("Sexo");
+		
+		JComboBox comboBoxSexo = new JComboBox();
+		comboBoxSexo.setModel(new DefaultComboBoxModel(new String[] {"Masculino", "Feminino"}));
 		GroupLayout gl_panelDadosPessoais = new GroupLayout(panelDadosPessoais);
 		gl_panelDadosPessoais.setHorizontalGroup(
 			gl_panelDadosPessoais.createParallelGroup(Alignment.LEADING)
@@ -329,18 +334,21 @@ public class InternalFrameCadastroAluno extends JInternalFrame {
 								.addComponent(lblCpf)
 								.addComponent(lblEnfermidade)
 								.addComponent(lblPlanoDeSade)
-								.addComponent(lblNome))
+								.addComponent(lblNome)
+								.addComponent(lblSexo))
 							.addPreferredGap(ComponentPlacement.RELATED)
-							.addGroup(gl_panelDadosPessoais.createParallelGroup(Alignment.TRAILING)
-								.addComponent(textFieldPlanoDeSaude, GroupLayout.DEFAULT_SIZE, 290, Short.MAX_VALUE)
-								.addGroup(gl_panelDadosPessoais.createSequentialGroup()
-									.addComponent(formattedTextFieldCPF, GroupLayout.PREFERRED_SIZE, 107, GroupLayout.PREFERRED_SIZE)
-									.addPreferredGap(ComponentPlacement.UNRELATED)
-									.addComponent(lblRg)
-									.addPreferredGap(ComponentPlacement.RELATED)
-									.addComponent(textFieldRG, GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE))
-								.addComponent(textFieldNome, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 290, Short.MAX_VALUE)
-								.addComponent(textFieldEnfermidade, GroupLayout.DEFAULT_SIZE, 290, Short.MAX_VALUE)))
+							.addGroup(gl_panelDadosPessoais.createParallelGroup(Alignment.LEADING)
+								.addComponent(comboBoxSexo, GroupLayout.PREFERRED_SIZE, 106, GroupLayout.PREFERRED_SIZE)
+								.addGroup(gl_panelDadosPessoais.createParallelGroup(Alignment.TRAILING)
+									.addComponent(textFieldPlanoDeSaude, GroupLayout.DEFAULT_SIZE, 290, Short.MAX_VALUE)
+									.addGroup(gl_panelDadosPessoais.createSequentialGroup()
+										.addComponent(formattedTextFieldCPF, GroupLayout.PREFERRED_SIZE, 107, GroupLayout.PREFERRED_SIZE)
+										.addPreferredGap(ComponentPlacement.UNRELATED)
+										.addComponent(lblRg)
+										.addPreferredGap(ComponentPlacement.RELATED)
+										.addComponent(textFieldRG, GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE))
+									.addComponent(textFieldNome, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 290, Short.MAX_VALUE)
+									.addComponent(textFieldEnfermidade, GroupLayout.DEFAULT_SIZE, 290, Short.MAX_VALUE))))
 						.addGroup(gl_panelDadosPessoais.createSequentialGroup()
 							.addContainerGap()
 							.addComponent(lblDataDeNascimento)
@@ -379,7 +387,11 @@ public class InternalFrameCadastroAluno extends JInternalFrame {
 					.addGroup(gl_panelDadosPessoais.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblPlanoDeSade)
 						.addComponent(textFieldPlanoDeSaude, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addContainerGap(18, Short.MAX_VALUE))
+					.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+					.addGroup(gl_panelDadosPessoais.createParallelGroup(Alignment.BASELINE)
+						.addComponent(lblSexo)
+						.addComponent(comboBoxSexo, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addContainerGap())
 		);
 		panelDadosPessoais.setLayout(gl_panelDadosPessoais);
 		getContentPane().setLayout(groupLayout);

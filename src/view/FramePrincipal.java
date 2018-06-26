@@ -17,6 +17,11 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.ImageIcon;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.border.TitledBorder;
+import javax.swing.JLabel;
+import javax.swing.UIManager;
+import java.awt.Color;
 
 public class FramePrincipal extends JFrame {
 
@@ -52,7 +57,7 @@ public class FramePrincipal extends JFrame {
 		setTitle("Inicio");
 		setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\EduardoCordova\\git\\Academia\\resources\\IconeTelas.png"));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 808, 463);
+		setBounds(100, 100, 808, 531);
 		
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
@@ -153,6 +158,13 @@ public class FramePrincipal extends JFrame {
 		menuBar.add(mnPlanoDeAula);
 		
 		JMenuItem mntmPreencher = new JMenuItem("Preencher");
+		mntmPreencher.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				InternalFrameGeraRelatorioAula aula = new InternalFrameGeraRelatorioAula();
+				desktopPane.add(aula);
+				aula.setVisible(true);
+			}
+		});
 		mntmPreencher.setIcon(new ImageIcon("C:\\Users\\EduardoCordova\\git\\Academia\\resources\\pencil-case.png"));
 		mntmPreencher.setFont(new Font("Segoe UI", Font.PLAIN, 15));
 		mnPlanoDeAula.add(mntmPreencher);
@@ -163,37 +175,121 @@ public class FramePrincipal extends JFrame {
 		menuBar.add(mnMensalidades);
 		
 		JMenuItem mntmValoresMensalidade = new JMenuItem("Valores");
+		mntmValoresMensalidade.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				InternalFrameMensalidade frameMensalidade = new InternalFrameMensalidade();
+				desktopPane.add(frameMensalidade);
+				frameMensalidade.setVisible(true);
+			}
+		});
 		mntmValoresMensalidade.setIcon(new ImageIcon("C:\\Users\\EduardoCordova\\git\\Academia\\resources\\payment.png"));
 		mntmValoresMensalidade.setFont(new Font("Segoe UI", Font.PLAIN, 15));
 		mnMensalidades.add(mntmValoresMensalidade);
 		
 		JMenuItem mntmNewMenuItem_1 = new JMenuItem("Plano de Pagamentos");
+		mntmNewMenuItem_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				InternalFrameCadastroPlano cadastroPlano = new InternalFrameCadastroPlano();
+				desktopPane.add(cadastroPlano);
+				cadastroPlano.setVisible(true);
+			}
+		});
 		mntmNewMenuItem_1.setIcon(new ImageIcon("C:\\Users\\EduardoCordova\\git\\Academia\\resources\\planning1.png"));
 		mntmNewMenuItem_1.setFont(new Font("Segoe UI", Font.PLAIN, 15));
 		mnMensalidades.add(mntmNewMenuItem_1);
 		
-		JMenu mnRelatrios = new JMenu("Relat\u00F3rios");
-		mnRelatrios.setIcon(new ImageIcon("C:\\Users\\EduardoCordova\\git\\Academia\\resources\\planning.png"));
-		mnRelatrios.setFont(new Font("Segoe UI", Font.PLAIN, 15));
-		menuBar.add(mnRelatrios);
+		JMenu mnIndicadores = new JMenu("Indicadores");
+		mnIndicadores.setIcon(new ImageIcon("C:\\Users\\EduardoCordova\\git\\Academia\\resources\\planning.png"));
+		mnIndicadores.setFont(new Font("Segoe UI", Font.PLAIN, 15));
+		menuBar.add(mnIndicadores);
 		
 		JMenuItem mntmMostrar_1 = new JMenuItem("Mostrar");
+		mntmMostrar_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				InternalFrameIndicadores frameIndicadores = new InternalFrameIndicadores();
+				desktopPane.add(frameIndicadores);
+				frameIndicadores.setVisible(true);
+			}
+		});
 		mntmMostrar_1.setIcon(new ImageIcon("C:\\Users\\EduardoCordova\\git\\Academia\\resources\\writing.png"));
-		mnRelatrios.add(mntmMostrar_1);
+		mnIndicadores.add(mntmMostrar_1);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		
 		desktopPane = new JDesktopPane();
+		
+		JPanel panelUsuarioLogado = new JPanel();
+		panelUsuarioLogado.setBorder(new TitledBorder(null, "Usu\u00E1rio Logado", TitledBorder.CENTER, TitledBorder.TOP, null, null));
+		
+		JPanel panelDataHora = new JPanel();
+		panelDataHora.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Data e Hora", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(0, 0, 0)));
+		
+		JLabel labelData = new JLabel("Data");
+		
+		JLabel labelHora = new JLabel("Hora");
+		GroupLayout gl_panelDataHora = new GroupLayout(panelDataHora);
+		gl_panelDataHora.setHorizontalGroup(
+			gl_panelDataHora.createParallelGroup(Alignment.LEADING)
+				.addGroup(Alignment.TRAILING, gl_panelDataHora.createSequentialGroup()
+					.addContainerGap(91, Short.MAX_VALUE)
+					.addComponent(labelData)
+					.addGap(31)
+					.addComponent(labelHora)
+					.addGap(96))
+		);
+		gl_panelDataHora.setVerticalGroup(
+			gl_panelDataHora.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panelDataHora.createSequentialGroup()
+					.addGroup(gl_panelDataHora.createParallelGroup(Alignment.BASELINE)
+						.addComponent(labelData)
+						.addComponent(labelHora))
+					.addContainerGap(22, Short.MAX_VALUE))
+		);
+		panelDataHora.setLayout(gl_panelDataHora);
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
-				.addComponent(desktopPane, GroupLayout.DEFAULT_SIZE, 992, Short.MAX_VALUE)
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addContainerGap()
+					.addComponent(panelUsuarioLogado, GroupLayout.PREFERRED_SIZE, 285, GroupLayout.PREFERRED_SIZE)
+					.addGap(27)
+					.addComponent(panelDataHora, GroupLayout.PREFERRED_SIZE, 285, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(175, Short.MAX_VALUE))
+				.addComponent(desktopPane, GroupLayout.DEFAULT_SIZE, 782, Short.MAX_VALUE)
 		);
 		gl_contentPane.setVerticalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
-				.addComponent(desktopPane, GroupLayout.DEFAULT_SIZE, 362, Short.MAX_VALUE)
+				.addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup()
+					.addComponent(desktopPane, GroupLayout.DEFAULT_SIZE, 372, Short.MAX_VALUE)
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING, false)
+						.addComponent(panelDataHora, 0, 0, Short.MAX_VALUE)
+						.addComponent(panelUsuarioLogado, GroupLayout.PREFERRED_SIZE, 47, Short.MAX_VALUE)))
 		);
+		
+		JLabel lblNome = new JLabel("Nome:");
+		
+		JLabel lblValor = new JLabel("valor");
+		GroupLayout gl_panelUsuarioLogado = new GroupLayout(panelUsuarioLogado);
+		gl_panelUsuarioLogado.setHorizontalGroup(
+			gl_panelUsuarioLogado.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panelUsuarioLogado.createSequentialGroup()
+					.addContainerGap()
+					.addComponent(lblNome)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(lblValor)
+					.addContainerGap(262, Short.MAX_VALUE))
+		);
+		gl_panelUsuarioLogado.setVerticalGroup(
+			gl_panelUsuarioLogado.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panelUsuarioLogado.createSequentialGroup()
+					.addGroup(gl_panelUsuarioLogado.createParallelGroup(Alignment.LEADING)
+						.addComponent(lblValor)
+						.addComponent(lblNome))
+					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+		);
+		panelUsuarioLogado.setLayout(gl_panelUsuarioLogado);
 		contentPane.setLayout(gl_contentPane);
 	}
 	public JDesktopPane getDesktopPane() {
