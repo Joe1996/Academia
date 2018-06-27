@@ -68,7 +68,7 @@ public class InternalFrameCadastroModalidade extends JInternalFrame {
 				}
 			}
 		});
-		btnSalvar.setIcon(new ImageIcon("C:\\Users\\EduardoCordova\\git\\Academia\\resources\\checked.png"));
+		btnSalvar.setIcon(new ImageIcon(InternalFrameCadastroModalidade.class.getResource("/resources/checked.png")));
 		
 		JLabel lblProfessor = new JLabel("Professor");
 		

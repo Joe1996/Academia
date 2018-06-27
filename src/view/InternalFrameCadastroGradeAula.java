@@ -53,7 +53,7 @@ public class InternalFrameCadastroGradeAula extends JInternalFrame {
 		panelEditarHorario.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Editar Hor\u00E1rio", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(0, 0, 0)));
 		
 		JButton btnSalvar = new JButton("Salvar");
-		btnSalvar.setIcon(new ImageIcon("C:\\Users\\EduardoCordova\\git\\Academia\\resources\\checked.png"));
+		btnSalvar.setIcon(new ImageIcon(InternalFrameCadastroGradeAula.class.getResource("/resources/checked.png")));
 		GroupLayout groupLayout = new GroupLayout(getContentPane());
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)

@@ -94,14 +94,17 @@ public class FrameLogin extends JFrame {
 					}
 				} catch (BusinessException ex) {
 					JOptionPane.showMessageDialog(FrameLogin.this, ex.getMessage());
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
 				}
 			}
 		});
-		btnEntrar.setIcon(new ImageIcon("C:\\Users\\EduardoCordova\\git\\Academia\\resources\\checked.png"));
+		btnEntrar.setIcon(new ImageIcon(FrameLogin.class.getResource("/resources/checked.png")));
 		btnEntrar.setFont(new Font("Tahoma", Font.BOLD, 12));
 		
 		lblImagemfundo = new JLabel("");
-		lblImagemfundo.setIcon(new ImageIcon("C:\\Users\\EduardoCordova\\git\\Academia\\resources\\FundoTelaLogin2.png"));
+		lblImagemfundo.setIcon(new ImageIcon(FrameLogin.class.getResource("/resources/FundoTelaLogin2.png")));
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
 			gl_contentPane.createParallelGroup(Alignment.TRAILING)

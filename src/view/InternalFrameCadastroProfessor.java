@@ -93,7 +93,7 @@ public class InternalFrameCadastroProfessor extends JInternalFrame {
 				}
 			}
 		});
-		btnSalvar.setIcon(new ImageIcon("C:\\Users\\EduardoCordova\\git\\Academia\\resources\\checked.png"));
+		btnSalvar.setIcon(new ImageIcon(InternalFrameCadastroProfessor.class.getResource("/resources/checked.png")));
 		
 		JPanel panelEmprego = new JPanel();
 		panelEmprego.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Emprego", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(0, 0, 0)));
