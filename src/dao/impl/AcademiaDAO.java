@@ -31,13 +31,13 @@ public class AcademiaDAO extends DatabaseDAO implements IDatabaseDAO<Academia> {
 	
 	private final String TABLE_BODY =
 			"("
-			+ COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+			+ COLUMN_ID + " SERIAL PRIMARY KEY, "
 			+ COLUMN_FANTASY_NAME + " VARCHAR(150) NOT NULL, "
 			+ COLUMN_SOCIAL_NAME + " VARCHAR(150) NOT NULL, "
 			+ COLUMN_CNPJ + " VARCHAR(50) NOT NULL, "
 			+ COLUMN_MUNICIPAL_REGISTRATION + " VARCHAR(100) NOT NULL, "
 			+ COLUMN_ADDRESS + " VARCHAR(50) NOT NULL, "
-			+ COLUMN_NUMBER + " VARCHAR(15) NOT NULL "
+			+ COLUMN_NUMBER + " VARCHAR(15) NOT NULL, "
 			+ COLUMN_COMPLEMENT + " VARCHAR(50) NOT NULL, "
 			+ COLUMN_NEIGHBORHOOD + " VARCHAR(50) NOT NULL, "
 			+ COLUMN_CEP + " VARCHAR(30) NOT NULL, "
@@ -87,7 +87,7 @@ public class AcademiaDAO extends DatabaseDAO implements IDatabaseDAO<Academia> {
 		try {
 			createTable(TABLE_NAME, TABLE_BODY);
 		} catch (SQLException e) {
-			System.out.println("NÃ£o foi possÃ­vel criar a tabela Academia, motivo: " + e.getMessage());
+			System.out.println("Não foi possível criar a tabela Academia, motivo: " + e.getMessage());
 		}		
 	}
 	
@@ -95,14 +95,19 @@ public class AcademiaDAO extends DatabaseDAO implements IDatabaseDAO<Academia> {
 	public long insert(Academia object) throws SQLException {
 		PreparedStatement statement =  objectToPreparedStatement(SQL_INSERT, object);
 		executePreparedStatement(statement);
-		return selectLastId();
+		long id = selectLastId();
+		statement.close();
+		closeConnection();
+		return id;
 	}
 
 	@Override
 	public void update(Academia object) throws SQLException {
 		PreparedStatement statement = objectToPreparedStatement(SQL_UPDATE, object);
 		statement.setLong(14, object.getId());
-		executePreparedStatement(statement);		
+		executePreparedStatement(statement);
+		statement.close();
+		closeConnection();
 	}
 	
 	@Override
@@ -110,7 +115,9 @@ public class AcademiaDAO extends DatabaseDAO implements IDatabaseDAO<Academia> {
 		String query = generateQueryDelete(TABLE_NAME, COLUMN_ID);
 		PreparedStatement statement = getConnection().prepareStatement(query);
 		statement.setLong(1, object.getId());
-		executePreparedStatement(statement);		
+		executePreparedStatement(statement);
+		statement.close();
+		closeConnection();
 	}
 
 	@Override
@@ -123,6 +130,8 @@ public class AcademiaDAO extends DatabaseDAO implements IDatabaseDAO<Academia> {
 				list.add(resultSetToObject(resultSet));
 			}
 		}
+		resultSet.close();
+		closeConnection();
 		return list;
 	}
 
@@ -138,6 +147,9 @@ public class AcademiaDAO extends DatabaseDAO implements IDatabaseDAO<Academia> {
 				object = resultSetToObject(resultSet);
 			}
 		}
+		statement.close();
+		resultSet.close();
+		closeConnection();
 		return object;
 	}
 	
@@ -151,6 +163,8 @@ public class AcademiaDAO extends DatabaseDAO implements IDatabaseDAO<Academia> {
 				id = resultSet.getLong(LAST_ID);
 			}
 		}
+		resultSet.close();
+		closeConnection();
 		return id;
 	}
 

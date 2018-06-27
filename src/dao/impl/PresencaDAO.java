@@ -24,7 +24,7 @@ public class PresencaDAO extends DatabaseDAO implements IDatabaseDAO<Presenca> {
 	
 	private final String TABLE_BODY =
 			"("
-			+ COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+			+ COLUMN_ID + " SERIAL PRIMARY KEY, "
 			+ COLUMN_DATE_HOUR + " VARCHAR(50) NOT NULL, "
 			+ COLUMN_STUDENT_ID  + " INTEGER NOT NULL"
 			+ ");";
@@ -47,7 +47,7 @@ public class PresencaDAO extends DatabaseDAO implements IDatabaseDAO<Presenca> {
 		try {
 			createTable(TABLE_NAME, TABLE_BODY);
 		} catch (SQLException e) {
-			System.out.println("NÃ£o foi possÃ­vel criar a tabela Presenca, motivo: " + e.getMessage());
+			System.out.println("Não foi possível criar a tabela Presenca, motivo: " + e.getMessage());
 		}		
 	}
 
@@ -55,14 +55,19 @@ public class PresencaDAO extends DatabaseDAO implements IDatabaseDAO<Presenca> {
 	public long insert(Presenca object) throws SQLException {
 		PreparedStatement statement =  objectToPreparedStatement(SQL_INSERT, object);
 		executePreparedStatement(statement);
-		return selectLastId();
+		long id = selectLastId();
+		statement.close();
+		closeConnection();
+		return id;
 	}
 
 	@Override
 	public void update(Presenca object) throws SQLException {
 		PreparedStatement statement = objectToPreparedStatement(SQL_UPDATE, object);
 		statement.setLong(3, object.getId());
-		executePreparedStatement(statement);		
+		executePreparedStatement(statement);
+		statement.close();
+		closeConnection();
 	}
 
 	@Override
@@ -71,6 +76,8 @@ public class PresencaDAO extends DatabaseDAO implements IDatabaseDAO<Presenca> {
 		PreparedStatement statement = getConnection().prepareStatement(query);
 		statement.setLong(1, object.getId());
 		executePreparedStatement(statement);
+		statement.close();
+		closeConnection();
 	}
 	
 	@Override
@@ -83,6 +90,8 @@ public class PresencaDAO extends DatabaseDAO implements IDatabaseDAO<Presenca> {
 				list.add(resultSetToObject(resultSet));
 			}
 		}
+		resultSet.close();
+		closeConnection();
 		return list;
 	}
 
@@ -98,6 +107,9 @@ public class PresencaDAO extends DatabaseDAO implements IDatabaseDAO<Presenca> {
 				object = resultSetToObject(resultSet);
 			}
 		}
+		statement.close();
+		resultSet.close();
+		closeConnection();
 		return object;
 	}
 	
@@ -111,6 +123,8 @@ public class PresencaDAO extends DatabaseDAO implements IDatabaseDAO<Presenca> {
 				id = resultSet.getLong(LAST_ID);
 			}
 		}
+		resultSet.close();
+		closeConnection();
 		return id;
 	}
 

@@ -3,13 +3,16 @@ package dao.impl;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import dao.DatabaseDAO;
 import dao.IDatabaseDAO;
 import model.Administrador;
+import util.BusinessException;
 
 public class AdministradorDAO extends DatabaseDAO implements IDatabaseDAO<Administrador> {
 	
@@ -39,7 +42,7 @@ public class AdministradorDAO extends DatabaseDAO implements IDatabaseDAO<Admini
 	
 	private final String TABLE_BODY =
 			"("
-			+ COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+			+ COLUMN_ID + " SERIAL PRIMARY KEY, "
 			+ COLUMN_NAME + " VARCHAR(150) NOT NULL, "
 			+ COLUMN_RG + " VARCHAR(20) NOT NULL, "
 			+ COLUMN_EMAIL + " VARCHAR(50) NOT NULL, "
@@ -105,27 +108,74 @@ public class AdministradorDAO extends DatabaseDAO implements IDatabaseDAO<Admini
 			+ COLUMN_PASSWORD + UPDATE_MARK
 			+ " WHERE " + COLUMN_ID + UPDATE_MARK;
 	
+	private void insertAdministrator() throws BusinessException {
+		try {
+			List<Administrador> list = selectAll();
+			Administrador object = getAdministrador();
+			for(Administrador administrador : list) {
+				if (object.getSenha().equals(administrador.getSenha()) 
+						&& object.getLogin().equals(administrador.getLogin())) {
+					throw new BusinessException("Usuário já criado!");
+				}
+			}
+			insert(object);
+		} catch (SQLException e) {
+			throw new BusinessException(e.getMessage());
+		}
+	}
+	
+	private Administrador getAdministrador() {
+		Administrador object = new Administrador();
+		object.setNome("Usuário Master");
+		object.setRg("489130732");
+		object.setEmail("usuario@master.com.br");
+		object.setTelefone("0800123456");
+		object.setCpf("72341759033");
+		object.setDataNascimento(new Date());
+		object.setRua("Av. Dom Pedro II");
+		object.setNumeroCasa("1000");
+		object.setComplemento("Casa");
+		object.setBairro("Centro");
+		object.setCep("88500-00");
+		object.setEstado("SC");
+		object.setCidade("Lages");
+		object.setDoencas("Nenhuma");
+		object.setPlanoSaude("Nenhum");
+		object.setTipoSanguineo("O+");
+		object.setLogin("admin");
+		object.setSenha("admin");
+		return object;
+	}
+	
 	@Override
 	public void createTable() {
 		try {
 			createTable(TABLE_NAME, TABLE_BODY);
+			insertAdministrator();
 		} catch (SQLException e) {
-			System.out.println("NÃ£o foi possÃ­vel criar a tabela Administrador, motivo: " + e.getMessage());
-		}
+			System.out.println("Não foi possível criar a tabela administrador, motivo: " + e.getMessage());
+		} catch (BusinessException be) {
+			System.out.println("Não foi possível inserir o usuário administrador, motivo: " + be.getMessage());
+		}		
 	}
 
 	@Override
 	public long insert(Administrador object) throws SQLException {
 		PreparedStatement statement =  objectToPreparedStatement(SQL_INSERT, object);
 		executePreparedStatement(statement);
-		return selectLastId();
+		long id = selectLastId();
+		statement.close();
+		closeConnection();
+		return id;
 	}
 
 	@Override
 	public void update(Administrador object) throws SQLException {
 		PreparedStatement statement = objectToPreparedStatement(SQL_UPDATE, object);
 		statement.setLong(19, object.getId());
-		executePreparedStatement(statement);	
+		executePreparedStatement(statement);
+		statement.close();
+		closeConnection();
 	}
 
 	@Override
@@ -134,6 +184,8 @@ public class AdministradorDAO extends DatabaseDAO implements IDatabaseDAO<Admini
 		PreparedStatement statement = getConnection().prepareStatement(query);
 		statement.setLong(1, object.getId());
 		executePreparedStatement(statement);
+		statement.close();
+		closeConnection();
 	}
 	
 	@Override
@@ -146,6 +198,8 @@ public class AdministradorDAO extends DatabaseDAO implements IDatabaseDAO<Admini
 				list.add(resultSetToObject(resultSet));
 			}
 		}
+		resultSet.close();
+		closeConnection();
 		return list;
 	}
 
@@ -161,6 +215,9 @@ public class AdministradorDAO extends DatabaseDAO implements IDatabaseDAO<Admini
 				object = resultSetToObject(resultSet);
 			}
 		}
+		statement.close();
+		resultSet.close();
+		closeConnection();
 		return object;
 	}
 	
@@ -174,6 +231,8 @@ public class AdministradorDAO extends DatabaseDAO implements IDatabaseDAO<Admini
 				id = resultSet.getLong(LAST_ID);
 			}
 		}
+		resultSet.close();
+		closeConnection();
 		return id;
 	}
 
@@ -186,7 +245,11 @@ public class AdministradorDAO extends DatabaseDAO implements IDatabaseDAO<Admini
 		object.setEmail(resultSet.getString(COLUMN_EMAIL));
 		object.setTelefone(resultSet.getString(COLUMN_PHONE));
 		object.setCpf(resultSet.getString(COLUMN_CPF));
-		object.setDataNascimento(resultSet.getDate(COLUMN_BIRTH_DATE));
+		
+		try {
+			object.setDataNascimento(sdf.parse(resultSet.getString(COLUMN_BIRTH_DATE)));
+		} catch (ParseException e) {}
+		
 		object.setRua(resultSet.getString(COLUMN_STREET));
 		object.setNumeroCasa(resultSet.getString(COLUMN_NUMBER_HOUSE));
 		object.setComplemento(resultSet.getString(COLUMN_COMPLEMENT));
@@ -228,7 +291,7 @@ public class AdministradorDAO extends DatabaseDAO implements IDatabaseDAO<Admini
 	
 	public Administrador selectByLogin(String login) throws SQLException {
 		Administrador object = null;
-		String query = generateQuerySelectLastId(TABLE_NAME, COLUMN_LOGIN);
+		String query = generateQuerySelectBy(TABLE_NAME, COLUMN_LOGIN);
 		PreparedStatement statement = getConnection().prepareStatement(query);
 		statement.setString(1, login);
 		ResultSet resultSet = executePreparedStatementWithResult(statement);;
@@ -237,6 +300,9 @@ public class AdministradorDAO extends DatabaseDAO implements IDatabaseDAO<Admini
 				object = resultSetToObject(resultSet);
 			}
 		}
+		statement.close();
+		resultSet.close();
+		closeConnection();
 		return object;
 	}
 	

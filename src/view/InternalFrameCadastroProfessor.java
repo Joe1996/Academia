@@ -1,23 +1,28 @@
 package view;
 
+import java.awt.Color;
 import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-import javax.swing.JInternalFrame;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JFormattedTextField;
+import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
-import javax.swing.JFormattedTextField;
-import javax.swing.JPanel;
-import javax.swing.border.TitledBorder;
-import javax.swing.JButton;
-import javax.swing.ImageIcon;
-import java.awt.Font;
-import javax.swing.JComboBox;
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.UIManager;
-import java.awt.Color;
+import javax.swing.border.TitledBorder;
+
+import controller.ProfessorController;
+import util.BusinessException;
 
 public class InternalFrameCadastroProfessor extends JInternalFrame {
 	/**
@@ -31,8 +36,6 @@ public class InternalFrameCadastroProfessor extends JInternalFrame {
 	private JFormattedTextField textFieldRG;
 	private JTextField textFieldEmail;
 	private JFormattedTextField textFieldTelefone;
-	private JTextField textFieldNomeEmergencia;
-	private JFormattedTextField textFieldTelefoneEmergencia;
 	private JTextField textFieldLogradouro;
 	private JTextField textFieldNumeroDaCasa;
 	private JTextField textFieldComplemento;
@@ -40,8 +43,12 @@ public class InternalFrameCadastroProfessor extends JInternalFrame {
 	private JFormattedTextField textFieldCEP;
 	private JTextField textFieldCidade;
 	private JTextField textFieldEstado;
-	private JTextField textField;
+	private JTextField textFieldSalario;
 	private JFormattedTextField formattedTextFieldCPF;
+	private JComboBox<String> comboBoxSanguineo;
+	private JComboBox<String> comboBoxFuncao;
+	private JComboBox<String> comboBoxModalidade;
+	private ProfessorController controller;
 
 	/**
 	 * Launch the application.
@@ -66,29 +73,25 @@ public class InternalFrameCadastroProfessor extends JInternalFrame {
 		
 		setTitle("Cadastrar Professor");
 		setClosable(true);
-		setBounds(100, 100, 884, 431);
+		setBounds(100, 100, 590, 723);
 		
 		JPanel panelDadosPessoais = new JPanel();
 		panelDadosPessoais.setBorder(new TitledBorder(null, "Dados Pessoais", TitledBorder.CENTER, TitledBorder.TOP, null, null));
 		
-		JPanel panelContato = new JPanel();
-		panelContato.setBorder(new TitledBorder(null, "Contato", TitledBorder.CENTER, TitledBorder.TOP, null, null));
-		
 		JPanel panelEndereco = new JPanel();
 		panelEndereco.setBorder(new TitledBorder(null, "Endere\u00E7o", TitledBorder.CENTER, TitledBorder.TOP, null, null));
 		
-		JButton btnCadastrarDigital = new JButton("Cadastrar Digital");
-		btnCadastrarDigital.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		btnCadastrarDigital.setIcon(new ImageIcon("C:\\Users\\EduardoCordova\\git\\Academia\\resources\\IconeDigital1.png"));
-		
 		JButton btnSalvar = new JButton("Salvar");
+		btnSalvar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				try {
+					controller.insert();
+				} catch (BusinessException be) {
+					JOptionPane.showMessageDialog(InternalFrameCadastroProfessor.this, be.getMessage());
+				}
+			}
+		});
 		btnSalvar.setIcon(new ImageIcon("C:\\Users\\EduardoCordova\\git\\Academia\\resources\\checked.png"));
-		
-		JButton btnLimparcampos = new JButton("LimparCampos");
-		btnLimparcampos.setIcon(new ImageIcon("C:\\Users\\EduardoCordova\\git\\Academia\\resources\\eraser.png"));
-		
-		JButton btnSair = new JButton("Sair");
-		btnSair.setIcon(new ImageIcon("C:\\Users\\EduardoCordova\\git\\Academia\\resources\\exit.png"));
 		
 		JPanel panelEmprego = new JPanel();
 		panelEmprego.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Emprego", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(0, 0, 0)));
@@ -99,30 +102,28 @@ public class InternalFrameCadastroProfessor extends JInternalFrame {
 		
 		JLabel label_2 = new JLabel("Sal\u00E1rio");
 		
-		textField = new JTextField();
-		textField.setColumns(10);
+		textFieldSalario = new JTextField();
+		textFieldSalario.setColumns(10);
 		
-		JComboBox list = new JComboBox();
+		comboBoxFuncao = new JComboBox<String>();
+		comboBoxFuncao.setModel(new DefaultComboBoxModel<String>(new String[] {"Professor"}));
 		
-		JComboBox list_1 = new JComboBox();
+		comboBoxModalidade = new JComboBox<String>();
+		comboBoxModalidade.setModel(new DefaultComboBoxModel<String>(new String[] {"Jiu-Jitsu", "Taekwondo", "Capoeira"}));
 		GroupLayout gl_panelEmprego = new GroupLayout(panelEmprego);
 		gl_panelEmprego.setHorizontalGroup(
 			gl_panelEmprego.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panelEmprego.createSequentialGroup()
-					.addGroup(gl_panelEmprego.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_panelEmprego.createSequentialGroup()
-							.addGap(29)
-							.addGroup(gl_panelEmprego.createParallelGroup(Alignment.TRAILING)
-								.addComponent(label_1)
-								.addComponent(label_2)))
-						.addGroup(gl_panelEmprego.createSequentialGroup()
-							.addContainerGap()
-							.addComponent(label)))
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addGroup(gl_panelEmprego.createParallelGroup(Alignment.LEADING)
-						.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(list, 0, 149, Short.MAX_VALUE)
-						.addComponent(list_1, 0, 149, Short.MAX_VALUE))
+				.addGroup(Alignment.TRAILING, gl_panelEmprego.createSequentialGroup()
+					.addContainerGap(101, Short.MAX_VALUE)
+					.addGroup(gl_panelEmprego.createParallelGroup(Alignment.TRAILING)
+						.addComponent(label_2)
+						.addComponent(label_1)
+						.addComponent(label))
+					.addGap(18)
+					.addGroup(gl_panelEmprego.createParallelGroup(Alignment.TRAILING, false)
+						.addComponent(comboBoxModalidade, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+						.addComponent(comboBoxFuncao, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+						.addComponent(textFieldSalario, 353, 353, Short.MAX_VALUE))
 					.addContainerGap())
 		);
 		gl_panelEmprego.setVerticalGroup(
@@ -130,16 +131,16 @@ public class InternalFrameCadastroProfessor extends JInternalFrame {
 				.addGroup(gl_panelEmprego.createSequentialGroup()
 					.addContainerGap()
 					.addGroup(gl_panelEmprego.createParallelGroup(Alignment.BASELINE)
-						.addComponent(label_1)
-						.addComponent(list, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE))
-					.addPreferredGap(ComponentPlacement.UNRELATED)
+						.addComponent(comboBoxFuncao, GroupLayout.PREFERRED_SIZE, 20, GroupLayout.PREFERRED_SIZE)
+						.addComponent(label_1))
+					.addPreferredGap(ComponentPlacement.RELATED)
 					.addGroup(gl_panelEmprego.createParallelGroup(Alignment.BASELINE)
-						.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(textFieldSalario, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addComponent(label_2))
-					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addPreferredGap(ComponentPlacement.RELATED)
 					.addGroup(gl_panelEmprego.createParallelGroup(Alignment.BASELINE)
-						.addComponent(label)
-						.addComponent(list_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addComponent(comboBoxModalidade, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(label))
 					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 		);
 		panelEmprego.setLayout(gl_panelEmprego);
@@ -149,45 +150,24 @@ public class InternalFrameCadastroProfessor extends JInternalFrame {
 				.addGroup(groupLayout.createSequentialGroup()
 					.addContainerGap()
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
-						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(panelEndereco, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(panelEmprego, GroupLayout.PREFERRED_SIZE, 239, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
-								.addComponent(btnSalvar, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-								.addComponent(btnLimparcampos, GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE)
-								.addComponent(btnSair, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-								.addComponent(btnCadastrarDigital)))
-						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(panelDadosPessoais, GroupLayout.PREFERRED_SIZE, 422, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(panelContato, 0, 0, Short.MAX_VALUE)))
-					.addGap(180))
+						.addComponent(btnSalvar, GroupLayout.PREFERRED_SIZE, 118, GroupLayout.PREFERRED_SIZE)
+						.addComponent(panelEndereco, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+						.addComponent(panelDadosPessoais, GroupLayout.DEFAULT_SIZE, 548, Short.MAX_VALUE)
+						.addComponent(panelEmprego, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+					.addContainerGap(16, Short.MAX_VALUE))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
 					.addContainerGap()
-					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(panelDadosPessoais, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(panelContato, GroupLayout.PREFERRED_SIZE, 176, GroupLayout.PREFERRED_SIZE))
+					.addComponent(panelDadosPessoais, GroupLayout.PREFERRED_SIZE, 265, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED)
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(40)
-							.addComponent(panelEmprego, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-						.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-							.addGroup(groupLayout.createSequentialGroup()
-								.addComponent(btnCadastrarDigital, GroupLayout.DEFAULT_SIZE, 75, Short.MAX_VALUE)
-								.addPreferredGap(ComponentPlacement.RELATED)
-								.addComponent(btnSalvar)
-								.addPreferredGap(ComponentPlacement.RELATED)
-								.addComponent(btnLimparcampos)
-								.addPreferredGap(ComponentPlacement.RELATED)
-								.addComponent(btnSair))
-							.addComponent(panelEndereco, GroupLayout.PREFERRED_SIZE, 192, GroupLayout.PREFERRED_SIZE)))
-					.addContainerGap(16, Short.MAX_VALUE))
+					.addComponent(panelEndereco, GroupLayout.PREFERRED_SIZE, 218, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(panelEmprego, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addComponent(btnSalvar, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(13, Short.MAX_VALUE))
 		);
 		
 		JLabel lblLogradouro = new JLabel("Logradouro");
@@ -228,27 +208,24 @@ public class InternalFrameCadastroProfessor extends JInternalFrame {
 		gl_panelEndereco.setHorizontalGroup(
 			gl_panelEndereco.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panelEndereco.createSequentialGroup()
-					.addContainerGap()
+					.addGap(75)
 					.addGroup(gl_panelEndereco.createParallelGroup(Alignment.TRAILING)
-						.addComponent(lblEstado)
-						.addComponent(lblCidade)
-						.addComponent(lblCep)
-						.addComponent(lblBairro)
+						.addComponent(lblNmeroDaCasa)
+						.addComponent(lblComplement)
 						.addComponent(lblLogradouro)
-						.addComponent(lblNmeroDaCasa))
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addGroup(gl_panelEndereco.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_panelEndereco.createSequentialGroup()
-							.addComponent(textFieldNumeroDaCasa, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.UNRELATED)
-							.addComponent(lblComplement)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(textFieldComplemento, GroupLayout.DEFAULT_SIZE, 68, Short.MAX_VALUE))
-						.addComponent(textFieldBairro, GroupLayout.DEFAULT_SIZE, 233, Short.MAX_VALUE)
-						.addComponent(textFieldCEP, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(textFieldCidade, GroupLayout.DEFAULT_SIZE, 233, Short.MAX_VALUE)
-						.addComponent(textFieldEstado, GroupLayout.DEFAULT_SIZE, 233, Short.MAX_VALUE)
-						.addComponent(textFieldLogradouro, GroupLayout.DEFAULT_SIZE, 233, Short.MAX_VALUE))
+						.addComponent(lblBairro)
+						.addComponent(lblCep)
+						.addComponent(lblCidade)
+						.addComponent(lblEstado))
+					.addGap(18)
+					.addGroup(gl_panelEndereco.createParallelGroup(Alignment.TRAILING)
+						.addComponent(textFieldComplemento)
+						.addComponent(textFieldNumeroDaCasa, Alignment.LEADING)
+						.addComponent(textFieldBairro, Alignment.LEADING)
+						.addComponent(textFieldCEP, Alignment.LEADING)
+						.addComponent(textFieldCidade, Alignment.LEADING)
+						.addComponent(textFieldEstado, Alignment.LEADING)
+						.addComponent(textFieldLogradouro, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 354, Short.MAX_VALUE))
 					.addContainerGap())
 		);
 		gl_panelEndereco.setVerticalGroup(
@@ -256,93 +233,35 @@ public class InternalFrameCadastroProfessor extends JInternalFrame {
 				.addGroup(gl_panelEndereco.createSequentialGroup()
 					.addContainerGap()
 					.addGroup(gl_panelEndereco.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblLogradouro)
-						.addComponent(textFieldLogradouro, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addComponent(textFieldLogradouro, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblLogradouro))
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addGroup(gl_panelEndereco.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblNmeroDaCasa)
 						.addComponent(textFieldNumeroDaCasa, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(lblComplement)
-						.addComponent(textFieldComplemento, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addComponent(lblNmeroDaCasa))
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addGroup(gl_panelEndereco.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblBairro)
-						.addComponent(textFieldBairro, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addComponent(textFieldComplemento, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblComplement))
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addGroup(gl_panelEndereco.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblCep)
-						.addComponent(textFieldCEP, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addComponent(textFieldBairro, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblBairro))
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addGroup(gl_panelEndereco.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblCidade)
-						.addComponent(textFieldCidade, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addComponent(textFieldCEP, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblCep))
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addGroup(gl_panelEndereco.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblEstado)
-						.addComponent(textFieldEstado, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addContainerGap(26, Short.MAX_VALUE))
+						.addComponent(textFieldCidade, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblCidade))
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addGroup(gl_panelEndereco.createParallelGroup(Alignment.BASELINE)
+						.addComponent(textFieldEstado, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblEstado))
+					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 		);
 		panelEndereco.setLayout(gl_panelEndereco);
-		
-		JLabel lblTelefone = new JLabel("Telefone");
-		
-		JLabel lblEmail = new JLabel("E-mail");
-		
-		JLabel lblNomeParaEmergncia = new JLabel("Nome para Emerg\u00EAncia");
-		
-		JLabel lblTelefoneParaEmergncia = new JLabel("Telefone para Emerg\u00EAncia");
-		
-		textFieldEmail = new JTextField();
-		textFieldEmail.setColumns(10);
-		
-		textFieldTelefone = new JFormattedTextField();
-		textFieldTelefone.setColumns(10);
-		
-		textFieldNomeEmergencia = new JTextField();
-		textFieldNomeEmergencia.setColumns(10);
-		
-		textFieldTelefoneEmergencia = new JFormattedTextField();
-		textFieldTelefoneEmergencia.setColumns(10);
-		GroupLayout gl_panelContato = new GroupLayout(panelContato);
-		gl_panelContato.setHorizontalGroup(
-			gl_panelContato.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panelContato.createSequentialGroup()
-					.addContainerGap()
-					.addGroup(gl_panelContato.createParallelGroup(Alignment.TRAILING)
-						.addComponent(lblTelefoneParaEmergncia)
-						.addComponent(lblEmail)
-						.addComponent(lblNomeParaEmergncia)
-						.addComponent(lblTelefone))
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addGroup(gl_panelContato.createParallelGroup(Alignment.LEADING)
-						.addComponent(textFieldEmail, GroupLayout.DEFAULT_SIZE, 209, Short.MAX_VALUE)
-						.addComponent(textFieldNomeEmergencia, GroupLayout.DEFAULT_SIZE, 209, Short.MAX_VALUE)
-						.addComponent(textFieldTelefoneEmergencia, GroupLayout.DEFAULT_SIZE, 209, Short.MAX_VALUE)
-						.addComponent(textFieldTelefone, GroupLayout.DEFAULT_SIZE, 209, Short.MAX_VALUE))
-					.addContainerGap())
-		);
-		gl_panelContato.setVerticalGroup(
-			gl_panelContato.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panelContato.createSequentialGroup()
-					.addGap(24)
-					.addGroup(gl_panelContato.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblEmail)
-						.addComponent(textFieldEmail, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addGroup(gl_panelContato.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblTelefone)
-						.addComponent(textFieldTelefone, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addGroup(gl_panelContato.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblNomeParaEmergncia)
-						.addComponent(textFieldNomeEmergencia, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addGroup(gl_panelContato.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblTelefoneParaEmergncia)
-						.addComponent(textFieldTelefoneEmergencia, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addContainerGap(31, Short.MAX_VALUE))
-		);
-		panelContato.setLayout(gl_panelContato);
 		
 		JLabel lblNome = new JLabel("Nome");
 		
@@ -375,74 +294,91 @@ public class InternalFrameCadastroProfessor extends JInternalFrame {
 		textFieldRG = new JFormattedTextField();
 		textFieldRG.setColumns(10);
 		
-		JComboBox listTipoSanguineo = new JComboBox();
-		listTipoSanguineo.setModel(new DefaultComboBoxModel(new String[] {"A-", "A+", "AB-", "AB+", "B-", "B+", "O+", "O-"}));
+		comboBoxSanguineo = new JComboBox<String>();
+		comboBoxSanguineo.setModel(new DefaultComboBoxModel<String>(new String[] {"A-", "A+", "AB-", "AB+", "B-", "B+", "O+", "O-"}));
+		
+		JLabel lblEmail = new JLabel("E-mail");
+		
+		JLabel lblTelefone = new JLabel("Telefone");
+		
+		textFieldEmail = new JTextField();
+		textFieldEmail.setColumns(10);
+		
+		textFieldTelefone = new JFormattedTextField();
+		textFieldTelefone.setColumns(10);
 		GroupLayout gl_panelDadosPessoais = new GroupLayout(panelDadosPessoais);
 		gl_panelDadosPessoais.setHorizontalGroup(
 			gl_panelDadosPessoais.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panelDadosPessoais.createSequentialGroup()
+					.addGap(57)
+					.addGroup(gl_panelDadosPessoais.createParallelGroup(Alignment.TRAILING)
+						.addComponent(lblNome)
+						.addComponent(lblRg)
+						.addComponent(lblCpf)
+						.addComponent(lblDataDeNascimento)
+						.addComponent(lblEnfermidade)
+						.addComponent(lblPlanoDeSade)
+						.addComponent(lblEmail)
+						.addComponent(lblTelefone)
+						.addComponent(lblTipoSanguineo))
+					.addGap(18)
 					.addGroup(gl_panelDadosPessoais.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_panelDadosPessoais.createSequentialGroup()
-							.addGap(32)
-							.addGroup(gl_panelDadosPessoais.createParallelGroup(Alignment.TRAILING)
-								.addComponent(lblCpf)
-								.addComponent(lblEnfermidade)
-								.addComponent(lblPlanoDeSade)
-								.addComponent(lblNome))
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addGroup(gl_panelDadosPessoais.createParallelGroup(Alignment.TRAILING)
-								.addComponent(textFieldPlanoDeSaude, GroupLayout.DEFAULT_SIZE, 290, Short.MAX_VALUE)
-								.addGroup(gl_panelDadosPessoais.createSequentialGroup()
-									.addComponent(formattedTextFieldCPF, GroupLayout.PREFERRED_SIZE, 107, GroupLayout.PREFERRED_SIZE)
-									.addPreferredGap(ComponentPlacement.UNRELATED)
-									.addComponent(lblRg)
-									.addPreferredGap(ComponentPlacement.RELATED)
-									.addComponent(textFieldRG, GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE))
-								.addComponent(textFieldNome, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 290, Short.MAX_VALUE)
-								.addComponent(textFieldEnfermidade, GroupLayout.DEFAULT_SIZE, 290, Short.MAX_VALUE)))
-						.addGroup(gl_panelDadosPessoais.createSequentialGroup()
-							.addContainerGap()
-							.addComponent(lblDataDeNascimento)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(textFieldDataDeNascimento, GroupLayout.DEFAULT_SIZE, 154, Short.MAX_VALUE)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(lblTipoSanguineo)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(listTipoSanguineo, GroupLayout.PREFERRED_SIZE, 55, GroupLayout.PREFERRED_SIZE)))
-					.addGap(10))
+						.addComponent(comboBoxSanguineo, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+						.addComponent(textFieldTelefone)
+						.addComponent(textFieldEmail)
+						.addComponent(textFieldPlanoDeSaude)
+						.addComponent(textFieldEnfermidade)
+						.addComponent(textFieldDataDeNascimento)
+						.addComponent(textFieldRG)
+						.addComponent(formattedTextFieldCPF)
+						.addComponent(textFieldNome, GroupLayout.DEFAULT_SIZE, 355, Short.MAX_VALUE))
+					.addContainerGap())
 		);
 		gl_panelDadosPessoais.setVerticalGroup(
 			gl_panelDadosPessoais.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panelDadosPessoais.createSequentialGroup()
 					.addContainerGap()
 					.addGroup(gl_panelDadosPessoais.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblNome)
-						.addComponent(textFieldNome, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addComponent(textFieldNome, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblNome))
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addGroup(gl_panelDadosPessoais.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblCpf)
 						.addComponent(formattedTextFieldCPF, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(lblRg)
-						.addComponent(textFieldRG, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addComponent(lblCpf))
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addGroup(gl_panelDadosPessoais.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblDataDeNascimento)
-						.addComponent(listTipoSanguineo, GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
+						.addComponent(textFieldRG, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblRg))
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addGroup(gl_panelDadosPessoais.createParallelGroup(Alignment.BASELINE)
 						.addComponent(textFieldDataDeNascimento, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblDataDeNascimento))
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addGroup(gl_panelDadosPessoais.createParallelGroup(Alignment.BASELINE)
+						.addComponent(textFieldEnfermidade, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblEnfermidade))
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addGroup(gl_panelDadosPessoais.createParallelGroup(Alignment.BASELINE)
+						.addComponent(textFieldPlanoDeSaude, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblPlanoDeSade))
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addGroup(gl_panelDadosPessoais.createParallelGroup(Alignment.BASELINE)
+						.addComponent(textFieldEmail, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblEmail))
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addGroup(gl_panelDadosPessoais.createParallelGroup(Alignment.BASELINE)
+						.addComponent(textFieldTelefone, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblTelefone))
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addGroup(gl_panelDadosPessoais.createParallelGroup(Alignment.BASELINE)
+						.addComponent(comboBoxSanguineo, GroupLayout.PREFERRED_SIZE, 18, GroupLayout.PREFERRED_SIZE)
 						.addComponent(lblTipoSanguineo))
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addGroup(gl_panelDadosPessoais.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblEnfermidade)
-						.addComponent(textFieldEnfermidade, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addGroup(gl_panelDadosPessoais.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblPlanoDeSade)
-						.addComponent(textFieldPlanoDeSaude, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addContainerGap(18, Short.MAX_VALUE))
+					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 		);
 		panelDadosPessoais.setLayout(gl_panelDadosPessoais);
 		getContentPane().setLayout(groupLayout);
 
+		controller = new ProfessorController(InternalFrameCadastroProfessor.this);
 	}
 
 	public JTextField getTextFieldNome() {
@@ -471,14 +407,6 @@ public class InternalFrameCadastroProfessor extends JInternalFrame {
 
 	public JFormattedTextField getTextFieldTelefone() {
 		return textFieldTelefone;
-	}
-
-	public JTextField getTextFieldNomeEmergencia() {
-		return textFieldNomeEmergencia;
-	}
-
-	public JFormattedTextField getTextFieldTelefoneEmergencia() {
-		return textFieldTelefoneEmergencia;
 	}
 
 	public JTextField getTextFieldLogradouro() {
@@ -510,11 +438,27 @@ public class InternalFrameCadastroProfessor extends JInternalFrame {
 	}
 
 	public JTextField getTextField() {
-		return textField;
+		return textFieldSalario;
 	}
 
 	public JFormattedTextField getFormattedTextFieldCPF() {
 		return formattedTextFieldCPF;
+	}
+
+	public JComboBox<String> getComboBoxSanguineo() {
+		return comboBoxSanguineo;
+	}
+
+	public JComboBox<String> getComboBoxFuncao() {
+		return comboBoxFuncao;
+	}
+
+	public JComboBox<String> getComboBoxModalidade() {
+		return comboBoxModalidade;
+	}
+
+	public JTextField getTextFieldSalario() {
+		return textFieldSalario;
 	}
 	
 }

@@ -3,6 +3,7 @@ package dao.impl;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -37,7 +38,7 @@ public class AlunoDAO extends DatabaseDAO implements IDatabaseDAO<Aluno>{
 
 	private final String TABLE_BODY =
 			"("
-			+ COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+			+ COLUMN_ID + " SERIAL PRIMARY KEY, "
 			+ COLUMN_NAME + " VARCHAR(150) NOT NULL, "
 			+ COLUMN_RG + " VARCHAR(20) NOT NULL, "
 			+ COLUMN_EMAIL + " VARCHAR(50) NOT NULL, "
@@ -52,28 +53,28 @@ public class AlunoDAO extends DatabaseDAO implements IDatabaseDAO<Aluno>{
 			+ COLUMN_STATE + " VARCHAR(40) NOT NULL, "
 			+ COLUMN_CITY + " VARCHAR(50) NOT NULL, "
 			+ COLUMN_DISEASES + " VARCHAR(150) NOT NULL, "
-			+ COLUMN_HEALTH_INSURANCE + " VARHCAR(100) NOT NULL, "
-			+ COLUMN_BLOOD_TYPE + " VARHCAR(10) NOT NULL"
+			+ COLUMN_HEALTH_INSURANCE + " VARCHAR(100) NOT NULL, "
+			+ COLUMN_BLOOD_TYPE + " VARCHAR(10) NOT NULL"
 			+ ");";
 	
 	private final String SQL_INSERT = "INSERT INTO aluno "
 			+ "("
-			+ COLUMN_NAME + COMMA
-			+ COLUMN_RG + COMMA
-			+ COLUMN_EMAIL + COMMA
-			+ COLUMN_PHONE + COMMA
-			+ COLUMN_CPF + COMMA
-			+ COLUMN_BIRTH_DATE + COMMA
-			+ COLUMN_STREET + COMMA
-			+ COLUMN_NUMBER_HOUSE + COMMA
-			+ COLUMN_COMPLEMENT + COMMA
-			+ COLUMN_NEIGHBORHOOD + COMMA
-			+ COLUMN_CEP + COMMA
-			+ COLUMN_STATE + COMMA
-			+ COLUMN_CITY + COMMA
-			+ COLUMN_DISEASES + COMMA
-			+ COLUMN_HEALTH_INSURANCE + COMMA
-			+ COLUMN_BLOOD_TYPE
+			+ COLUMN_NAME + COMMA //1
+			+ COLUMN_RG + COMMA //2
+			+ COLUMN_EMAIL + COMMA //3
+			+ COLUMN_PHONE + COMMA //4
+			+ COLUMN_CPF + COMMA //5
+			+ COLUMN_BIRTH_DATE + COMMA //6 
+			+ COLUMN_STREET + COMMA //7 
+			+ COLUMN_NUMBER_HOUSE + COMMA //8
+			+ COLUMN_COMPLEMENT + COMMA //9
+			+ COLUMN_NEIGHBORHOOD + COMMA //10
+			+ COLUMN_CEP + COMMA //11
+			+ COLUMN_STATE + COMMA //12
+			+ COLUMN_CITY + COMMA //13
+			+ COLUMN_DISEASES + COMMA //14
+			+ COLUMN_HEALTH_INSURANCE + COMMA//15
+			+ COLUMN_BLOOD_TYPE //16
 			+ ")"
 			+ " VALUES "
 			+ "(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
@@ -102,7 +103,7 @@ public class AlunoDAO extends DatabaseDAO implements IDatabaseDAO<Aluno>{
 		try {
 			createTable(TABLE_NAME, TABLE_BODY);
 		} catch (SQLException e) {
-			System.out.println("NÃ£o foi possÃ­vel criar a tabela Aluno, motivo: " + e.getMessage());
+			System.out.println("Não foi possível criar a tabela Aluno, motivo: " + e.getMessage());
 		}
 	}
 	
@@ -110,7 +111,10 @@ public class AlunoDAO extends DatabaseDAO implements IDatabaseDAO<Aluno>{
 	public long insert(Aluno object) throws SQLException {
 		PreparedStatement statement =  objectToPreparedStatement(SQL_INSERT, object);
 		executePreparedStatement(statement);
-		return selectLastId();
+		long id = selectLastId();
+		statement.close();
+		closeConnection();
+		return id;
 	}
 
 	@Override
@@ -118,6 +122,8 @@ public class AlunoDAO extends DatabaseDAO implements IDatabaseDAO<Aluno>{
 		PreparedStatement statement = objectToPreparedStatement(SQL_UPDATE, object);
 		statement.setLong(17, object.getId());
 		executePreparedStatement(statement);
+		statement.close();
+		closeConnection();
 	}
 
 	@Override
@@ -126,6 +132,8 @@ public class AlunoDAO extends DatabaseDAO implements IDatabaseDAO<Aluno>{
 		PreparedStatement statement = getConnection().prepareStatement(query);
 		statement.setLong(1, object.getId());
 		executePreparedStatement(statement);
+		statement.close();
+		closeConnection();
 	}
 	
 	@Override
@@ -138,6 +146,8 @@ public class AlunoDAO extends DatabaseDAO implements IDatabaseDAO<Aluno>{
 				list.add(resultSetToObject(resultSet));
 			}
 		}
+		resultSet.close();
+		closeConnection();
 		return list;
 	}
 	
@@ -153,6 +163,9 @@ public class AlunoDAO extends DatabaseDAO implements IDatabaseDAO<Aluno>{
 				object = resultSetToObject(resultSet);
 			}
 		}
+		statement.close();
+		resultSet.close();
+		closeConnection();
 		return object;
 	}
 	
@@ -166,6 +179,8 @@ public class AlunoDAO extends DatabaseDAO implements IDatabaseDAO<Aluno>{
 				id = resultSet.getLong(LAST_ID);
 			}
 		}
+		resultSet.close();
+		closeConnection();
 		return id;
 	}
 
@@ -178,7 +193,11 @@ public class AlunoDAO extends DatabaseDAO implements IDatabaseDAO<Aluno>{
 		object.setEmail(resultSet.getString(COLUMN_EMAIL));
 		object.setTelefone(resultSet.getString(COLUMN_PHONE));
 		object.setCpf(resultSet.getString(COLUMN_CPF));
-		object.setDataNascimento(resultSet.getDate(COLUMN_BIRTH_DATE));
+		
+		try {
+			object.setDataNascimento(sdf.parse(resultSet.getString(COLUMN_BIRTH_DATE)));
+		} catch (ParseException e) {}
+		
 		object.setRua(resultSet.getString(COLUMN_STREET));
 		object.setNumeroCasa(resultSet.getString(COLUMN_NUMBER_HOUSE));
 		object.setComplemento(resultSet.getString(COLUMN_COMPLEMENT));
@@ -225,6 +244,9 @@ public class AlunoDAO extends DatabaseDAO implements IDatabaseDAO<Aluno>{
 				object = resultSetToObject(resultSet);
 			}
 		}
+		statement.close();
+		resultSet.close();
+		closeConnection();
 		return object;
 	}
 	

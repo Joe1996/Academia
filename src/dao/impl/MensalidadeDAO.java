@@ -23,7 +23,7 @@ public class MensalidadeDAO extends DatabaseDAO implements IDatabaseDAO<Mensalid
 	
 	private final String TABLE_BODY =
 			"(" 
-			+ COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " 
+			+ COLUMN_ID + " SERIAL PRIMARY KEY, " 
 			+ COLUMN_STUDENT_ID + " INTEGER NOT NULL, "
 			+ COLUMN_DUE_DATE + " VARCHAR(150) NOT NULL"
 			+ ");";
@@ -52,7 +52,7 @@ public class MensalidadeDAO extends DatabaseDAO implements IDatabaseDAO<Mensalid
 		try {
 			createTable(TABLE_NAME, TABLE_BODY);
 		} catch (SQLException e) {
-			System.out.println("NÃ£o foi possÃ­vel criar a tabela Mensalidade, motivo: " + e.getMessage());
+			System.out.println("Não foi possível criar a tabela Mensalidade, motivo: " + e.getMessage());
 		}		
 	}
 
@@ -60,14 +60,19 @@ public class MensalidadeDAO extends DatabaseDAO implements IDatabaseDAO<Mensalid
 	public long insert(Mensalidade object) throws SQLException {
 		PreparedStatement statement = objectToPreparedStatement(SQL_INSERT, object);
 		executePreparedStatement(statement);
-		return selectLastId();
+		long id = selectLastId();
+		statement.close();
+		closeConnection();
+		return id;
 	}
 
 	@Override
 	public void update(Mensalidade object) throws SQLException {
 		PreparedStatement statement = objectToPreparedStatement(SQL_UPDATE, object);
 		statement.setLong(3, object.getId());
-		executePreparedStatement(statement);		
+		executePreparedStatement(statement);
+		statement.close();
+		closeConnection();
 	}
 
 	@Override
@@ -75,7 +80,9 @@ public class MensalidadeDAO extends DatabaseDAO implements IDatabaseDAO<Mensalid
 		String query = generateQueryDelete(TABLE_NAME, COLUMN_ID);
 		PreparedStatement statement = getConnection().prepareStatement(query);
 		statement.setLong(1, object.getId());
-		executePreparedStatement(statement);		
+		executePreparedStatement(statement);
+		statement.close();
+		closeConnection();
 	}
 	
 	@Override
@@ -88,6 +95,8 @@ public class MensalidadeDAO extends DatabaseDAO implements IDatabaseDAO<Mensalid
 				list.add(resultSetToObject(resultSet));
 			}
 		}
+		resultSet.close();
+		closeConnection();
 		return list;
 	}
 
@@ -103,6 +112,9 @@ public class MensalidadeDAO extends DatabaseDAO implements IDatabaseDAO<Mensalid
 				object = resultSetToObject(resultSet);
 			}
 		}
+		statement.close();
+		resultSet.close();
+		closeConnection();
 		return object;
 	}
 	
@@ -116,6 +128,8 @@ public class MensalidadeDAO extends DatabaseDAO implements IDatabaseDAO<Mensalid
 				id = resultSet.getLong(LAST_ID);
 			}
 		}
+		resultSet.close();
+		closeConnection();
 		return id;
 	}
 
@@ -150,6 +164,9 @@ public class MensalidadeDAO extends DatabaseDAO implements IDatabaseDAO<Mensalid
 				object = resultSetToObject(resultSet);
 			}
 		}
+		statement.close();
+		resultSet.close();
+		closeConnection();
 		return object;
 	}
 	

@@ -4,7 +4,7 @@ public class Modalidade {
 	
 	private long id;
 	private String nome;
-	private String nomeMestre;
+	private Professor professor;
 
 	public long getId() {
 		return id;
@@ -22,12 +22,12 @@ public class Modalidade {
 		this.nome = nome;
 	}
 
-	public String getNomeMestre() {
-		return nomeMestre;
+	public Professor getProfessor() {
+		return professor;
 	}
 
-	public void setNomeMestre(String nomeMestre) {
-		this.nomeMestre = nomeMestre;
+	public void setProfessor(Professor professor) {
+		this.professor = professor;
 	}
 	
 }

@@ -25,8 +25,8 @@ public class ProfessorController {
 		try {
 			dao.insert(object);
 		} catch (SQLException ex) {
-			System.out.println("N√£o foi poss√≠vel inserir os dados da professor no banco, motivo: " + ex.getMessage());
-			throw new BusinessException("N√£o foi poss√≠vel inserir o professor.");
+			System.out.println("N„o foi possÌvel inserir os dados da professor no banco, motivo: " + ex.getMessage());
+			throw new BusinessException("N„o foi possÌvel inserir o professor.");
 		}
 	}
 	
@@ -38,10 +38,34 @@ public class ProfessorController {
 		
 		object.setNome(frame.getTextFieldNome().getText());
 		
+		if (StringUtil.isEmpty(frame.getFormattedTextFieldCPF().getText()))
+			throw new BusinessException("O cpf deve ser informado!");
+		
+		object.setCpf(frame.getFormattedTextFieldCPF().getText());		
+		
 		if (StringUtil.isEmpty(frame.getTextFieldRG().getText()))
 			throw new BusinessException("A RG deve ser informada!");
 		
 		object.setRg(frame.getTextFieldRG().getText());
+		
+		if (StringUtil.isEmpty(frame.getTextFieldDataDeNascimento().getText()))
+			throw new BusinessException("A data de nascimento deve ser informada!");
+		
+		try {
+			object.setDataNascimento(sdf.parse(frame.getTextFieldDataDeNascimento().getText()));
+		} catch (ParseException e) {
+			throw new BusinessException("A data de nascimento est√° em um formato incorreto!");
+		}
+		
+		if (StringUtil.isEmpty(frame.getTextFieldEnfermidade().getText()))
+			throw new BusinessException("A enfermidade deve ser informada!");
+		
+		object.setDoencas(frame.getTextFieldEnfermidade().getText());
+		
+		if (StringUtil.isEmpty(frame.getTextFieldPlanoDeSaude().getText()))
+			throw new BusinessException("O plano de sa˙de deve ser informado!");
+		
+		object.setPlanoSaude(frame.getTextFieldPlanoDeSaude().getText());
 		
 		if (StringUtil.isEmpty(frame.getTextFieldEmail().getText()))
 			throw new BusinessException("O email deve ser informado!");
@@ -53,19 +77,11 @@ public class ProfessorController {
 		
 		object.setTelefone(frame.getTextFieldTelefone().getText());
 		
-		if (StringUtil.isEmpty(frame.getFormattedTextFieldCPF().getText()))
-			throw new BusinessException("O cpf deve ser informado!");
+		String sanguineo = (String) frame.getComboBoxSanguineo().getSelectedItem();
+		if (StringUtil.isEmpty(sanguineo))
+			throw new BusinessException("Selecione o tipo sanguineo!");	
 		
-		object.setCpf(frame.getFormattedTextFieldCPF().getText());
-		
-		if (StringUtil.isEmpty(frame.getTextFieldDataDeNascimento().getText()))
-			throw new BusinessException("A data de nascimento deve ser informada!");
-		
-		try {
-			object.setDataNascimento(sdf.parse(frame.getTextFieldDataDeNascimento().getText()));
-		} catch (ParseException e) {
-			throw new BusinessException("A data de nascimento est√° em um formato incorreto!");
-		}
+		object.setTipoSanguineo(sanguineo);
 		
 		if (StringUtil.isEmpty(frame.getTextFieldLogradouro().getText()))
 			throw new BusinessException("O logradouro deve ser informado!");
@@ -75,7 +91,7 @@ public class ProfessorController {
 		if (StringUtil.isEmpty(frame.getTextFieldNumeroDaCasa().getText()))
 			throw new BusinessException("O numero da casa deve ser informado!");
 		
-		object.setRua(frame.getTextFieldNumeroDaCasa().getText());
+		object.setNumeroCasa(frame.getTextFieldNumeroDaCasa().getText());
 		
 		if (StringUtil.isEmpty(frame.getTextFieldComplemento().getText()))
 			throw new BusinessException("O complemento deve ser informado!");
@@ -92,39 +108,22 @@ public class ProfessorController {
 		
 		object.setCep(frame.getTextFieldCEP().getText());
 		
-		if (StringUtil.isEmpty(frame.getTextFieldEstado().getText()))
-			throw new BusinessException("O estado deve ser informado!");
-		
-		object.setEstado(frame.getTextFieldEstado().getText());
-		
 		if (StringUtil.isEmpty(frame.getTextFieldCidade().getText()))
 			throw new BusinessException("A cidade deve ser informada!");
 		
 		object.setCidade(frame.getTextFieldCidade().getText());
 		
-		if (StringUtil.isEmpty(frame.getTextFieldEnfermidade().getText()))
-			throw new BusinessException("A enfermidade deve ser informada!");
+		if (StringUtil.isEmpty(frame.getTextFieldEstado().getText()))
+			throw new BusinessException("O estado deve ser informado!");
 		
-		object.setCidade(frame.getTextFieldEnfermidade().getText());
+		object.setEstado(frame.getTextFieldEstado().getText());	
 		
-		if (StringUtil.isEmpty(frame.getTextFieldPlanoDeSaude().getText()))
-			throw new BusinessException("O plano de sa√∫de deve ser informado!");
+		if (StringUtil.isEmpty(frame.getTextFieldSalario().getText()))
+			throw new BusinessException("O sal·rio deve ser informado!");
 		
-		object.setCidade(frame.getTextFieldPlanoDeSaude().getText());
+		object.setSalario(frame.getTextFieldEstado().getText());
 		
-//		TODO tipo sangu√≠neo
-		
-//		TODO graduacao
-//		if (StringUtil.isEmpty(frame.getText().getText()))
-//			throw new BusinessException("A enfermidade deve ser informada!");
-//		
-//		object.setCidade(frame.getTextFieldEnfermidade().getText());
-
-//		TODO modalidade
-//		if (StringUtil.isEmpty(frame.getText().getText()))
-//			throw new BusinessException("O plano de sa√∫de deve ser informado!");
-//		
-//		object.setCidade(frame.getTextFieldPlanoDeSaude().getText());
+		object.setGraduacao("graduaÁ„o");
 			
 		return object;
 	}

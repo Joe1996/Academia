@@ -14,28 +14,28 @@ public class ModalidadeDAO extends DatabaseDAO implements IDatabaseDAO<Modalidad
 	
 	private final String COLUMN_ID = "_id";
 	private final String COLUMN_NAME = "nome";
-	private final String COLUMN_NAME_MASTER = "nomeMestre";
+	private final String COLUMN_PROFESSOR_ID = "_idProfessor";
 	
 	private final String TABLE_NAME = "modalidade";
 	
 	private final String TABLE_BODY =
 			"("
-			+ COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " 
+			+ COLUMN_ID + " SERIAL PRIMARY KEY, " 
 			+ COLUMN_NAME + " VARCHAR(150) NOT NULL, "
-			+ COLUMN_NAME_MASTER + " VARCHAR(150) NOT NULL"
+			+ COLUMN_PROFESSOR_ID + " INTEGER NOT NULL"
 			+ ");";
 
 	private final String SQL_INSERT = "INSERT INTO modalidade "
 			+ "(" 
 			+ COLUMN_NAME + COMMA 
-			+ COLUMN_NAME_MASTER
+			+ COLUMN_PROFESSOR_ID
 			+ ")" 
 			+ " VALUES "
 			+ "(?,?)";
 
 	private final String SQL_UPDATE = "UPDATE modalidade SET" 
 			+ COLUMN_NAME + UPDATE_MARK + COMMA 
-			+ COLUMN_NAME_MASTER + UPDATE_MARK
+			+ COLUMN_PROFESSOR_ID + UPDATE_MARK
 			+ " WHERE " + COLUMN_ID + UPDATE_MARK;
 
 	@Override
@@ -43,7 +43,7 @@ public class ModalidadeDAO extends DatabaseDAO implements IDatabaseDAO<Modalidad
 		try {
 			createTable(TABLE_NAME, TABLE_BODY);
 		} catch (SQLException e) {
-			System.out.println("NÃ£o foi possÃ­vel criar a tabela GradeAula, motivo: " + e.getMessage());
+			System.out.println("Não foi possível criar a tabela GradeAula, motivo: " + e.getMessage());
 		}
 	}
 
@@ -51,7 +51,10 @@ public class ModalidadeDAO extends DatabaseDAO implements IDatabaseDAO<Modalidad
 	public long insert(Modalidade object) throws SQLException {
 		PreparedStatement statement = objectToPreparedStatement(SQL_INSERT, object);
 		executePreparedStatement(statement);
-		return selectLastId();
+		long id = selectLastId();
+		statement.close();
+		closeConnection();
+		return id;
 	}
 
 	@Override
@@ -59,6 +62,8 @@ public class ModalidadeDAO extends DatabaseDAO implements IDatabaseDAO<Modalidad
 		PreparedStatement statement = objectToPreparedStatement(SQL_UPDATE, object);
 		statement.setLong(3, object.getId());
 		executePreparedStatement(statement);
+		statement.close();
+		closeConnection();
 	}
 
 	@Override
@@ -67,6 +72,8 @@ public class ModalidadeDAO extends DatabaseDAO implements IDatabaseDAO<Modalidad
 		PreparedStatement statement = getConnection().prepareStatement(query);
 		statement.setLong(1, object.getId());
 		executePreparedStatement(statement);
+		statement.close();
+		closeConnection();
 	}
 	
 	@Override
@@ -79,6 +86,8 @@ public class ModalidadeDAO extends DatabaseDAO implements IDatabaseDAO<Modalidad
 				list.add(resultSetToObject(resultSet));
 			}
 		}
+		resultSet.close();
+		closeConnection();
 		return list;
 	}
 
@@ -94,6 +103,9 @@ public class ModalidadeDAO extends DatabaseDAO implements IDatabaseDAO<Modalidad
 				object = resultSetToObject(resultSet);
 			}
 		}
+		statement.close();
+		resultSet.close();
+		closeConnection();
 		return object;
 	}
 	
@@ -107,6 +119,8 @@ public class ModalidadeDAO extends DatabaseDAO implements IDatabaseDAO<Modalidad
 				id = resultSet.getLong(LAST_ID);
 			}
 		}
+		resultSet.close();
+		closeConnection();
 		return id;
 	}
 
@@ -115,7 +129,10 @@ public class ModalidadeDAO extends DatabaseDAO implements IDatabaseDAO<Modalidad
 		Modalidade object = new Modalidade();
 		object.setId(resultSet.getLong(COLUMN_ID));
 		object.setNome(resultSet.getString(COLUMN_NAME));
-		object.setNomeMestre(resultSet.getString(COLUMN_NAME_MASTER));
+		
+		long idProfessor = resultSet.getLong(COLUMN_PROFESSOR_ID);
+		object.setProfessor(new ProfessorDAO().selectById(idProfessor));
+		
 		return object;
 	}
 
@@ -123,7 +140,7 @@ public class ModalidadeDAO extends DatabaseDAO implements IDatabaseDAO<Modalidad
 	public PreparedStatement objectToPreparedStatement(String query, Modalidade object) throws SQLException {
 		PreparedStatement statement = getConnection().prepareStatement(query);
 		statement.setString(1, object.getNome());
-		statement.setString(2, object.getNomeMestre());
+		statement.setLong(2, object.getProfessor() != null ? object.getProfessor().getId() : 0);
 		return statement;
 	}
 

@@ -66,7 +66,7 @@ public class InternalFrameMensalidade extends JInternalFrame {
 								.addComponent(lblModalidade))
 							.addPreferredGap(ComponentPlacement.RELATED)
 							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-								.addComponent(textFieldValor, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+								.addComponent(textFieldValor, GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
 								.addComponent(comboBoxModalidade, 0, 200, Short.MAX_VALUE)))
 						.addComponent(btnSalvar, Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 121, GroupLayout.PREFERRED_SIZE))
 					.addContainerGap())
@@ -84,7 +84,7 @@ public class InternalFrameMensalidade extends JInternalFrame {
 						.addComponent(textFieldValor, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addComponent(btnSalvar)
-					.addContainerGap(19, Short.MAX_VALUE))
+					.addContainerGap(29, Short.MAX_VALUE))
 		);
 		getContentPane().setLayout(groupLayout);
 

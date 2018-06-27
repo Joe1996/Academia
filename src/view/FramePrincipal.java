@@ -197,22 +197,6 @@ public class FramePrincipal extends JFrame {
 		mntmNewMenuItem_1.setIcon(new ImageIcon("C:\\Users\\EduardoCordova\\git\\Academia\\resources\\planning1.png"));
 		mntmNewMenuItem_1.setFont(new Font("Segoe UI", Font.PLAIN, 15));
 		mnMensalidades.add(mntmNewMenuItem_1);
-		
-		JMenu mnIndicadores = new JMenu("Indicadores");
-		mnIndicadores.setIcon(new ImageIcon("C:\\Users\\EduardoCordova\\git\\Academia\\resources\\planning.png"));
-		mnIndicadores.setFont(new Font("Segoe UI", Font.PLAIN, 15));
-		menuBar.add(mnIndicadores);
-		
-		JMenuItem mntmMostrar_1 = new JMenuItem("Mostrar");
-		mntmMostrar_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				InternalFrameIndicadores frameIndicadores = new InternalFrameIndicadores();
-				desktopPane.add(frameIndicadores);
-				frameIndicadores.setVisible(true);
-			}
-		});
-		mntmMostrar_1.setIcon(new ImageIcon("C:\\Users\\EduardoCordova\\git\\Academia\\resources\\writing.png"));
-		mnIndicadores.add(mntmMostrar_1);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);

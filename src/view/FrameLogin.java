@@ -11,11 +11,16 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.EmptyBorder;
+
+import controller.LoginController;
+import util.BusinessException;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -30,6 +35,7 @@ public class FrameLogin extends JFrame {
 	private JPasswordField passwordFieldSenha;
 	private JLabel lblImagemfundo;
 	private JButton btnEntrar;
+	private LoginController controller;
 
 	/**
 	 * Launch the application.
@@ -52,7 +58,7 @@ public class FrameLogin extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public FrameLogin() {
+	public FrameLogin() {		
 		setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\EduardoCordova\\git\\Academia\\src\\img\\IconeTelas.png"));
 		setTitle("Login\r\n");
 		setResizable(false);
@@ -79,10 +85,16 @@ public class FrameLogin extends JFrame {
 		btnEntrar = new JButton("Entrar");
 		btnEntrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				FramePrincipal framePrincipal = new FramePrincipal();
-				framePrincipal.setVisible(true);
-				framePrincipal.setExtendedState(MAXIMIZED_BOTH);
-				dispose();
+				try {
+					if (controller.validateLogin()) {
+						FramePrincipal framePrincipal = new FramePrincipal();
+						framePrincipal.setVisible(true);
+						framePrincipal.setExtendedState(MAXIMIZED_BOTH);
+						dispose();
+					}
+				} catch (BusinessException ex) {
+					JOptionPane.showMessageDialog(FrameLogin.this, ex.getMessage());
+				}
 			}
 		});
 		btnEntrar.setIcon(new ImageIcon("C:\\Users\\EduardoCordova\\git\\Academia\\resources\\checked.png"));
@@ -125,6 +137,7 @@ public class FrameLogin extends JFrame {
 					.addContainerGap())
 		);
 		contentPane.setLayout(gl_contentPane);
+		controller = new LoginController(this);
 	}
 
 	public JTextField getTextFieldLogin() {

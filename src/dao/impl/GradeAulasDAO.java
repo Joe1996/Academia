@@ -30,7 +30,7 @@ public class GradeAulasDAO extends DatabaseDAO implements IDatabaseDAO<GradeAula
 	
 	private final String TABLE_BODY =
 			"(" 
-			+ COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " 
+			+ COLUMN_ID + " SERIAL PRIMARY KEY, " 
 			+ COLUMN_NAME + " VARCHAR(150) NOT NULL, "
 			+ COLUMN_START_TIME + " VARCHAR(50) NOT NULL, "
 			+ COLUMN_END_TIME + " VARCHAR(50) NOT NULL, "
@@ -71,7 +71,7 @@ public class GradeAulasDAO extends DatabaseDAO implements IDatabaseDAO<GradeAula
 		try {
 			createTable(TABLE_NAME, TABLE_BODY);
 		} catch (SQLException e) {
-			System.out.println("NÃ£o foi possÃ­vel criar a tabela GradeAula, motivo: " + e.getMessage());
+			System.out.println("Não foi possível criar a tabela GradeAula, motivo: " + e.getMessage());
 		}
 	}
 
@@ -79,7 +79,10 @@ public class GradeAulasDAO extends DatabaseDAO implements IDatabaseDAO<GradeAula
 	public long insert(GradeAula object) throws SQLException {
 		PreparedStatement statement = objectToPreparedStatement(SQL_INSERT, object);
 		executePreparedStatement(statement);
-		return selectLastId();
+		long id = selectLastId();
+		statement.close();
+		closeConnection();
+		return id;
 	}
 
 	@Override
@@ -87,6 +90,8 @@ public class GradeAulasDAO extends DatabaseDAO implements IDatabaseDAO<GradeAula
 		PreparedStatement statement = objectToPreparedStatement(SQL_UPDATE, object);
 		statement.setLong(9, object.getId());
 		executePreparedStatement(statement);
+		statement.close();
+		closeConnection();
 	}
 
 	@Override
@@ -95,6 +100,8 @@ public class GradeAulasDAO extends DatabaseDAO implements IDatabaseDAO<GradeAula
 		PreparedStatement statement = getConnection().prepareStatement(query);
 		statement.setLong(1, object.getId());
 		executePreparedStatement(statement);
+		statement.close();
+		closeConnection();
 	}
 
 	@Override
@@ -107,6 +114,8 @@ public class GradeAulasDAO extends DatabaseDAO implements IDatabaseDAO<GradeAula
 				list.add(resultSetToObject(resultSet));
 			}
 		}
+		resultSet.close();
+		closeConnection();
 		return list;
 	}
 
@@ -122,6 +131,9 @@ public class GradeAulasDAO extends DatabaseDAO implements IDatabaseDAO<GradeAula
 				object = resultSetToObject(resultSet);
 			}
 		}
+		statement.close();
+		resultSet.close();
+		closeConnection();
 		return object;
 	}
 	
@@ -135,6 +147,8 @@ public class GradeAulasDAO extends DatabaseDAO implements IDatabaseDAO<GradeAula
 				id = resultSet.getLong(LAST_ID);
 			}
 		}
+		resultSet.close();
+		closeConnection();
 		return id;
 	}
 

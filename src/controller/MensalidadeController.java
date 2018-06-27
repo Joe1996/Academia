@@ -21,8 +21,8 @@ public class MensalidadeController {
 	}
 	
 	public Mensalidade getMonthlyPayment() throws BusinessException {
-		String studentName = "";//frame.getTxtAluno().getText();
-		String dueDate = "";//frame.getTxtDataVencimento().getText();
+		String studentName = "";
+		String dueDate = "";
 		
 		if (StringUtil.isEmpty(studentName))
 			throw new BusinessException("O nome do aluno deve ser informado!");

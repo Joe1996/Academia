@@ -158,4 +158,9 @@ public abstract class Pessoa {
 		this.tipoSanguineo = tipoSanguineo;
 	}
 	
+	@Override
+	public String toString() {
+		return this.nome;
+	}
+	
 }
