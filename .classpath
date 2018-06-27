@@ -11,5 +11,6 @@
 	<classpathentry kind="lib" path="jar/jgoodies-forms-1.8.0.jar"/>
 	<classpathentry kind="lib" path="jar/miglayout15-swing.jar"/>
 	<classpathentry kind="lib" path="jar/postgresql-42.2.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/EduardoCordova/git/Academia/jar/imagens.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

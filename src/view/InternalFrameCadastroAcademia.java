@@ -75,6 +75,7 @@ public class InternalFrameCadastroAcademia extends JInternalFrame {
 		panelEndereco.setBorder(new TitledBorder(null, "Endere\u00E7o", TitledBorder.CENTER, TitledBorder.TOP, null, null));
 		
 		JButton btnSalvar = new JButton("Salvar");
+<<<<<<< Updated upstream
 		btnSalvar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
@@ -87,6 +88,15 @@ public class InternalFrameCadastroAcademia extends JInternalFrame {
 			}
 		});
 		btnSalvar.setIcon(new ImageIcon("C:\\Users\\EduardoCordova\\git\\Academia\\resources\\checked.png"));
+=======
+		btnSalvar.setIcon(new ImageIcon(InternalFrameCadastroAcademia.class.getResource("/resources/checked.png")));
+		
+		JButton btnLimparCampos = new JButton("Limpar Campos");
+		btnLimparCampos.setIcon(new ImageIcon(InternalFrameCadastroAcademia.class.getResource("/resources/eraser.png")));
+		
+		JButton btnSair = new JButton("Sair");
+		btnSair.setIcon(new ImageIcon(InternalFrameCadastroAcademia.class.getResource("/resources/exit.png")));
+>>>>>>> Stashed changes
 		GroupLayout groupLayout = new GroupLayout(getContentPane());
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)

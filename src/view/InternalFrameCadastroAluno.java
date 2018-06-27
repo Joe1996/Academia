@@ -93,7 +93,7 @@ public class InternalFrameCadastroAluno extends JInternalFrame {
 				}
 			}
 		});
-		btnSalvar.setIcon(new ImageIcon("C:\\Users\\EduardoCordova\\git\\Academia\\resources\\checked.png"));
+		btnSalvar.setIcon(new ImageIcon(InternalFrameCadastroAluno.class.getResource("/resources/checked.png")));
 		GroupLayout groupLayout = new GroupLayout(getContentPane());
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
