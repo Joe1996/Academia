@@ -5,7 +5,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
 import dao.impl.AlunoDAO;
-import model.Aluno;
+import model.impl.Aluno;
 import util.BusinessException;
 import util.StringUtil;
 import view.InternalFrameCadastroAluno;

@@ -4,8 +4,8 @@ import java.sql.SQLException;
 
 import dao.impl.AlunoDAO;
 import dao.impl.MensalidadeDAO;
-import model.Aluno;
-import model.Mensalidade;
+import model.impl.Aluno;
+import model.impl.Mensalidade;
 import util.BusinessException;
 import util.StringUtil;
 import view.InternalFrameMensalidade;
@@ -34,12 +34,12 @@ public class MensalidadeController {
 			Aluno student = alunoDao.selectByName(studentName);
 			
 			if (student == null || student.getId() == 0)
-				throw new BusinessException("O aluno n√£o foi encontrado.");
+				throw new BusinessException("O aluno n„o foi encontrado.");
 			
 			return mensalidadeDao.selectByStudentAndDueDate(student.getId(), dueDate);
 		} catch (SQLException e) {
-			System.out.println("N√£o foi poss√≠vel buscar a mensalidade, motivo: " + e.getMessage());
-			throw new BusinessException("N√£o foi poss√≠vel buscar a mensalidade");
+			System.out.println("N„o foi possÌvel buscar a mensalidade, motivo: " + e.getMessage());
+			throw new BusinessException("N„o foi possÌvel buscar a mensalidade");
 		}
 	}
 	

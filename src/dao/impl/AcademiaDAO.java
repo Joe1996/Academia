@@ -8,7 +8,7 @@ import java.util.List;
 
 import dao.DatabaseDAO;
 import dao.IDatabaseDAO;
-import model.Academia;
+import model.impl.Academia;
 
 public class AcademiaDAO extends DatabaseDAO implements IDatabaseDAO<Academia> {
 	

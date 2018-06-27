@@ -11,7 +11,7 @@ import java.util.List;
 
 import dao.DatabaseDAO;
 import dao.IDatabaseDAO;
-import model.Administrador;
+import model.impl.Administrador;
 import util.BusinessException;
 
 public class AdministradorDAO extends DatabaseDAO implements IDatabaseDAO<Administrador> {

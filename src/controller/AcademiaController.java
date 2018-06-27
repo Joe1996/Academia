@@ -3,7 +3,7 @@ package controller;
 import java.sql.SQLException;
 
 import dao.impl.AcademiaDAO;
-import model.Academia;
+import model.impl.Academia;
 import util.BusinessException;
 import util.StringUtil;
 import view.InternalFrameCadastroAcademia;
@@ -22,8 +22,8 @@ public class AcademiaController {
 		try {
 			dao.insert(object);
 		} catch (SQLException ex) {
-			System.out.println("NÃ£o foi possÃ­vel inserir os dados da academia no banco, motivo: " + ex.getMessage());
-			throw new BusinessException("NÃ£o foi possÃ­vel inserir a academia.");
+			System.out.println("Não foi possível inserir os dados da academia no banco, motivo: " + ex.getMessage());
+			throw new BusinessException("Não foi possível inserir a academia.");
 		}
 	}
 	
@@ -36,7 +36,7 @@ public class AcademiaController {
 		object.setNomeFantasia(frame.getTextFieldNomeFantasia().getText());
 		
 		if (StringUtil.isEmpty(frame.getTextFieldRazaoSocial().getText()))
-			throw new BusinessException("A razÃ£o social deve ser informada!");
+			throw new BusinessException("A razão social deve ser informada!");
 		
 		object.setRazaoSocial(frame.getTextFieldRazaoSocial().getText());
 		
@@ -46,9 +46,19 @@ public class AcademiaController {
 		object.setCnpj(frame.getTextFieldCnpj().getText());
 		
 		if (StringUtil.isEmpty(frame.getTextFieldInscricaoMunicipal().getText()))
-			throw new BusinessException("A inscriÃ§Ã£o municipal deve ser informada!");
+			throw new BusinessException("A inscrição municipal deve ser informada!");
 		
 		object.setInscricaoMunicipal(frame.getTextFieldInscricaoMunicipal().getText());
+		
+		if (StringUtil.isEmpty(frame.getTextFieldEmail().getText()))
+			throw new BusinessException("O email deve ser informado!");
+		
+		object.setEmail(frame.getTextFieldEmail().getText());
+		
+		if (StringUtil.isEmpty(frame.getTextFieldTelefone().getText()))
+			throw new BusinessException("O telefone deve ser informado!");
+		
+		object.setTelefone(frame.getTextFieldTelefone().getText());
 		
 		if (StringUtil.isEmpty(frame.getTextFieldLogradouro().getText()))
 			throw new BusinessException("O logradouro deve ser informado!");
@@ -56,7 +66,7 @@ public class AcademiaController {
 		object.setEndereco(frame.getTextFieldLogradouro().getText());
 		
 		if (StringUtil.isEmpty(frame.getTextFieldNumero().getText()))
-			throw new BusinessException("O nÃºmero deve ser informado!");
+			throw new BusinessException("O número deve ser informado!");
 		
 		object.setNumero(frame.getTextFieldNumero().getText());
 		
@@ -75,26 +85,16 @@ public class AcademiaController {
 		
 		object.setCep(frame.getTextFieldCEP().getText());
 		
-		if (StringUtil.isEmpty(frame.getTextFieldEstado().getText()))
-			throw new BusinessException("O estado deve ser informado!");
-		
-		object.setEstado(frame.getTextFieldEstado().getText());
-		
 		if (StringUtil.isEmpty(frame.getTextFieldCidade().getText()))
 			throw new BusinessException("A cidade deve ser informada!");
 		
 		object.setCidade(frame.getTextFieldCidade().getText());
 		
-		if (StringUtil.isEmpty(frame.getTextFieldEmail().getText()))
-			throw new BusinessException("O email deve ser informado!");
+		if (StringUtil.isEmpty(frame.getTextFieldEstado().getText()))
+			throw new BusinessException("O estado deve ser informado!");
 		
-		object.setEmail(frame.getTextFieldEmail().getText());
+		object.setEstado(frame.getTextFieldEstado().getText());
 		
-		if (StringUtil.isEmpty(frame.getTextFieldTelefone().getText()))
-			throw new BusinessException("O telefone deve ser informado!");
-		
-		object.setTelefone(frame.getTextFieldTelefone().getText());
-			
 		return object;
 	}
 	

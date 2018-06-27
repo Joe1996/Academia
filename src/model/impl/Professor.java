@@ -1,4 +1,6 @@
-package model;
+package model.impl;
+
+import model.Pessoa;
 
 public class Professor extends Pessoa {
 	

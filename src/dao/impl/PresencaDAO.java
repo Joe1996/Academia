@@ -10,7 +10,7 @@ import java.util.List;
 
 import dao.DatabaseDAO;
 import dao.IDatabaseDAO;
-import model.Presenca;;
+import model.impl.Presenca;;
 
 public class PresencaDAO extends DatabaseDAO implements IDatabaseDAO<Presenca> {
 	

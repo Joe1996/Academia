@@ -8,7 +8,7 @@ import java.util.List;
 
 import dao.DatabaseDAO;
 import dao.IDatabaseDAO;
-import model.Plano;
+import model.impl.Plano;
 
 public class PlanoDAO extends DatabaseDAO implements IDatabaseDAO<Plano> {
 

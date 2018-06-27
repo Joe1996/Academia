@@ -5,8 +5,8 @@ import java.util.List;
 
 import dao.impl.ModalidadeDAO;
 import dao.impl.ProfessorDAO;
-import model.Modalidade;
-import model.Professor;
+import model.impl.Modalidade;
+import model.impl.Professor;
 import util.BusinessException;
 import util.StringUtil;
 import view.InternalFrameCadastroModalidade;

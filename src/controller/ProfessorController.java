@@ -5,7 +5,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
 import dao.impl.ProfessorDAO;
-import model.Professor;
+import model.impl.Professor;
 import util.BusinessException;
 import util.StringUtil;
 import view.InternalFrameCadastroProfessor;

@@ -3,8 +3,9 @@ package controller;
 import java.sql.SQLException;
 
 import dao.impl.AdministradorDAO;
-import model.Administrador;
+import model.impl.Administrador;
 import util.BusinessException;
+import util.Singleton;
 import util.StringUtil;
 import view.FrameLogin;
 
@@ -46,6 +47,7 @@ public class LoginController {
 			if (!password.equals(administrador.getSenha()))
 				throw new BusinessException("Senha incorreta.");
 			
+			Singleton.getInstance().setAdministrador(administrador);			
 			return true;
 		} catch (SQLException ex) {
 			System.out.println("Não foi possível carregar o administrador, motivo: " + ex.getMessage());

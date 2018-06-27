@@ -9,7 +9,7 @@ import java.util.List;
 
 import dao.DatabaseDAO;
 import dao.IDatabaseDAO;
-import model.Funcionario;
+import model.impl.Funcionario;
 
 public class FuncionarioDAO extends DatabaseDAO implements IDatabaseDAO<Funcionario> {
 	

@@ -10,7 +10,7 @@ import java.util.List;
 
 import dao.DatabaseDAO;
 import dao.IDatabaseDAO;
-import model.Aluno;
+import model.impl.Aluno;
 
 public class AlunoDAO extends DatabaseDAO implements IDatabaseDAO<Aluno>{
 	

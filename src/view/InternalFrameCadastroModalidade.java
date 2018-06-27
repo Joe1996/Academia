@@ -10,7 +10,7 @@ import javax.swing.JOptionPane;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
 import controller.ModalidadeController;
-import model.Professor;
+import model.impl.Professor;
 import util.BusinessException;
 
 import javax.swing.JTextField;

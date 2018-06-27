@@ -10,7 +10,7 @@ import java.util.List;
 
 import dao.DatabaseDAO;
 import dao.IDatabaseDAO;
-import model.Professor;
+import model.impl.Professor;
 
 public class ProfessorDAO extends DatabaseDAO implements IDatabaseDAO<Professor> {
 	

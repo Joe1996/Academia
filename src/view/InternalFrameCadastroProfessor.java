@@ -86,6 +86,8 @@ public class InternalFrameCadastroProfessor extends JInternalFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
 					controller.insert();
+					dispose();
+					JOptionPane.showMessageDialog(InternalFrameCadastroProfessor.this, "Professor salvo com sucesso!");
 				} catch (BusinessException be) {
 					JOptionPane.showMessageDialog(InternalFrameCadastroProfessor.this, be.getMessage());
 				}

@@ -9,7 +9,7 @@ import java.util.List;
 
 import dao.DatabaseDAO;
 import dao.IDatabaseDAO;
-import model.Gerente;
+import model.impl.Gerente;
 
 public class GerenteDAO extends DatabaseDAO implements IDatabaseDAO<Gerente> {
 	

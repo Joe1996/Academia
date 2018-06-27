@@ -8,7 +8,7 @@ import java.util.List;
 
 import dao.DatabaseDAO;
 import dao.IDatabaseDAO;
-import model.Modalidade;;
+import model.impl.Modalidade;;
 
 public class ModalidadeDAO extends DatabaseDAO implements IDatabaseDAO<Modalidade> {
 	

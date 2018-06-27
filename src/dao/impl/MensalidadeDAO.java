@@ -9,7 +9,7 @@ import java.util.List;
 
 import dao.DatabaseDAO;
 import dao.IDatabaseDAO;
-import model.Mensalidade;
+import model.impl.Mensalidade;
 
 public class MensalidadeDAO extends DatabaseDAO implements IDatabaseDAO<Mensalidade> {
 	
