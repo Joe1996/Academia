@@ -1,10 +1,16 @@
 package view;
 
+import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -15,34 +21,15 @@ import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-<<<<<<< Updated upstream
-=======
-import javax.swing.border.EmptyBorder;
-import javax.swing.ImageIcon;
-import java.awt.event.ActionListener;
-import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.Date;
-import java.util.Timer;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
-import java.awt.event.ActionEvent;
->>>>>>> Stashed changes
 import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.SwingConstants;
+import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
-<<<<<<< Updated upstream
 
 import util.Singleton;
-=======
-import javax.swing.JLabel;
-import javax.swing.UIManager;
-import java.awt.Color;
-import javax.swing.SwingConstants;
->>>>>>> Stashed changes
 
 public class FramePrincipal extends JFrame {
 
@@ -127,12 +114,11 @@ public class FramePrincipal extends JFrame {
 		mntmModalidade.setFont(new Font("Segoe UI", Font.PLAIN, 15));
 		mnCadastrar.add(mntmModalidade);
 		
-<<<<<<< Updated upstream
-=======
+
 		JMenuItem mntmNewMenuItem = new JMenuItem("Fornecedores");
 		mntmNewMenuItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				JOptionPane.showInternalMessageDialog(desktopPane, "Função Indisponível no Momento", "Atenção", JOptionPane.WARNING_MESSAGE);
+				JOptionPane.showInternalMessageDialog(desktopPane, "Funï¿½ï¿½o Indisponï¿½vel no Momento", "Atenï¿½ï¿½o", JOptionPane.WARNING_MESSAGE);
 			}
 		});
 		mntmNewMenuItem.setIcon(new ImageIcon(FramePrincipal.class.getResource("/resources/IconeFornecedor.png")));
@@ -142,14 +128,13 @@ public class FramePrincipal extends JFrame {
 		JMenuItem mntmProdutos = new JMenuItem("Produtos");
 		mntmProdutos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				JOptionPane.showInternalMessageDialog(desktopPane, "Função Indisponível no Momento", "Atenção", JOptionPane.WARNING_MESSAGE);
+				JOptionPane.showInternalMessageDialog(desktopPane, "Funï¿½ï¿½o Indisponï¿½vel no Momento", "Atenï¿½ï¿½o", JOptionPane.WARNING_MESSAGE);
 			}
 		});
 		mntmProdutos.setIcon(new ImageIcon(FramePrincipal.class.getResource("/resources/IconeProdutos.png")));
 		mntmProdutos.setFont(new Font("Segoe UI", Font.PLAIN, 15));
 		mnCadastrar.add(mntmProdutos);
 		
->>>>>>> Stashed changes
 		JMenuItem mntmAcadmia = new JMenuItem("Acad\u00EAmia");
 		mntmAcadmia.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -232,8 +217,6 @@ public class FramePrincipal extends JFrame {
 		
 		JPanel panelUsuarioLogado = new JPanel();
 		panelUsuarioLogado.setBorder(new TitledBorder(null, "Usu\u00E1rio Logado", TitledBorder.CENTER, TitledBorder.TOP, null, null));
-<<<<<<< Updated upstream
-=======
 		
 		JPanel panelDataHora = new JPanel();
 		panelDataHora.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Hora", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(0, 0, 0)));
@@ -293,40 +276,32 @@ public class FramePrincipal extends JFrame {
 					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 		);
 		panelData.setLayout(gl_panelData);
->>>>>>> Stashed changes
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addContainerGap()
 					.addComponent(panelUsuarioLogado, GroupLayout.PREFERRED_SIZE, 285, GroupLayout.PREFERRED_SIZE)
-<<<<<<< Updated upstream
 					.addContainerGap(487, Short.MAX_VALUE))
-=======
 					.addGap(27)
 					.addComponent(panelDataHora, GroupLayout.PREFERRED_SIZE, 133, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(panelData, GroupLayout.PREFERRED_SIZE, 133, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(188, Short.MAX_VALUE))
->>>>>>> Stashed changes
-				.addComponent(desktopPane, GroupLayout.DEFAULT_SIZE, 782, Short.MAX_VALUE)
-		);
+//					.addPreferredGap(ComponentPlacement.RELATED)
+//					.addComponent(panelData, GroupLayout.PREFERRED_SIZE, 133, GroupLayout.PREFERRED_SIZE)
+//					.addContainerGap(188, Short.MAX_VALUE))
+				.addComponent(desktopPane, GroupLayout.DEFAULT_SIZE, 782, Short.MAX_VALUE));
+		
 		gl_contentPane.setVerticalGroup(
 			gl_contentPane.createParallelGroup(Alignment.TRAILING)
 				.addGroup(gl_contentPane.createSequentialGroup()
-<<<<<<< Updated upstream
 					.addComponent(desktopPane, GroupLayout.DEFAULT_SIZE, 401, Short.MAX_VALUE)
 					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addComponent(panelUsuarioLogado, GroupLayout.PREFERRED_SIZE, 47, GroupLayout.PREFERRED_SIZE))
-=======
 					.addComponent(desktopPane, GroupLayout.DEFAULT_SIZE, 377, Short.MAX_VALUE)
-					.addPreferredGap(ComponentPlacement.RELATED)
+					//.addPreferredGap(ComponentPlacement.RELATED)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING, false)
 						.addComponent(panelData, 0, 0, Short.MAX_VALUE)
 						.addComponent(panelDataHora, 0, 0, Short.MAX_VALUE)
-						.addComponent(panelUsuarioLogado, GroupLayout.PREFERRED_SIZE, 47, Short.MAX_VALUE)))
->>>>>>> Stashed changes
-		);
+						.addComponent(panelUsuarioLogado, GroupLayout.PREFERRED_SIZE, 47, Short.MAX_VALUE)));
 		
 		JLabel lblNome = new JLabel("Nome:");
 		
